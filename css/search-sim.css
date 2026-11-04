@@ -2,25 +2,37 @@
 :root{--ss-surf:rgba(255,252,247,.86);--ss-surf2:rgba(255,252,247,.66);--ss-red:#C0392B;--ss-dot:#B9BEC1;--ss-hi:#C4876C}
 @media screen{:root[data-theme="dark"]{--ss-surf:rgba(17,62,55,.9);--ss-surf2:rgba(17,62,55,.62);--ss-red:#E74C3C;--ss-dot:#4F6A64}}
 
-#searchsim{grid-row:1/-1;position:relative;min-height:0;height:100%;display:grid;grid-template-rows:auto 1fr;gap:calc(var(--u)*1.7)}
+#searchsim{grid-row:1/-1;position:relative;min-height:0;height:100%;display:grid;grid-template-rows:auto minmax(0,1fr);gap:calc(var(--u)*1.3)}
 .ss-head{display:grid;gap:calc(var(--u)*.8)}
-.ss-head h2{font-size:calc(var(--u)*3.1)}
-.ss-main{min-height:0;display:grid;grid-template-columns:1fr 1fr 1.02fr;grid-template-rows:auto minmax(0,1fr);gap:calc(var(--u)*1.1) calc(var(--u)*1.6)}
+.ss-head{gap:calc(var(--u)*.6)}
+.ss-head h2{font-size:calc(var(--u)*3)}
+.ss-sub{font-size:calc(var(--u)*1.5);line-height:1.3;color:var(--ink2);font-weight:500}
+.ss-sub b{font-weight:600;color:var(--ink)}
+.ss-main{min-height:0;display:grid;grid-template-columns:1fr 1fr 1.02fr;grid-template-rows:auto minmax(0,1fr) auto;gap:calc(var(--u)*1) calc(var(--u)*1.6)}
 .ss-col{display:contents}
 .ss-col[data-l="en"]>*{grid-column:1}.ss-col[data-l="zh"]>*{grid-column:2}
 .ss-col>.ss-bar{grid-row:1}.ss-col>.ss-chat{grid-row:2}
-.ss-side{grid-column:3;grid-row:1/3}
+.ss-side{grid-column:3;grid-row:1/4}
+
+/* WHY prompt under both consoles */
+.ss-why{grid-column:1/3;grid-row:3;display:flex;align-items:center;justify-content:center;padding:calc(var(--u)*1) calc(var(--u)*1.6);
+  border-radius:calc(var(--u)*1.6);background:var(--ss-surf);border:2px solid var(--copper);box-shadow:var(--shadow);
+  opacity:0;transform:translateY(14px) scale(.98);transition:opacity .6s var(--ease),transform .7s var(--ease)}
+.ss-why p{font:700 calc(var(--u)*2.7)/1.15 var(--sans);letter-spacing:-.01em;color:var(--ink);text-align:center}
+.ss-why em{font-style:normal;font-weight:800;color:var(--ink);text-decoration:underline;text-decoration-color:var(--copper);text-decoration-thickness:.12em;text-underline-offset:.12em}
+.ss-why b{font-weight:800;color:var(--ss-red)}
+.s-why .ss-why{opacity:1;transform:none}
 
 /* search bars */
 .ss-bar{display:flex;align-items:center;gap:calc(var(--u)*.8);padding:calc(var(--u)*.9) calc(var(--u)*.9) calc(var(--u)*.9) calc(var(--u)*1.2);
   border-radius:calc(var(--u)*1.6);background:var(--ss-surf);border:1.5px solid var(--rule2);box-shadow:var(--shadow);transition:border-color .4s var(--ease)}
 .s-type .ss-bar{border-color:var(--copper)}
 .ss-bar>svg{flex:none;width:calc(var(--u)*1.6);height:calc(var(--u)*1.6);fill:none;stroke:var(--ink3);stroke-width:2.2;stroke-linecap:round}
-.ss-q{flex:1;min-width:0;display:block;min-height:4.26em;align-content:center;font:400 calc(var(--u)*1.18)/1.42 var(--sans);color:var(--ink)}
+.ss-q{flex:1;min-width:0;display:block;min-height:4.26em;align-content:center;font:400 calc(var(--u)*1.12)/1.4 var(--sans);color:var(--ink)}
 .ss-qt:empty::before{content:"Ask anything…";color:var(--ink3)}
 .ss-caret{display:inline-block;width:2px;height:1.1em;margin-left:2px;vertical-align:-.15em;background:var(--copper);opacity:0}
 .s-type:not(.s-sent) .ss-caret{animation:ss-blink 1s steps(1) infinite}
-.ss-bar{min-height:calc(var(--u)*5.6)}
+.ss-bar{min-height:calc(var(--u)*5.2)}
 .ss-go{position:relative;flex:none;padding:.7em 1.25em;border-radius:999px;background:var(--inv);color:var(--inv-ink);
   font:600 calc(var(--u)*1)/1 var(--sans);letter-spacing:.02em;transition:transform .18s var(--ease),filter .2s}
 .s-press .ss-go{transform:scale(.9);filter:brightness(1.25)}
@@ -31,11 +43,11 @@
 
 /* chat frames */
 .ss-chat{min-height:0;display:flex;flex-direction:column;border-radius:calc(var(--u)*1.6);background:var(--ss-surf2);border:1px solid var(--card-brd);box-shadow:var(--shadow);overflow:hidden}
-.ss-chat-h{display:flex;align-items:center;gap:.7em;padding:calc(var(--u)*.9) calc(var(--u)*1.3);border-bottom:1px solid var(--rule);
+.ss-chat-h{display:flex;align-items:center;gap:.7em;padding:calc(var(--u)*.7) calc(var(--u)*1.2);border-bottom:1px solid var(--rule);
   font:600 calc(var(--u)*.95)/1.3 var(--sans);letter-spacing:.06em;color:var(--ink2)}
 .ss-av{flex:none;width:1.7em;height:1.7em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 12%,transparent 13%),conic-gradient(from 200deg,var(--copper),var(--ink),var(--copper))}
 .ss-av.sm{width:calc(var(--u)*1.7);height:calc(var(--u)*1.7);margin-top:.1em}
-.ss-chat-b{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;gap:calc(var(--u)*1);padding:calc(var(--u)*1.2) calc(var(--u)*1.3)}
+.ss-chat-b{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;gap:calc(var(--u)*.7);padding:calc(var(--u)*.9) calc(var(--u)*1.2)}
 .ss-user{align-self:flex-end;max-width:88%;padding:.7em 1em;border-radius:1.2em 1.2em .3em 1.2em;background:var(--chip-c);color:var(--ink);
   font-size:calc(var(--u)*.98);line-height:1.45;opacity:0;transform:translateY(10px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
 .sent .ss-user{opacity:1;transform:none}
@@ -46,13 +58,13 @@
 .ss-ans{display:none;align-items:flex-start;gap:.7em}
 .answered .ss-ans{display:flex}
 .ss-intro{font-size:calc(var(--u)*1.05);line-height:1.45;color:var(--ink);font-weight:500;min-height:1.45em}
-.ss-list{list-style:none;display:grid;gap:calc(var(--u)*.75)}
-.ss-list li{display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:calc(var(--u)*.85);padding:calc(var(--u)*.55);border-radius:calc(var(--u)*1.1);
+.ss-list{list-style:none;display:grid;gap:calc(var(--u)*.4)}
+.ss-list li{display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:calc(var(--u)*.85);padding:calc(var(--u)*.4) calc(var(--u)*.55);border-radius:calc(var(--u)*1.1);
   background:transparent;transition:background .5s var(--ease);font-size:inherit}
 .ss-list li.on{background:var(--ss-surf)}
 .ss-n{font:600 calc(var(--u)*.95)/1 var(--sans);color:var(--sun);width:1.2em;text-align:center;opacity:0;transition:opacity .4s}
 .answered .ss-n{opacity:1}
-.ss-slot{position:relative;display:block;width:calc(var(--u)*4.8);height:calc(var(--u)*4.8);border-radius:calc(var(--u)*.95);
+.ss-slot{position:relative;display:block;width:calc(var(--u)*3.6);height:calc(var(--u)*3.6);border-radius:calc(var(--u)*.85);
   border:1.5px dashed var(--rule2);overflow:hidden;opacity:0;transition:opacity .3s}
 .answered .ss-slot{opacity:1}
 .ss-slot img{display:block;width:100%;height:100%;object-fit:cover;opacity:0}

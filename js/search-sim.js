@@ -14,10 +14,10 @@ const HOTELS={
 };
 const RUKA={x:66,y:58};
 const LANGS=[
-  {id:'en',label:'AI assistant · English',lang:'en',
+  {id:'en',label:'AI assistant · UK (English)',lang:'en',
    q:'cosy guesthouse near Malé for a honeymoon, not too expensive',
    intro:'Here are three cosy picks near Malé:',picks:['stone','arena','crystal']},
-  {id:'zh',label:'AI assistant · 中文',lang:'zh-Hans',
+  {id:'zh',label:'AI assistant · China (中文)',lang:'zh-Hans',
    q:'我们是情侣，想找马尔代夫马累附近温馨又不太贵的民宿',
    intro:'为您推荐以下三家：',picks:['arena','crystal','stone']}
 ];
@@ -51,7 +51,8 @@ for(const k in HOTELS){const h=HOTELS[k];dots+=`<i class="ss-dot pick" data-k="$
 
 root.classList.add('ss');
 root.innerHTML=`<header class="ss-head"><span class="eyebrow">Simulation · modelled on our field test, 4 Nov 2026</span>
-  <h2>Same question, two languages. <em>Who gets chosen?</em></h2></header>
+  <h2>Same question, asked in the UK and in China.</h2>
+  <p class="ss-sub">They use completely different AI engines. The result is the same: <b>no Ruka.</b></p></header>
 <div class="ss-main">${LANGS.map(col).join('')}
   <aside class="ss-side">
     <div class="ss-field"><div class="ss-cap"><span class="smallcaps">Places to stay near Malé</span><span class="ss-note">~150 · illustrative</span></div>
@@ -62,11 +63,12 @@ root.innerHTML=`<header class="ss-head"><span class="eyebrow">Simulation · mode
       <p class="ss-tcap">Real answers, 4 Nov 2026 · Gemini · Google AI Mode · Baidu</p>
     </div>
   </aside>
+  <div class="ss-why" role="note"><p><em>WHY</em> did both AIs skip <b>Ruka</b>?</p></div>
 </div>`;
 
 const cols=LANGS.map(L=>({L,el:root.querySelector(`.ss-col[data-l="${L.id}"]`)}));
 cols.forEach(c=>{c.qt=c.el.querySelector('.ss-qt');c.intro=c.el.querySelector('.ss-intro');});
-const STAGES=['s-type','s-cursor','s-press','s-sent','s-load','s-dim','s-zero','s-thumbs','s-final','s-out'];
+const STAGES=['s-type','s-cursor','s-press','s-sent','s-load','s-dim','s-zero','s-thumbs','s-why','s-final','s-out'];
 
 // ---------- timeline ----------
 let timers=[],anims=[],running=false;
@@ -86,7 +88,7 @@ function final(){
   cols.forEach(c=>{c.qt.textContent=c.L.q;c.intro.textContent=c.L.intro;c.el.classList.add('sent','answered');
     c.el.querySelectorAll('.ss-list li').forEach(li=>li.classList.add('on'));});
   root.querySelectorAll('.ss-dot.pick').forEach(d=>d.classList.add('chosen'));
-  ['s-type','s-sent','s-dim','s-zero','s-thumbs','s-final'].forEach(s=>stage(s));
+  ['s-type','s-sent','s-dim','s-zero','s-thumbs','s-why','s-final'].forEach(s=>stage(s));
 }
 function typeInto(el,text,dur){const chars=[...text],t0=performance.now();
   const id=setInterval(()=>{const p=Math.min(1,(performance.now()-t0)/dur);el.textContent=chars.slice(0,Math.round(p*chars.length)).join('');
@@ -113,7 +115,7 @@ function fly(c,k,i){
 }
 
 // Loop (ms): type 0.4–3.4s · cursor 3.5s · press 4.2s · loading 4.5–6.0s · EN answers 6.0s, 中文 6.5s ·
-// dots fly 6.8–8.9s · Ruka dims 9.3s · red 0 at 9.8s · thumbnails 10.4s · hold to 16.4s · fade + restart at 17s.
+// dots fly 6.8–8.9s · Ruka dims 9.3s · red 0 at 9.8s · thumbnails 10.4s · WHY box 11.4s · hold to 16.4s · fade + restart at 17s.
 function run(){
   reset();running=true;
   at(400,()=>{stage('s-type');cols.forEach(c=>typeInto(c.qt,c.L.q,2900));});
@@ -126,6 +128,7 @@ function run(){
   at(9300,()=>stage('s-dim'));
   at(9800,()=>stage('s-zero'));
   at(10400,()=>stage('s-thumbs'));
+  at(11400,()=>stage('s-why'));
   at(16400,()=>stage('s-out'));
   at(17000,()=>{if(running)run();});
 }
