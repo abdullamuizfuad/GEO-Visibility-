@@ -42,10 +42,14 @@ If the internet fails in the room, open `demo/index.html` on your laptop and wal
 
 ## Add your AI screenshots (optional, slide 5)
 
-Run this prompt in a fresh ChatGPT chat and a fresh Gemini chat:
+Ask the way real travellers do, in a fresh ChatGPT chat and in a fresh Gemini (or Chinese AI) chat:
 
 ```
-Find me a quiet guesthouse on a local island in the Maldives with a good house reef for diving. We're a couple, mid-budget, travelling in March. Recommend your top 3 and explain why.
+We're a couple going to the Maldives in March. Where should we stay? Not a resort, somewhere nice near the beach and not too expensive.
+```
+
+```
+我们是一对情侣，三月去马尔代夫。住哪里比较好？不要度假村，想离海滩近一点，舒服但不要太贵。
 ```
 
 Save the screenshots as `assets/chatgpt.png` and `assets/gemini.png`, then commit and push them. If they're missing, slide 5 shows a placeholder, so **skip it** (press → twice).
