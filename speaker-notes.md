@@ -15,7 +15,7 @@ MNU Business School teaching demonstration · 5 November 2026 · 9:30 am · A3 M
 | 7 | Brand | 4:15–5:10 | 2 | Definition (Barringer & Ireland). Click 1: the fractured listings. Click 2: they unify. "If the AI can't tell these are one business, the reviews never add up." |
 | 8 | The marketing mix (4Ps) | 5:10–6:20 | 5 | One click per P. Price: cost-based vs value-based. Place: direct vs intermediaries. Click 5: adjectives become facts. Ask: *"Cost or value?"* |
 | 9 | Seven-step sales process | 6:20–7:00 | 1 | Walk the seven steps. Click 1: steps 1–4 turn terracotta (AI-assisted). "AI-referred guests arrive pre-qualified." |
-| 10 | Think · pair · share (navy slide) | 7:00–7:45 | 1 | Read the question slowly. Click 1 starts the 60-second line. Take one or two answers; redirect: *"What do others think?"* |
+| 10 | Think · pair · share (green slide) | 7:00–7:45 | 2 | Read the question slowly. Click 1 starts the 60-second line. Take one or two answers; redirect: *"What do others think?"* Click 2 reveals three discussion points to sum up: fewer repetitive enquiries, more relationship selling, keeping digital facts accurate. |
 | 11 | Now, make Ruka visible (QR) | 7:45–8:40 | 1 | "Back to your phones: tap Continue." Click 1: meter fills, Ruka is #1 for the beach couple. **Key moment:** *"Anyone pick the dive couple? Ruka still loses to Reveries. Why?"* (Positioning.) |
 | 12 | Measuring learning | 8:40–9:15 | 3 | Exit ticket (understand) → exam question (apply) → AI visibility audit (analyse/create). Mention your MKT101/301/303 class tools. |
 | 13 | Wrap-up & teaching philosophy | 9:15–9:45 | 2 | Click 1: recap in one breath. Click 2: say the philosophy **slowly**. "I'd love your questions." |

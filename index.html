@@ -9,10 +9,11 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root{
-  --linen:#F9F7F4; --tint:#EFECE6; --tint2:#E6E1D8;
-  --ink:#14232C; --ink2:#5C6870; --ink3:#8A949A;
-  --sun:#C26747; --sun-soft:rgba(194,103,71,.4); --sun-wash:#F3E5DC;
-  --rule:rgba(20,35,44,.12); --rule2:rgba(20,35,44,.24);
+  /* Ruka Maldives brand: deep lagoon green + copper, on warm tan */
+  --linen:#F6F1EA; --tint:#ECE4D8; --tint2:#E3D8C9;
+  --ink:#0B332D; --ink2:#4E5F59; --ink3:#86918C;
+  --copper:#C4876C; --sun:#A9674B; --sun-soft:rgba(196,135,108,.5); --sun-wash:#F2E2D6;
+  --rule:rgba(11,51,45,.13); --rule2:rgba(11,51,45,.26);
   --serif:'Playfair Display',Georgia,'Times New Roman',serif;
   --display:'Cormorant Garamond','Playfair Display',Georgia,serif;
   --sans:'Plus Jakarta Sans','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,Arial,sans-serif;
@@ -39,6 +40,8 @@ body{overflow:hidden}
 .folio span:last-child{color:var(--ink3);letter-spacing:.2em}
 .colophon{display:flex;justify-content:space-between;align-items:baseline;padding-top:calc(var(--u)*.8);border-top:1px solid var(--rule);
   font:italic 500 clamp(.8rem,calc(var(--u)*1.05),1.25rem)/1 var(--display);color:var(--ink3);letter-spacing:.02em}
+.colophon .brandmark{display:inline-flex;align-items:center;gap:.6em}
+.colophon .brandmark img{height:1.7em;width:auto;opacity:.85}
 .inverse .folio{border-color:rgba(249,247,244,.16)} .inverse .colophon{border-color:rgba(249,247,244,.16);color:rgba(249,247,244,.5)}
 .inverse .folio span:last-child{color:rgba(249,247,244,.45)}
 .body{min-height:0;display:grid;align-content:center}
@@ -55,6 +58,8 @@ em.a,h1 em,h2 em{font-style:italic;color:var(--sun)}
 p,li,dd,dt,td{font-size:clamp(.95rem,calc(var(--u)*1.22),1.5rem);line-height:1.6;color:var(--ink2);font-weight:400}
 b,strong{font-weight:600;color:var(--ink)}
 .inverse p,.inverse b{color:var(--linen)}
+.inverse .eyebrow,.inverse .folio{color:var(--copper)}
+.inverse h1 em,.inverse blockquote em{color:var(--copper)}
 .num{font-family:var(--serif);font-weight:400;color:var(--sun-soft);line-height:.85;font-size:clamp(2.6rem,calc(var(--u)*5.6),7rem);font-variant-numeric:lining-nums}
 .smallcaps{font:600 clamp(.6rem,calc(var(--u)*.74),.9rem)/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink3)}
 .cite{font:italic 500 clamp(.85rem,calc(var(--u)*1.1),1.3rem)/1.4 var(--display);color:var(--ink3)}
@@ -75,16 +80,19 @@ b,strong{font-weight:600;color:var(--ink)}
 .byline{display:flex;gap:calc(var(--u)*3.6);padding-top:calc(var(--u)*1.6);border-top:1px solid var(--rule)}
 .byline div{display:flex;flex-direction:column;gap:.35em}
 .byline b{font-family:var(--serif);font-weight:400;font-size:clamp(1rem,calc(var(--u)*1.35),1.65rem);white-space:nowrap}
-.plate{background:var(--tint);position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:calc(var(--u)*2.6);overflow:hidden}
-.plate .no{font:italic 400 clamp(3rem,calc(var(--u)*9),11rem)/.8 var(--serif);color:var(--sun)}
-.plate svg{position:absolute;left:0;right:0;bottom:22%;width:100%;height:auto}
-.plate svg path{fill:none;stroke:var(--ink);stroke-width:1;opacity:.55;stroke-dasharray:1400;stroke-dashoffset:1400}
+.plate{background:var(--ink);color:var(--linen);position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:calc(var(--u)*2.6);overflow:hidden}
+.plate .lockup{position:relative;z-index:1;align-self:center;width:58%;height:auto;margin-top:calc(var(--u)*1)}
+.plate .no{font:600 clamp(.6rem,calc(var(--u)*.74),.9rem)/1.4 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--copper)}
+.plate svg{position:absolute;left:0;right:0;bottom:16%;width:100%;height:auto}
+.plate svg path{fill:none;stroke:var(--copper);stroke-width:1;opacity:.55;stroke-dasharray:1400;stroke-dashoffset:1400}
 .slide.active .plate svg path{animation:draw 3.2s var(--ease) forwards}
 .plate svg path:nth-child(2){animation-delay:.25s!important;opacity:.35}.plate svg path:nth-child(3){animation-delay:.5s!important;opacity:.2}
 .plate svg circle{fill:var(--sun)}
 @keyframes draw{to{stroke-dashoffset:0}}
-.plate .cap{position:relative;border-top:1px solid var(--rule2);padding-top:1em}
-.plate .cap p{font-size:clamp(.8rem,calc(var(--u)*1),1.2rem)}
+.plate .cap{position:relative;border-top:1px solid rgba(196,135,108,.4);padding-top:1em}
+.plate .cap p{font-size:clamp(.8rem,calc(var(--u)*1),1.2rem);color:rgba(246,241,234,.78)}
+.plate .cap b{color:var(--linen)}
+.plate .cap .smallcaps{color:var(--copper)}
 
 /* ================= 02 DILEMMA ================= */
 .split{grid-template-columns:1fr 1.15fr;gap:calc(var(--u)*5);align-items:center}
@@ -152,6 +160,7 @@ b,strong{font-weight:600;color:var(--ink)}
 .row .num{font-size:clamp(1.8rem,calc(var(--u)*3.2),4rem)}
 .row .lbl h3{font-weight:400}
 .row .lbl .smallcaps{display:block;margin-top:.4em}
+.row .def{display:block;margin-top:.45em;font-family:var(--sans);font-size:clamp(.78rem,calc(var(--u)*.98),1.15rem);color:var(--ink2);line-height:1.45}
 .row .list{font-family:var(--serif);font-size:clamp(1.05rem,calc(var(--u)*1.55),1.9rem);color:var(--ink);line-height:1.4}
 .row .list i{color:var(--ink3);font-style:normal;padding:0 .35em}
 .row .list .hot{color:var(--sun);font-style:italic}
@@ -169,13 +178,14 @@ b,strong{font-weight:600;color:var(--ink)}
 .why li{break-inside:avoid;padding:calc(var(--u)*.55) 0;font-size:clamp(.85rem,calc(var(--u)*1.08),1.3rem)}
 .compare{border-top:1px solid var(--rule2)}
 .compare .hd{display:flex;justify-content:space-between;padding:calc(var(--u)*.9) 0;border-bottom:1px solid var(--rule)}
+.lrow .im{grid-column:2/4;font:italic 500 clamp(.8rem,calc(var(--u)*1.05),1.25rem)/1.2 var(--display);color:var(--sun);margin-top:-.2em}
 .lrow{display:grid;grid-template-columns:9em 1fr auto;gap:1.2em;align-items:baseline;padding:calc(var(--u)*.9) 0;border-bottom:1px solid var(--rule);transition:opacity .8s var(--ease),filter .8s}
 .lrow .nm{font-family:var(--serif);font-size:clamp(1.05rem,calc(var(--u)*1.6),2rem);color:var(--ink)}
 .lrow .ph{font-size:clamp(.8rem,calc(var(--u)*1),1.2rem);color:var(--ink3)}
 .lrow .ph em{font-style:normal;color:var(--sun);font-weight:600}
 .s-brand.b2 .lrow{opacity:.32}
 .unified{margin-top:calc(var(--u)*1.6);background:var(--ink);color:var(--linen);padding:calc(var(--u)*1.8) calc(var(--u)*2.2)}
-.unified .smallcaps{color:var(--sun)}
+.unified .smallcaps{color:var(--copper)}
 .unified .nm{font:400 clamp(1.5rem,calc(var(--u)*2.8),3.4rem)/1.1 var(--serif);margin:.25em 0 .3em}
 .unified p{color:rgba(249,247,244,.75)}
 .scenario{margin-top:calc(var(--u)*1)}
@@ -187,7 +197,9 @@ b,strong{font-weight:600;color:var(--ink)}
 .ps>div:nth-child(n+3){border-top:1px solid var(--rule)}
 .ps .num{font-size:clamp(1.8rem,calc(var(--u)*3.2),4rem)}
 .ps h3{font-weight:400;margin-bottom:.35em}
-.morph{position:relative;margin-top:calc(var(--u)*1.1);min-height:calc(var(--u)*5.6)}
+.ps .twist{margin-top:.6em;padding-left:.9em;border-left:2px solid var(--copper);font-size:clamp(.82rem,calc(var(--u)*1.05),1.25rem)}
+.ps .twist b{color:var(--sun);font-weight:600}
+.morph{position:relative;margin-top:calc(var(--u)*1.1);min-height:calc(var(--u)*3.6)}
 .morph span{position:absolute;inset:0;padding:calc(var(--u)*.8) calc(var(--u)*1.1);transition:opacity .8s var(--ease),transform .9s var(--ease);font-size:clamp(.85rem,calc(var(--u)*1.1),1.35rem);line-height:1.45}
 .morph .bad{background:var(--sun-wash);color:#8A3F27;text-decoration:line-through;text-decoration-thickness:1px;font-family:var(--display);font-style:italic;font-size:clamp(1rem,calc(var(--u)*1.45),1.8rem)}
 .morph .good{background:var(--tint);border-left:2px solid var(--ink);color:var(--ink);font-weight:500;opacity:0;transform:translateY(10px)}
@@ -202,6 +214,7 @@ b,strong{font-weight:600;color:var(--ink)}
 .tstep{position:relative;padding-right:calc(var(--u)*1.2)}
 .tstep .pin{width:calc(var(--u)*2.2);height:calc(var(--u)*2.2);border-radius:50%;background:var(--linen);border:1px solid var(--ink);display:grid;place-items:center;font:400 clamp(.8rem,calc(var(--u)*1.05),1.3rem)/1 var(--serif);color:var(--ink);position:relative;z-index:1;transition:background .6s,color .6s,border-color .6s}
 .tstep h3{font-weight:400;margin-top:calc(var(--u)*1.6);font-size:clamp(1rem,calc(var(--u)*1.5),1.85rem)}
+.tstep .ds{margin-top:.5em;font-size:clamp(.72rem,calc(var(--u)*.92),1.08rem);line-height:1.4;color:var(--ink2)}
 .tstep .who{margin-top:calc(var(--u)*1);font:italic 500 clamp(.85rem,calc(var(--u)*1.15),1.4rem)/1.2 var(--display);color:var(--ink3);opacity:0;transition:opacity .8s var(--ease) .3s}
 .s-sales.b1 .tstep .who{opacity:1}
 .s-sales.b1 .tstep.ai .pin{background:var(--sun);border-color:var(--sun);color:var(--linen)}
@@ -212,12 +225,15 @@ b,strong{font-weight:600;color:var(--ink)}
 
 /* ================= 10 THINK-PAIR-SHARE ================= */
 .tps .body{align-content:center;max-width:72rem}
-.tps .eyebrow{color:var(--sun)}
+.tps .eyebrow{color:var(--copper)}
 .tps blockquote{margin-top:calc(var(--u)*2.4);font:italic 400 clamp(1.8rem,calc(var(--u)*4.2),5.4rem)/1.18 var(--serif);color:var(--linen)}
-.tps blockquote em{color:var(--sun)}
+.tps blockquote em{color:var(--copper)}
 .clock{margin-top:calc(var(--u)*3.2);height:1px;background:rgba(249,247,244,.2);position:relative;max-width:40rem}
-.clock i{position:absolute;left:0;top:-1px;height:3px;width:0;background:var(--sun)}
+.clock i{position:absolute;left:0;top:-1px;height:3px;width:0;background:var(--copper)}
 .s-tps.b1 .clock i{width:100%;transition:width 60s linear}
+.tps .pts{margin-top:calc(var(--u)*2);display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*2.4);border-top:1px solid rgba(246,241,234,.16);padding-top:calc(var(--u)*1.4)}
+.tps .pts p{color:rgba(246,241,234,.8);font-size:clamp(.85rem,calc(var(--u)*1.1),1.3rem)}
+.tps .pts .num{display:block;color:var(--copper);opacity:.7;font-size:clamp(1.4rem,calc(var(--u)*2.2),2.6rem);margin-bottom:.3em}
 .tps .inst{margin-top:calc(var(--u)*1.4);font:italic 500 clamp(.9rem,calc(var(--u)*1.2),1.4rem)/1.4 var(--display);color:rgba(249,247,244,.55)}
 
 /* ================= 11 FIX ================= */
@@ -258,7 +274,7 @@ b,strong{font-weight:600;color:var(--ink)}
 .recap .num{font-size:clamp(1.4rem,calc(var(--u)*2.4),3rem)}
 .sig{background:var(--tint);padding:calc(var(--u)*3.2) calc(var(--u)*3.4);position:relative}
 .sig::before{content:"“";position:absolute;right:calc(var(--u)*2.4);top:calc(var(--u)*.2);font:400 clamp(5rem,calc(var(--u)*11),13rem)/1 var(--serif);color:var(--sun-soft)}
-.sig blockquote{position:relative;font:italic 400 clamp(1.3rem,calc(var(--u)*2.35),2.9rem)/1.32 var(--serif);color:var(--ink);margin-top:calc(var(--u)*1.6)}
+.sig blockquote{position:relative;font:italic 400 clamp(1.2rem,calc(var(--u)*2.05),2.6rem)/1.32 var(--serif);color:var(--ink);margin-top:calc(var(--u)*1.6)}
 .sig .who{margin-top:calc(var(--u)*2);padding-top:calc(var(--u)*1.2);border-top:1px solid var(--rule2);display:flex;justify-content:space-between;align-items:baseline}
 .sig .who .name{font:italic 500 clamp(1.1rem,calc(var(--u)*1.7),2.1rem)/1 var(--display);color:var(--ink)}
 .sig .who .qs{font:400 clamp(1.2rem,calc(var(--u)*1.9),2.4rem)/1 var(--serif);color:var(--sun)}
@@ -270,7 +286,7 @@ b,strong{font-weight:600;color:var(--ink)}
 .disclose{margin-top:calc(var(--u)*2);font-size:clamp(.75rem,calc(var(--u)*.95),1.1rem)}
 
 /* ---------- presenter chrome ---------- */
-#hud{position:fixed;right:14px;bottom:12px;font:500 13px/1 ui-monospace,Menlo,Consolas,monospace;color:var(--linen);background:rgba(20,35,44,.85);padding:8px 12px;display:none;z-index:9;letter-spacing:.04em}
+#hud{position:fixed;right:14px;bottom:12px;font:500 13px/1 ui-monospace,Menlo,Consolas,monospace;color:var(--linen);background:rgba(11,51,45,.88);padding:8px 12px;display:none;z-index:9;letter-spacing:.04em}
 #hud.on{display:block}#hud.late{color:#F2B49E}
 #blank{position:fixed;inset:0;background:#000;display:none;z-index:8}
 #progress{position:fixed;left:0;top:0;height:2px;background:var(--sun);transition:width .5s var(--ease);z-index:7}
@@ -317,25 +333,25 @@ body.print #hud,body.print #progress{display:none}
     <div class="left">
       <div class="eyebrow rv">Unique Marketing Issues · Entrepreneurship</div>
       <h1 class="rv d1"><span>Found,</span><span>chosen,</span><span><em>booked.</em></span></h1>
-      <p class="kicker rv d2">How an entrepreneurial guesthouse finds its guests, when AI does the searching.</p>
+      <p class="kicker rv d2">How an entrepreneurial firm finds its customers, and how AI finds it.</p>
       <div class="byline rv d3">
-        <div><span class="smallcaps">Presented by</span><b>Abdulla Muiz Fuad</b></div>
-        <div><span class="smallcaps">For</span><b>Lecturer selection</b></div>
-        <div><span class="smallcaps">Date</span><b>5 November 2026</b></div>
+        <div><span class="smallcaps">Lecturer</span><b>Abdulla Muiz Fuad</b><span class="cite">Associate Lecturer Candidate</span></div>
+        <div><span class="smallcaps">Module</span><b>MKT101 / ENT101</b><span class="cite">Unique Marketing Issues</span></div>
+        <div><span class="smallcaps">Date</span><b>5 November 2026</b><span class="cite">A3, Central Administration</span></div>
       </div>
     </div>
     <aside class="plate rv d2">
-      <div class="no">No. 01</div>
+      <div class="no">Case study · No. 01</div>
+      <img class="lockup" src="assets/ruka-lockup-copper.png" alt="Ruka Maldives logo">
       <svg viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 120 C 100 92 180 148 300 120 S 500 92 600 118"/>
         <path d="M0 150 C 110 128 200 172 310 150 S 510 128 600 148"/>
         <path d="M0 180 C 120 165 210 196 320 180 S 520 166 600 178"/>
-        <circle cx="470" cy="62" r="22"/>
       </svg>
-      <div class="cap"><span class="smallcaps">Case study</span><p><b>Ruka Maldives</b>, Dhiffushi, North Malé Atoll. A real twelve-room guesthouse, used with the owner’s permission.</p></div>
+      <div class="cap"><span class="smallcaps">The case</span><p><b>Ruka Maldives</b>, Dhiffushi, North Malé Atoll. A real twelve-room guesthouse, used with the owner’s permission.</p></div>
     </aside>
   </div>
-  <footer class="colophon"><span>Found, chosen, booked.</span><span>The Maldives National University</span></footer>
+  <footer class="colophon"><span>Found, chosen, booked.</span><span class="brandmark">The Maldives National University<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 02 DILEMMA -->
@@ -343,7 +359,7 @@ body.print #hud,body.print #progress{display:none}
   <header class="folio"><span>The Case // Customer Acquisition in the AI Era</span><span>02 / 14</span></header>
   <div class="body split">
     <div>
-      <div class="eyebrow rv">The case</div>
+      <div class="eyebrow rv">The entrepreneurial dilemma</div>
       <h2 class="rv d1" style="margin-top:.3em">The Ruka Maldives <em>dilemma</em></h2>
       <dl class="facts rv d2">
         <div><dt>Property</dt><dd>Ruka Maldives</dd></div>
@@ -351,6 +367,7 @@ body.print #hud,body.print #progress{display:none}
         <div><dt>Size</dt><dd>12 rooms · opened 2025</dd></div>
         <div><dt>Website</dt><dd><em>None of its own</em></dd></div>
       </dl>
+      <div class="note rv d3"><p>How do classic marketing frameworks still apply when an AI engine is the gatekeeper between an entrepreneur and its customers?</p></div>
     </div>
     <div class="panel rv d2">
       <span class="smallcaps">The AI search problem</span>
@@ -365,14 +382,14 @@ body.print #hud,body.print #progress{display:none}
       <span data-b="1" hidden></span>
     </div>
   </div>
-  <footer class="colophon"><span>“Fewer opportunities to appear, but more impact if you do.” Morand &amp; Schegg, 2026</span><span>Ruka Maldives</span></footer>
+  <footer class="colophon"><span>“Fewer opportunities to appear, but more impact if you do.” Morand &amp; Schegg, 2026</span><span class="brandmark">Ruka Maldives<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 03 QR: BE THE TRAVELLER -->
 <section class="slide" data-notes="0:55–2:10. 'Please take out your phones.' Wait for most to scan. Ask: 'Who chose which traveller?' That is segmentation in action. Stop them at 'Why do you think the AI left Ruka out?'">
   <header class="folio"><span>Interactive // 90 Seconds</span><span>03 / 14</span></header>
   <div class="body qr-split">
-    <div class="qrframe rv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#F9F7F4" d="M0 0h33v33H0z"/><path stroke="#14232C" d="M0 0.5h7m1 0h1m1 0h5m3 0h1m3 0h1m3 0h7M0 1.5h1m5 0h1m1 0h3m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m4 0h3m3 0h4m3 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h5m6 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m2 0h2m1 0h4m1 0h1m2 0h1m2 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 7.5h1m3 0h4m2 0h1m4 0h1M0 8.5h1m2 0h7m1 0h1m5 0h1m1 0h2m2 0h3m2 0h1m1 0h3M0 9.5h3m1 0h2m1 0h2m1 0h2m1 0h3m1 0h3m1 0h3m4 0h3M1 10.5h3m2 0h2m4 0h2m1 0h1m4 0h2m1 0h1m1 0h2m1 0h3m1 0h1M2 11.5h3m2 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h1m2 0h2m2 0h3M0 12.5h1m1 0h1m1 0h3m2 0h3m1 0h1m4 0h3m2 0h2m1 0h1m1 0h1M1 13.5h2m1 0h2m3 0h1m3 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1M0 14.5h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2M0 15.5h1m1 0h1m1 0h2m1 0h1m2 0h4m2 0h1m1 0h1m4 0h3m1 0h1m1 0h2m1 0h1M2 16.5h2m2 0h1m5 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h6M0 17.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1M0 18.5h2m1 0h1m2 0h1m2 0h1m1 0h1m3 0h2m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M1 19.5h1m1 0h2m3 0h1m2 0h1m1 0h2m1 0h1m3 0h1m5 0h1m1 0h3m1 0h1M0 20.5h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m5 0h1m2 0h1m1 0h1m1 0h2M0 21.5h2m1 0h2m2 0h7m3 0h3m1 0h1m1 0h1m1 0h1m2 0h3M0 22.5h1m1 0h1m3 0h2m13 0h3m2 0h1m1 0h1m2 0h2M0 23.5h1m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1m2 0h3M0 24.5h2m2 0h3m1 0h2m2 0h1m1 0h1m9 0h7m1 0h1M8 25.5h1m5 0h5m2 0h2m1 0h1m3 0h1m1 0h2M0 26.5h7m1 0h4m1 0h1m1 0h1m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1M0 27.5h1m5 0h1m1 0h1m1 0h1m1 0h3m1 0h3m1 0h1m2 0h2m3 0h3M0 28.5h1m1 0h3m1 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h6m2 0h1M0 29.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h2m1 0h1m1 0h1m2 0h3M0 30.5h1m1 0h3m1 0h1m2 0h1m1 0h5m3 0h1m1 0h1m1 0h3m1 0h2m1 0h3M0 31.5h1m5 0h1m3 0h2m1 0h1m5 0h1m2 0h1m2 0h8M0 32.5h7m1 0h1m1 0h2m1 0h1m1 0h3m5 0h2m1 0h3m1 0h1"/></svg>
+    <div class="qrframe rv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#F6F1EA" d="M0 0h33v33H0z"/><path stroke="#0B332D" d="M0 0.5h7m1 0h1m1 0h5m3 0h1m3 0h1m3 0h7M0 1.5h1m5 0h1m1 0h3m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m4 0h3m3 0h4m3 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h5m6 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m2 0h2m1 0h4m1 0h1m2 0h1m2 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 7.5h1m3 0h4m2 0h1m4 0h1M0 8.5h1m2 0h7m1 0h1m5 0h1m1 0h2m2 0h3m2 0h1m1 0h3M0 9.5h3m1 0h2m1 0h2m1 0h2m1 0h3m1 0h3m1 0h3m4 0h3M1 10.5h3m2 0h2m4 0h2m1 0h1m4 0h2m1 0h1m1 0h2m1 0h3m1 0h1M2 11.5h3m2 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h1m2 0h2m2 0h3M0 12.5h1m1 0h1m1 0h3m2 0h3m1 0h1m4 0h3m2 0h2m1 0h1m1 0h1M1 13.5h2m1 0h2m3 0h1m3 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1M0 14.5h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2M0 15.5h1m1 0h1m1 0h2m1 0h1m2 0h4m2 0h1m1 0h1m4 0h3m1 0h1m1 0h2m1 0h1M2 16.5h2m2 0h1m5 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h6M0 17.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1M0 18.5h2m1 0h1m2 0h1m2 0h1m1 0h1m3 0h2m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M1 19.5h1m1 0h2m3 0h1m2 0h1m1 0h2m1 0h1m3 0h1m5 0h1m1 0h3m1 0h1M0 20.5h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m5 0h1m2 0h1m1 0h1m1 0h2M0 21.5h2m1 0h2m2 0h7m3 0h3m1 0h1m1 0h1m1 0h1m2 0h3M0 22.5h1m1 0h1m3 0h2m13 0h3m2 0h1m1 0h1m2 0h2M0 23.5h1m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1m2 0h3M0 24.5h2m2 0h3m1 0h2m2 0h1m1 0h1m9 0h7m1 0h1M8 25.5h1m5 0h5m2 0h2m1 0h1m3 0h1m1 0h2M0 26.5h7m1 0h4m1 0h1m1 0h1m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1M0 27.5h1m5 0h1m1 0h1m1 0h1m1 0h3m1 0h3m1 0h1m2 0h2m3 0h3M0 28.5h1m1 0h3m1 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h6m2 0h1M0 29.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h2m1 0h1m1 0h1m2 0h3M0 30.5h1m1 0h3m1 0h1m2 0h1m1 0h5m3 0h1m1 0h1m1 0h3m1 0h2m1 0h3M0 31.5h1m5 0h1m3 0h2m1 0h1m5 0h1m2 0h1m2 0h8M0 32.5h7m1 0h1m1 0h2m1 0h1m1 0h3m5 0h2m1 0h3m1 0h1"/></svg>
 <span class="smallcaps">abdullamuizfuad.github.io/GEO-Visibility-/demo</span></div>
     <div>
       <div class="eyebrow rv d1">Your turn</div>
@@ -386,7 +403,7 @@ body.print #hud,body.print #progress{display:none}
       <div class="note rv d3"><p>Pause at the question: “Why do you think the AI left Ruka out?”</p></div>
     </div>
   </div>
-  <footer class="colophon"><span>A scripted simulation of AI shortlisting</span><span>Ruka Visibility Lab</span></footer>
+  <footer class="colophon"><span>A scripted simulation of AI shortlisting</span><span class="brandmark">Ruka Visibility Lab<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 04 EVIDENCE -->
@@ -408,7 +425,7 @@ body.print #hud,body.print #progress{display:none}
       </div>
     </div>
   </div>
-  <footer class="colophon"><span>Gemini · Google AI Mode · Baidu, in English &amp; 中文</span><span>Evidence</span></footer>
+  <footer class="colophon"><span>Gemini · Google AI Mode · Baidu, in English &amp; 中文</span><span class="brandmark">Evidence<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 05 OBJECTIVES -->
@@ -421,12 +438,12 @@ body.print #hud,body.print #progress{display:none}
     </div>
     <div class="obj">
       <div class="rv d1"><span class="num">01</span><h3>Who?</h3><p>Segment the market, choose a target and establish a unique position.</p></div>
-      <div class="rv d2"><span class="num">02</span><h3>Why us?</h3><p>Define a brand, and explain why it matters to an entrepreneurial firm.</p></div>
+      <div class="rv d2"><span class="num">02</span><h3>Why us?</h3><p>Define a brand and explain how it builds trust and brand equity for a new firm.</p></div>
       <div class="rv d3"><span class="num">03</span><h3>What &amp; how?</h3><p>Apply the 4Ps: product, price, place and promotion.</p></div>
       <div class="rv d4"><span class="num">04</span><h3>Closing the deal</h3><p>Walk through the seven-step sales process.</p></div>
     </div>
   </div>
-  <footer class="colophon"><span>Barringer &amp; Ireland, Entrepreneurship: Unique Marketing Issues</span><span>Outcomes</span></footer>
+  <footer class="colophon"><span>Grounded in Barringer &amp; Ireland, <i>Entrepreneurship</i>, “Unique Marketing Issues”</span><span class="brandmark">Outcomes<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 06 STP -->
@@ -440,14 +457,14 @@ body.print #hud,body.print #progress{display:none}
     </div>
     <div>
       <div class="rows">
-        <div class="row" data-b="1"><span class="num">01</span><div class="lbl"><h3>Segment</h3><span class="smallcaps">Who could stay?</span></div><div class="list">Divers<i>·</i>Families<i>·</i>Beach &amp; kite lovers<i>·</i>Honeymooners<i>·</i>Budget couples</div></div>
-        <div class="row" data-b="2"><span class="num">02</span><div class="lbl"><h3>Target</h3><span class="smallcaps">Who do we serve best?</span></div><div class="list"><span class="hot">Beach &amp; kite-loving couples</span>, mid-budget, near Malé</div></div>
-        <div class="row" data-b="3"><span class="num">03</span><div class="lbl"><h3>Position</h3><span class="smallcaps">Why us, not them?</span></div><blockquote>“The quiet beach guesthouse, steps from Dhiffushi sand.”</blockquote></div>
+        <div class="row" data-b="1"><span class="num">01</span><div class="lbl"><h3>Segment</h3><span class="smallcaps">Who could stay?</span></div><div class="list">Divers<i>·</i>Families<i>·</i>Beach &amp; kite lovers<i>·</i>Honeymooners<i>·</i>Budget couples<span class="def">Divide a broad market into groups that share needs and characteristics.</span></div></div>
+        <div class="row" data-b="2"><span class="num">02</span><div class="lbl"><h3>Target</h3><span class="smallcaps">Who do we serve best?</span></div><div class="list"><span class="hot">Beach &amp; kite-loving couples</span>, mid-budget, near Malé<span class="def">Choose the niche where the firm has a real advantage.</span></div></div>
+        <div class="row" data-b="3"><span class="num">03</span><div class="lbl"><h3>Position</h3><span class="smallcaps">Why us, not them?</span></div><blockquote>“The quiet twelve-room beach guesthouse on Dhiffushi: steps from the sand, ten minutes from Kite Beach.”</blockquote></div>
       </div>
-      <div class="lens" data-b="4"><span class="eyebrow">AI lens</span><p>Generative search engines match a traveller’s intent directly to your position, so it must be <b>specific, provable and consistent everywhere.</b></p></div>
+      <div class="lens" data-b="4"><span class="eyebrow">AI lens</span><p>An AI engine matches a traveller’s intent to your position. A vague one (“affordable luxury”) fails; it must be <b>specific, provable and consistent everywhere.</b></p></div>
     </div>
   </div>
-  <footer class="colophon"><span>Segmentation, targeting &amp; positioning</span><span>Lesson 01</span></footer>
+  <footer class="colophon"><span>Segmentation, targeting &amp; positioning</span><span class="brandmark">Lesson 01<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 07 BRAND -->
@@ -459,23 +476,23 @@ body.print #hud,body.print #progress{display:none}
       <h2 class="rv d1" style="margin-top:.3em">A brand is a promise people, <em>and AI,</em> recognise</h2>
       <div class="pq rv d2"><p>A brand is the set of attributes, positive or negative, that people associate with a company.</p><span class="cite">Barringer &amp; Ireland, Entrepreneurship</span></div>
       <ul class="why rv d3">
-        <li><b>Trust</b> when you have no track record</li>
-        <li><b>Difference</b> from look-alike competitors</li>
-        <li><b>Price</b> premium and repeat stays</li>
+        <li><b>Liability of newness:</b> trust without a track record</li>
+        <li><b>Brand equity:</b> perceived value and loyalty</li>
+        <li><b>Price premium</b> and repeat stays</li>
         <li><b>Recognition</b> by people and machines</li>
       </ul>
     </div>
     <div>
       <div class="compare" data-b="1">
         <div class="hd"><span class="smallcaps">A fractured footprint</span><span class="smallcaps">Teaching scenario</span></div>
-        <div class="lrow"><span class="smallcaps">Booking site</span><span class="nm">Ruka Inn</span><span class="ph">+960 7XX <em>1234</em></span></div>
-        <div class="lrow"><span class="smallcaps">Map listing</span><span class="nm">Ruka Guest House</span><span class="ph"><em>no phone</em></span></div>
-        <div class="lrow"><span class="smallcaps">Social media</span><span class="nm">Ruka Maldives</span><span class="ph">+960 9XX <em>5678</em></span></div>
+        <div class="lrow"><span class="smallcaps">Booking site</span><span class="nm">Ruka Inn</span><span class="ph">+960 7XX <em>1234</em></span><span class="im">Reviews split across names</span></div>
+        <div class="lrow"><span class="smallcaps">Map listing</span><span class="nm">Ruka Guest House</span><span class="ph"><em>no phone</em></span><span class="im">Treated as a separate business</span></div>
+        <div class="lrow"><span class="smallcaps">Social media</span><span class="nm">Ruka Maldives</span><span class="ph">+960 9XX <em>5678</em></span><span class="im">Customers confused; booking signals lost</span></div>
       </div>
-      <div class="unified" data-b="2"><span class="smallcaps">A unified footprint</span><div class="nm">Ruka Maldives</div><p>Same name, address and phone everywhere, so every review accrues to one brand.</p></div>
+      <div class="unified" data-b="2"><img src="assets/ruka-emblem-copper.png" alt="" style="float:right;height:calc(var(--u)*5.2);width:auto;margin-left:1.2em"><span class="smallcaps">A unified footprint</span><div class="nm">Ruka Maldives</div><p>Same name, address and phone everywhere, so every review and booking signal builds one brand’s equity, and one entity an AI can recognise.</p></div>
     </div>
   </div>
-  <footer class="colophon"><span>Name · Address · Phone, identical everywhere</span><span>Lesson 02</span></footer>
+  <footer class="colophon"><span>Name · Address · Phone, identical everywhere</span><span class="brandmark">Lesson 02<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 08 4Ps -->
@@ -484,15 +501,15 @@ body.print #hud,body.print #progress{display:none}
   <div class="body">
     <h2 class="rv" style="margin-bottom:calc(var(--u)*2.4)">The marketing mix in the <em>generative</em> era</h2>
     <div class="ps">
-      <div data-b="1"><span class="num">01</span><div><h3>Product</h3><p>Hard facts over generic adjectives.</p>
-        <div class="morph"><span class="bad">“Paradise awaits! Best stay ever!”</span><span class="good">12 rooms · steps from the beach · 10 min to Kite Beach · breakfast included</span></div></div></div>
-      <div data-b="2"><span class="num">02</span><div><h3>Price</h3><p><b>Cost-based</b> or <b>value-based</b>, with a transparent range and a clear cancellation policy.</p></div></div>
-      <div data-b="3"><span class="num">03</span><div><h3>Place</h3><p><b>Direct</b> (own site, phone) versus <b>intermediaries</b> (Booking.com, agents). AI assistants are the new booking channel.</p></div></div>
-      <div data-b="4"><span class="num">04</span><div><h3>Promotion</h3><p>Reviews, social media and word of mouth, plus <b>GEO</b>: being chosen by AI answer engines.</p></div></div>
+      <div data-b="1"><span class="num">01</span><div><h3>Product</h3><p>Core benefits, not just features.</p><p class="twist"><b>GEO twist:</b> AI needs verifiable facts, not adjectives.</p>
+        <div class="morph"><span class="bad">“Paradise awaits in stunning luxury!”</span><span class="good">12 A/C rooms · private baths · steps from the beach · breakfast included</span></div></div></div>
+      <div data-b="2"><span class="num">02</span><div><h3>Price</h3><p><b>Cost-based</b> or <b>value-based</b> (what guests perceive it is worth).</p><p class="twist"><b>GEO twist:</b> publish clear ranges and cancellation terms so AI agents can qualify guests instantly.</p></div></div>
+      <div data-b="3"><span class="num">03</span><div><h3>Place</h3><p><b>Direct</b> sales versus <b>intermediaries</b> (OTAs, travel agents).</p><p class="twist"><b>GEO twist:</b> AI answer engines are the newest intermediary in the distribution chain.</p></div></div>
+      <div data-b="4"><span class="num">04</span><div><h3>Promotion</h3><p>Advertising, public relations, social media and guerrilla marketing.</p><p class="twist"><b>GEO twist:</b> generative engine optimisation, alongside reviews and social media.</p></div></div>
     </div>
     <span data-b="5" hidden></span>
   </div>
-  <footer class="colophon"><span>Product · Price · Place · Promotion</span><span>Lesson 03</span></footer>
+  <footer class="colophon"><span>Product · Price · Place · Promotion</span><span class="brandmark">Lesson 03<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 09 SALES -->
@@ -502,17 +519,17 @@ body.print #hud,body.print #progress{display:none}
     <div class="eyebrow rv">Objective four</div>
     <h2 class="rv d1" style="margin-top:.3em">AI opens doors; <em>you</em> close the sale</h2>
     <div class="timeline rv d2">
-      <div class="tstep ai"><span class="pin">1</span><h3>Prospect for leads</h3><div class="who">AI-assisted</div></div>
-      <div class="tstep ai"><span class="pin">2</span><h3>Initial contact</h3><div class="who">AI-assisted</div></div>
-      <div class="tstep ai"><span class="pin">3</span><h3>Qualify the lead</h3><div class="who">AI-assisted</div></div>
-      <div class="tstep ai"><span class="pin">4</span><h3>Sales presentation</h3><div class="who">AI-assisted</div></div>
-      <div class="tstep hu"><span class="pin">5</span><h3>Meet objections</h3><div class="who">Human touch</div></div>
-      <div class="tstep hu"><span class="pin">6</span><h3>Close the sale</h3><div class="who">Human touch</div></div>
-      <div class="tstep hu"><span class="pin">7</span><h3>Follow-up &amp; retention</h3><div class="who">Human touch</div></div>
+      <div class="tstep ai"><span class="pin">1</span><h3>Prospect for leads</h3><p class="ds">Travellers looking for a Dhiffushi stay</p><div class="who">AI-assisted</div></div>
+      <div class="tstep ai"><span class="pin">2</span><h3>Initial contact</h3><p class="ds">The first answer to an enquiry</p><div class="who">AI-assisted</div></div>
+      <div class="tstep ai"><span class="pin">3</span><h3>Qualify the lead</h3><p class="ds">Budget, dates and fit confirmed</p><div class="who">AI-assisted</div></div>
+      <div class="tstep ai"><span class="pin">4</span><h3>Sales presentation</h3><p class="ds">Rooms and amenities presented</p><div class="who">AI-assisted</div></div>
+      <div class="tstep hu"><span class="pin">5</span><h3>Meet objections</h3><p class="ds">“Is it quiet enough to work?”</p><div class="who">Human touch</div></div>
+      <div class="tstep hu"><span class="pin">6</span><h3>Close the sale</h3><p class="ds">Deposit and confirmation</p><div class="who">Human touch</div></div>
+      <div class="tstep hu"><span class="pin">7</span><h3>Follow-up &amp; retention</h3><p class="ds">Reviews and repeat stays</p><div class="who">Human touch</div></div>
     </div>
     <div class="legend" data-b="1"><p><em class="a">Steps one to four:</em> the AI finds, filters and presents for you. A guest who clicks through arrives pre-qualified.</p><p><b>Steps five to seven:</b> objections, the close and the relationship still belong to the guesthouse.</p></div>
   </div>
-  <footer class="colophon"><span>Prospect · Contact · Qualify · Present · Objections · Close · Follow-up</span><span>Lesson 04</span></footer>
+  <footer class="colophon"><span>Prospect · Contact · Qualify · Present · Objections · Close · Follow-up</span><span class="brandmark">Lesson 04<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 10 THINK-PAIR-SHARE -->
@@ -524,15 +541,20 @@ body.print #hud,body.print #progress{display:none}
     <div class="clock rv d2"><i></i></div>
     <p class="inst rv d3">Turn to your neighbour. Which touchpoints should stay human, and which can be automated?</p>
     <span data-b="1" hidden></span>
+    <div class="pts" data-b="2">
+      <p><span class="num">01</span>Less time answering repetitive first enquiries about price and location.</p>
+      <p><span class="num">02</span>More weight on relationship selling: objections, on-site hospitality, steps five to seven.</p>
+      <p><span class="num">03</span>Keeping digital facts accurate becomes part of the manager’s job.</p>
+    </div>
   </div>
-  <footer class="colophon"><span>Human versus automated touchpoints</span><span>Discussion</span></footer>
+  <footer class="colophon"><span>Human versus automated touchpoints</span><span class="brandmark">Discussion<img src="assets/ruka-emblem-copper.png" alt=""></span></footer>
 </section>
 
 <!-- 11 FIX -->
 <section class="slide s-fix" data-notes="7:45–8:40. 'Back to your phones: tap Continue. You are Ruka's marketing manager now.' Click 1: the meter fills and Ruka is first for the beach couple. Key moment: 'Anyone pick the dive couple? Ruka still loses to Reveries. Why?' Positioning means choosing segments you can win.">
   <header class="folio"><span>Interactive // Part Two</span><span>11 / 14</span></header>
   <div class="body fix">
-    <div class="qrframe rv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#F9F7F4" d="M0 0h33v33H0z"/><path stroke="#14232C" d="M0 0.5h7m1 0h1m1 0h5m3 0h1m3 0h1m3 0h7M0 1.5h1m5 0h1m1 0h3m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m4 0h3m3 0h4m3 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h5m6 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m2 0h2m1 0h4m1 0h1m2 0h1m2 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 7.5h1m3 0h4m2 0h1m4 0h1M0 8.5h1m2 0h7m1 0h1m5 0h1m1 0h2m2 0h3m2 0h1m1 0h3M0 9.5h3m1 0h2m1 0h2m1 0h2m1 0h3m1 0h3m1 0h3m4 0h3M1 10.5h3m2 0h2m4 0h2m1 0h1m4 0h2m1 0h1m1 0h2m1 0h3m1 0h1M2 11.5h3m2 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h1m2 0h2m2 0h3M0 12.5h1m1 0h1m1 0h3m2 0h3m1 0h1m4 0h3m2 0h2m1 0h1m1 0h1M1 13.5h2m1 0h2m3 0h1m3 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1M0 14.5h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2M0 15.5h1m1 0h1m1 0h2m1 0h1m2 0h4m2 0h1m1 0h1m4 0h3m1 0h1m1 0h2m1 0h1M2 16.5h2m2 0h1m5 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h6M0 17.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1M0 18.5h2m1 0h1m2 0h1m2 0h1m1 0h1m3 0h2m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M1 19.5h1m1 0h2m3 0h1m2 0h1m1 0h2m1 0h1m3 0h1m5 0h1m1 0h3m1 0h1M0 20.5h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m5 0h1m2 0h1m1 0h1m1 0h2M0 21.5h2m1 0h2m2 0h7m3 0h3m1 0h1m1 0h1m1 0h1m2 0h3M0 22.5h1m1 0h1m3 0h2m13 0h3m2 0h1m1 0h1m2 0h2M0 23.5h1m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1m2 0h3M0 24.5h2m2 0h3m1 0h2m2 0h1m1 0h1m9 0h7m1 0h1M8 25.5h1m5 0h5m2 0h2m1 0h1m3 0h1m1 0h2M0 26.5h7m1 0h4m1 0h1m1 0h1m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1M0 27.5h1m5 0h1m1 0h1m1 0h1m1 0h3m1 0h3m1 0h1m2 0h2m3 0h3M0 28.5h1m1 0h3m1 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h6m2 0h1M0 29.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h2m1 0h1m1 0h1m2 0h3M0 30.5h1m1 0h3m1 0h1m2 0h1m1 0h5m3 0h1m1 0h1m1 0h3m1 0h2m1 0h3M0 31.5h1m5 0h1m3 0h2m1 0h1m5 0h1m2 0h1m2 0h8M0 32.5h7m1 0h1m1 0h2m1 0h1m1 0h3m5 0h2m1 0h3m1 0h1"/></svg>
+    <div class="qrframe rv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#F6F1EA" d="M0 0h33v33H0z"/><path stroke="#0B332D" d="M0 0.5h7m1 0h1m1 0h5m3 0h1m3 0h1m3 0h7M0 1.5h1m5 0h1m1 0h3m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m4 0h3m3 0h4m3 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h5m6 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m2 0h2m1 0h4m1 0h1m2 0h1m2 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 7.5h1m3 0h4m2 0h1m4 0h1M0 8.5h1m2 0h7m1 0h1m5 0h1m1 0h2m2 0h3m2 0h1m1 0h3M0 9.5h3m1 0h2m1 0h2m1 0h2m1 0h3m1 0h3m1 0h3m4 0h3M1 10.5h3m2 0h2m4 0h2m1 0h1m4 0h2m1 0h1m1 0h2m1 0h3m1 0h1M2 11.5h3m2 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h1m2 0h2m2 0h3M0 12.5h1m1 0h1m1 0h3m2 0h3m1 0h1m4 0h3m2 0h2m1 0h1m1 0h1M1 13.5h2m1 0h2m3 0h1m3 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1M0 14.5h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2M0 15.5h1m1 0h1m1 0h2m1 0h1m2 0h4m2 0h1m1 0h1m4 0h3m1 0h1m1 0h2m1 0h1M2 16.5h2m2 0h1m5 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h6M0 17.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1M0 18.5h2m1 0h1m2 0h1m2 0h1m1 0h1m3 0h2m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M1 19.5h1m1 0h2m3 0h1m2 0h1m1 0h2m1 0h1m3 0h1m5 0h1m1 0h3m1 0h1M0 20.5h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m5 0h1m2 0h1m1 0h1m1 0h2M0 21.5h2m1 0h2m2 0h7m3 0h3m1 0h1m1 0h1m1 0h1m2 0h3M0 22.5h1m1 0h1m3 0h2m13 0h3m2 0h1m1 0h1m2 0h2M0 23.5h1m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1m2 0h3M0 24.5h2m2 0h3m1 0h2m2 0h1m1 0h1m9 0h7m1 0h1M8 25.5h1m5 0h5m2 0h2m1 0h1m3 0h1m1 0h2M0 26.5h7m1 0h4m1 0h1m1 0h1m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1M0 27.5h1m5 0h1m1 0h1m1 0h1m1 0h3m1 0h3m1 0h1m2 0h2m3 0h3M0 28.5h1m1 0h3m1 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h6m2 0h1M0 29.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h2m1 0h1m1 0h1m2 0h3M0 30.5h1m1 0h3m1 0h1m2 0h1m1 0h5m3 0h1m1 0h1m1 0h3m1 0h2m1 0h3M0 31.5h1m5 0h1m3 0h2m1 0h1m5 0h1m2 0h1m2 0h8M0 32.5h7m1 0h1m1 0h2m1 0h1m1 0h3m5 0h2m1 0h3m1 0h1"/></svg>
 <span class="smallcaps">Tap “Continue”</span></div>
     <div>
       <div class="eyebrow rv d1">Your turn</div>
@@ -555,7 +577,7 @@ body.print #hud,body.print #progress{display:none}
       </ol>
     </div>
   </div>
-  <footer class="colophon"><span>Picked the dive couple? Ruka still loses to Reveries. That is positioning.</span><span>Ruka Visibility Lab</span></footer>
+  <footer class="colophon"><span>Picked the dive couple? Ruka still loses to Reveries. That is positioning.</span><span class="brandmark">Ruka Visibility Lab<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 12 ASSESS -->
@@ -564,13 +586,13 @@ body.print #hud,body.print #progress{display:none}
   <div class="body">
     <h2 class="rv">Measuring learning: from memory to <em>application</em></h2>
     <div class="stairs">
-      <div class="tier" data-b="1"><div class="lv"><span class="smallcaps">Formative</span><span class="cite">Understand</span></div><h3>Exit ticket</h3><p class="q">“In one sentence, what is Ruka’s position, and can an AI verify it?”</p><div class="meta">Two minutes, end of class · instant feedback</div></div>
-      <div class="tier" data-b="2"><div class="lv"><span class="smallcaps">Summative</span><span class="cite">Apply</span></div><h3>Exam question</h3><p class="q">A 10-mark short answer mapping the 4Ps and the seven sales steps to island tourism.</p><div class="meta">Tests all four learning outcomes</div></div>
-      <div class="tier" data-b="3"><div class="lv"><span class="smallcaps">Authentic project</span><span class="cite">Analyse · Create</span></div><h3>AI visibility audit</h3><p class="q">Groups audit a local guesthouse across ChatGPT, Google and Booking.com, then recommend its position, brand and 4Ps.</p><div class="meta">Rubric: diagnosis 30 · recommendations 50 · pitch 20</div></div>
+      <div class="tier" data-b="1"><div class="lv"><span class="smallcaps">Formative</span><span class="cite">Understand</span></div><h3>Exit ticket</h3><p class="q">“In one sentence, state Ruka’s market position, and explain how an AI engine could verify it.”</p><div class="meta">Two minutes, end of class · instant feedback</div></div>
+      <div class="tier" data-b="2"><div class="lv"><span class="smallcaps">Summative</span><span class="cite">Apply</span></div><h3>Exam question</h3><p class="q">“Using a Maldivian guesthouse, explain the seven-step sales process and identify which steps are most affected by AI answer engines.”</p><div class="meta">Short answer · 10 marks</div></div>
+      <div class="tier" data-b="3"><div class="lv"><span class="smallcaps">Group project · 30%</span><span class="cite">Analyse · Create</span></div><h3>AI visibility audit</h3><p class="q">Audit a real local guesthouse across ChatGPT, Gemini, Google and Booking.com, then propose an improved STP, brand strategy and 4Ps mix.</p><div class="meta">Rubric: diagnosis 30 · recommendations 50 · pitch 20</div></div>
     </div>
     <div class="axis rv d2"><span class="smallcaps">Remembering</span><span class="smallcaps">Applying in the field →</span></div>
   </div>
-  <footer class="colophon"><span>Formative · Summative · Authentic</span><span>Assessment</span></footer>
+  <footer class="colophon"><span>Formative · Summative · Authentic</span><span class="brandmark">Assessment<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 13 WRAP -->
@@ -580,19 +602,19 @@ body.print #hud,body.print #progress{display:none}
     <div>
       <h2 class="rv">Found. Chosen. <em>Booked.</em></h2>
       <ol class="recap" data-b="1">
-        <li><span class="num">01</span>Own a specific position</li>
-        <li><span class="num">02</span>Keep the brand consistent everywhere</li>
-        <li><span class="num">03</span>Ground the 4Ps in verifiable facts</li>
-        <li><span class="num">04</span>Let AI handle discovery; people build trust</li>
+        <li><span class="num">01</span><span><b>STP:</b> own a specific, provable position</span></li>
+        <li><span class="num">02</span><span><b>Brand:</b> stay consistent across every channel</span></li>
+        <li><span class="num">03</span><span><b>4Ps:</b> clear, verifiable facts for people and AI</span></li>
+        <li><span class="num">04</span><span><b>Seven steps:</b> AI handles discovery; people build trust and close</span></li>
       </ol>
     </div>
     <div class="sig" data-b="2">
       <span class="smallcaps">My teaching philosophy</span>
-      <blockquote>Students learn marketing best by applying theory to live, local challenges. I teach through real Maldivian case studies, interactive prompts and actionable digital tools.</blockquote>
+      <blockquote>Students learn marketing best by applying core theory to real, local challenges. I teach through live case studies, authentic problem-solving and practical digital strategies that prepare graduates for a changing business landscape.</blockquote>
       <div class="who"><span class="name">Abdulla Muiz Fuad</span><span class="qs">Questions?</span></div>
     </div>
   </div>
-  <footer class="colophon"><span>Found, chosen, booked.</span><span>Thank you</span></footer>
+  <footer class="colophon"><span>Found, chosen, booked.</span><span class="brandmark">Thank you<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 <!-- 14 REFERENCES -->
@@ -602,14 +624,14 @@ body.print #hud,body.print #progress{display:none}
     <h2 class="rv">References &amp; <em>sources</em></h2>
     <div>
       <ol class="reflist rv d1">
-        <li>Barringer, B. R., &amp; Ireland, R. D. <i>Entrepreneurship: Successfully launching new ventures</i>. Pearson. Chapter: Unique marketing issues.</li>
+        <li>Barringer, B. R., &amp; Ireland, R. D. <i>Entrepreneurship: Successfully launching new ventures</i>. Pearson. Chapter 11: Unique marketing issues (chapter number varies by edition).</li>
         <li>Morand, J.-C., &amp; Schegg, R. (2026). <i>Be visible to AI: The keys to semantic optimization and GEO for hotels</i> [White paper]. HES-SO Valais-Wallis. https://doi.org/10.5281/zenodo.19109201</li>
         <li>Aggarwal, P., et al. (2024). GEO: Generative engine optimization. <i>Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</i>.</li>
       </ol>
       <p class="disclose rv d2">Ruka Maldives is used with the owner’s permission. Ruka, Stone Hotels Dhiffushi, Reveries Diving Village and Arena Beach Hotel are described only with publicly listed facts; the “fractured footprint” is a teaching scenario. The phone demo is a scripted simulation, not a live AI. AI answers were captured on 4 November 2026.</p>
     </div>
   </div>
-  <footer class="colophon"><span>Found, chosen, booked.</span><span>Sources</span></footer>
+  <footer class="colophon"><span>Found, chosen, booked.</span><span class="brandmark">Sources<img src="assets/ruka-emblem-green.png" alt=""></span></footer>
 </section>
 
 </main>
