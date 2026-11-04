@@ -12,6 +12,7 @@ Topic: *Unique Marketing Issues* (segmentation, targeting and positioning; brand
 | `demo/` | **The phone demo** the QR code opens (`data.js` holds its wording) |
 | `fonts/`, `assets/` | Poppins (bundled for offline use), Ruka logo, AI screenshots, QR code |
 | `slides.pdf` | PDF backup of every slide, fully built |
+| `slides.pptx` | PowerPoint backup / email copy (static slides, push-up transition, "Live presentation" link on slide 1). Rebuild: `node tools/shots.js && python3 tools/make_pptx.py` |
 | `speaker-notes.md` | Script timed to 10 minutes |
 | `tools/check.js` | `node tools/check.js` re-renders everything and reports problems |
 | `CLAUDE.md` | Project brief: facts, design rules, which file to edit |
