@@ -38,7 +38,7 @@ Ruka Maldives brand on tan: green `#0B332D` (text/headers), copper `#C4876C` (de
 - The "fractured listings" (Ruka Inn / Ruka Guest House / two phone numbers) are a **labelled teaching scenario**, not real listings.
 - **AI field test, 4 Nov 2026** (Gemini, Google AI Mode, Baidu; EN + 中文): Ruka named **0 times**; Baidu's couple answer put **Arena Beach Hotel first**; Baidu recommended Dhiffushi with **Athiri Residence**; Google AI Mode picks all had a rating, map pin and website. Cropped screenshots are in `assets/`.
 - Source paper: Morand & Schegg (2026), *Be Visible to AI*, HES-SO Valais-Wallis, doi 10.5281/zenodo.19109201 (practitioner white paper, not peer-reviewed).
-- Cite the textbook as "Barringer & Ireland, Unique Marketing Issues" with no chapter number. Also cited: Osterwalder & Pigneur (2010), Business Model Canvas (mapped on slide 5); "liability of newness" on slides 5 and 7.
+- Textbook: Barringer, B. R., & Ireland, R. D. (2024). Entrepreneurship: Successfully launching new ventures (7th ed.). Pearson. On slides cite by topic ("Barringer & Ireland, Unique Marketing Issues"), no chapter number. Also cited: Osterwalder & Pigneur (2010), Business Model Canvas (mapped on slide 5); "liability of newness" on slides 5 and 7.
 - To confirm with the user: module code "MKT101 / ENT101". Demo 中文 prompts are machine translations; have them checked.
 
 ## Deploy

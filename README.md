@@ -82,7 +82,7 @@ Across all the questions, **Ruka Maldives was named 0 times.**
 
 ## Sources
 
-- Barringer, B. R., & Ireland, R. D. *Entrepreneurship: Successfully launching new ventures*. Pearson. Unique marketing issues.
+- Barringer, B. R., & Ireland, R. D. (2024). *Entrepreneurship: Successfully launching new ventures* (7th ed.). Pearson.
 - Osterwalder, A., & Pigneur, Y. (2010). *Business model generation*. Wiley.
 - Morand, J.-C., & Schegg, R. (2026). *Be visible to AI: The keys to semantic optimization and GEO for hotels* [White paper]. HES-SO Valais-Wallis. https://doi.org/10.5281/zenodo.19109201
 - Aggarwal, P., et al. (2024). GEO: Generative engine optimization. *Proceedings of the 30th ACM SIGKDD Conference*.
