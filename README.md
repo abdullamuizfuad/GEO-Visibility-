@@ -8,7 +8,7 @@ Topic: *Unique Marketing Issues* (segmentation, targeting and positioning; brand
 | File | What it is |
 |---|---|
 | `index.html` | **The presentation.** 14 editorial-style slides with motion and click-by-click builds; runs offline. |
-| `fonts/` | Playfair Display, Cormorant Garamond and Plus Jakarta Sans, bundled so the deck looks right without internet. Keep this folder next to `index.html`. |
+| `fonts/` | Poppins (and earlier display fonts), bundled so the deck looks right without internet. Keep this folder next to `index.html`. |
 | `demo/index.html` | **The phone demo** ("Ruka Visibility Lab") that the QR code opens. |
 | `slides.pdf` | PDF backup of every slide, fully built. |
 | `speaker-notes.md` | A script timed to 10 minutes, with discussion questions and fallbacks. |
