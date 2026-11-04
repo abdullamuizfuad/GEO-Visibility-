@@ -236,6 +236,7 @@ Answer a direct question from the panel chair directly.
 | **F** | Fullscreen |
 | **H** | Hidden timer + slide counter (red at 9:30) |
 | **R** | Reset timer |
+| Slide 17 buttons | MKT301 Practice Arena, MKT101 Arena, Digital Presence Audit open in a new tab (for Q&A, not in the 10 minutes) |
 | **1 / 2 / 3** (slide 4) | Open a real AI screenshot large; Esc or → closes |
 | **T** | Light / dark |
 | **B** or **.** | Black screen |

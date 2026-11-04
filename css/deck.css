@@ -480,6 +480,11 @@ body.print .s-fix .fix>.qrframe{display:none}
 
 /* ================= 17 REFS ================= */
 .refs{grid-template-columns:.7fr 1.6fr;gap:calc(var(--u)*4.4);align-items:start}
+.tools{margin-top:calc(var(--u)*2.2);display:grid;gap:calc(var(--u)*.7);max-width:22em}
+.tools .smallcaps{color:var(--ink3);font-size:clamp(.7rem,calc(var(--u)*.8),1rem);letter-spacing:.14em}
+.tool{display:flex;align-items:center;gap:calc(var(--u)*.9);padding:calc(var(--u)*.55) calc(var(--u)*1.1) calc(var(--u)*.55) calc(var(--u)*.55);border-radius:999px;background:var(--glass);border:1px solid var(--card-brd);box-shadow:var(--shadow);color:var(--ink);text-decoration:none;font-weight:500;font-size:clamp(.85rem,calc(var(--u)*1.05),1.3rem);transition:transform .3s var(--ease),border-color .3s}
+.tool:hover,.tool:focus-visible{transform:translateX(4px);border-color:var(--copper)}
+.tool img{width:calc(var(--u)*2.4);height:calc(var(--u)*2.4);border-radius:calc(var(--u)*.6);object-fit:cover;flex:none;background:#fff}
 .thanks{margin-top:calc(var(--u)*1.6);font-style:italic;font-size:clamp(.95rem,calc(var(--u)*1.35),1.6rem);line-height:1.45;color:var(--sun);max-width:18em}
 .reflist{list-style:none;padding:calc(var(--u)*.4) calc(var(--u)*2)}
 .reflist li{padding:calc(var(--u)*.62) 0 calc(var(--u)*.62) 2.2em;text-indent:-2.2em;color:var(--ink);font-size:clamp(.82rem,calc(var(--u)*1.02),1.25rem);line-height:1.4}
