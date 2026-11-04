@@ -135,14 +135,16 @@ MNU Business School teaching demonstration · 5 November 2026 · 9:30 am · A3 M
 ---
 
 ## 12 · QR — *Now, make Ruka visible*
-**7:10–8:10 · 5 clicks**
+**7:10–8:10 · 8 clicks**
 
 **SAY:** Phones again: you're Ruka's marketing manager now.
 [Click 1] Brand: one name, address and phone.
 [Click 2] Product: facts, not adjectives.
 [Click 3] Price: a published range.
 [Click 4] Place: bookable direct and on booking sites.
-[Click 5] Now tap **Search again**. … Ruka is first for the couple. *Did anyone pick the dive couple?* Ruka still loses. *Why?* … Positioning means choosing.
+[Click 5] Now tap **Search again**. … Couple: Ruka is first.
+[Click 6] Solo: Ruka moves into second. [Click 7] Family: Ruka makes the list.
+[Click 8] *Did anyone pick the dive couple?* Ruka still loses to Reveries. *Why?* … Positioning means choosing.
 
 **DO:** The dive-couple question is your **key teaching moment**: wait for an answer. The QR stays large until click 5, for anyone who closed the page.
 

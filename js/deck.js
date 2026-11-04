@@ -10,7 +10,7 @@ const TOTAL=10*60;
 function builds(i){return Math.max(0,...[...slides[i].querySelectorAll('[data-b]')].map(e=>+e.dataset.b));}
 function paint(i,k){const s=slides[i];
   s.querySelectorAll('[data-b]').forEach(e=>e.classList.toggle('shown',+e.dataset.b<=k));
-  for(let n=1;n<=6;n++)s.classList.toggle('b'+n,n<=k);
+  for(let n=1;n<=10;n++)s.classList.toggle('b'+n,n<=k);
 }
 function activate(i){slides.forEach((s,j)=>s.classList.toggle('active',j===i));
   document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';hud();}
