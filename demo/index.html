@@ -4,81 +4,49 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0B332D">
+<meta name="color-scheme" content="light dark">
 <title>Ruka Visibility Lab</title>
+<script>try{var t=localStorage.getItem('ruka-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <link rel="stylesheet" href="../fonts/poppins.css">
 <link rel="stylesheet" href="demo.css">
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="logo"><img src="../assets/ruka-emblem-copper.png" alt="Ruka Maldives" style="height:22px;width:auto"></div>
-    <div><b>Ruka Visibility Lab</b><small>Unique Marketing Issues · class simulation</small></div>
+    <div class="logo"><img src="../assets/ruka-emblem-copper.png" alt="Ruka Maldives"></div>
+    <div class="ht"><b id="title"></b><small id="sub"></small></div>
+    <button class="theme" id="theme" type="button" aria-label="Toggle light or dark mode"><span aria-hidden="true"></span></button>
   </header>
-  <div class="steps"><i class="on"></i><i></i><i></i><i></i></div>
 
-  <!-- 0: choose persona -->
-  <section class="screen on" id="s0">
-    <span class="pill">Part 1 · Be the traveller</span>
-    <h1>You're planning a Maldives trip.</h1>
-    <p>Like more and more travellers, you ask an AI assistant to choose a guesthouse for you. Who are you?</p>
+  <!-- 1: pick a traveller -->
+  <section class="screen on" id="s-pick">
+    <span class="kicker" id="kicker"></span>
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
     <div class="persona" id="personas"></div>
-    <p style="font-size:13px">Pick one. Each one is a different <b>market segment</b>.</p>
+    <p class="hint" id="hint"></p>
   </section>
 
-  <!-- 1: AI shortlist (before) -->
-  <section class="screen" id="s1">
-    <span class="pill">Part 1 · The AI answers</span>
-    <div class="chat">
-      <div class="bubble" id="prompt1"></div>
-      <div class="ai"><span class="dot"></span>AI travel assistant</div>
-      <div class="think" id="think1"></div>
-      <div class="result" id="res1"></div>
+  <!-- 2: AI search -->
+  <section class="screen" id="s-ai">
+    <div class="panel">
+      <div class="label"><span class="spark" aria-hidden="true"></span><span id="label"></span></div>
+      <form class="prompt" id="form" autocomplete="off">
+        <input id="q" type="text" aria-label="Your question">
+        <button id="search" type="submit"></button>
+      </form>
+      <p class="zh" id="zh" lang="zh"></p>
+      <div id="before" class="answer" aria-live="polite"></div>
     </div>
-    <div class="missing" id="miss1">
-      <b>Not on your shortlist: Ruka Maldives.</b>
-      <p style="margin:6px 0 0">A new 12-room guesthouse on Dhiffushi, steps from the beach… but the AI didn't pick it.</p>
+    <div class="stop" id="stop" hidden>
+      <b id="stopH"></b><p id="stopP"></p>
     </div>
-    <div class="q" id="q1" style="display:none">Why do you think the AI left Ruka out?<span>Hold that thought. We'll discuss it together.</span></div>
-    <button class="btn alt" id="toFix" style="display:none">Continue when your lecturer says →</button>
-  </section>
-
-  <!-- 2: Fix Ruka -->
-  <section class="screen" id="s2">
-    <span class="pill">Part 2 · Make Ruka visible</span>
-    <h1>You are now Ruka's marketing manager.</h1>
-    <p>Ruka has no website of its own, so an AI has to piece it together from other platforms. Below are four problems that are typical for small guesthouses <i>(a teaching scenario)</i>. Fix each one.</p>
-    <div class="meter"><div class="row"><span>AI visibility</span><span id="mval">Low</span></div><div class="bar"><i id="mbar"></i></div></div>
-    <div id="fixes"></div>
-    <button class="btn" id="rerun" disabled>Ask the AI again ↻</button>
-  </section>
-
-  <!-- 3: AI shortlist (after) -->
-  <section class="screen" id="s3">
-    <span class="pill">Part 2 · The AI answers again</span>
-    <div class="chat">
-      <div class="bubble" id="prompt2"></div>
-      <div class="ai"><span class="dot"></span>AI travel assistant</div>
-      <div class="think" id="think2"></div>
-      <div class="result" id="res2"></div>
-    </div>
-    <button class="btn" id="toMap" style="display:none">What did you just do? →</button>
-  </section>
-
-  <!-- 4: what you did -->
-  <section class="screen" id="s4">
-    <span class="pill">Wrap-up</span>
-    <h1>You just did entrepreneurial marketing.</h1>
-    <div class="map">
-      <div><b>Segment → Target → Position.</b> You chose a traveller type. The AI matched it against a <i>specific, provable</i> position.</div>
-      <div><b>Brand.</b> One name, one address, one phone everywhere, so the AI knew all the reviews were about the same Ruka.</div>
-      <div><b>4Ps.</b> You turned the <i>product</i> into facts, made the <i>price</i> clear and fixed <i>place</i> (how guests book). Fact-based <i>promotion</i> is what AI repeats.</div>
-      <div><b>Sales process.</b> The AI did the prospecting, qualifying and presenting <i>for</i> Ruka. The guest who clicks through is already pre-qualified.</div>
-    </div>
-    <button class="btn alt" id="again">Try another traveller ↺</button>
-    <p class="note">Teaching simulation. Ruka Maldives, Stone Hotels Dhiffushi, Reveries Diving Village and Arena Beach Hotel are real Maldivian properties, described only with publicly listed facts. The "before" problems are a teaching scenario, and the "AI" and its rankings are scripted to show how AI shortlisting works, informed by Morand &amp; Schegg (2026), <i>Be Visible to AI</i>, HES-SO Valais-Wallis.</p>
+    <button class="btn" id="again" type="button" hidden></button>
+    <div class="panel after" id="after" hidden></div>
+    <button class="btn alt" id="restart" type="button" hidden></button>
+    <p class="note" id="note"></p>
   </section>
 </div>
-
 <script src="data.js"></script>
 <script src="demo.js"></script>
 </body>

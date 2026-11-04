@@ -47,19 +47,23 @@ const url = f => 'file://' + path.join(root, f);
   await m.screenshot({ path: path.join(out, 'phone-cover.png') });
   if (await m.evaluate(() => document.documentElement.scrollWidth > innerWidth)) problems.push('deck (phone): horizontal overflow');
 
-  // 4. Phone demo: beach couple (Ruka reaches #1) and dive couple (Ruka not a fit)
-  for (const [idx, name] of [[0, 'beach'], [3, 'dive']]) {
-    const d = await phone.newPage();
+  // 4. Phone demo: couple (Ruka reaches #1) and dive couple (Ruka not a fit), plus dark mode
+  const dark = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: 1, colorScheme: 'dark' });
+  for (const [idx, name, ctx] of [[0, 'couple', phone], [3, 'dive', phone], [0, 'couple-dark', dark]]) {
+    const d = await ctx.newPage();
     d.on('pageerror', e => problems.push(`demo ${name}: ` + e.message));
     await d.goto(url('demo/index.html'));
     await d.click(`#personas button:nth-child(${idx + 1})`);
-    await d.waitForSelector('#toFix', { state: 'visible', timeout: 20000 });
-    await d.click('#toFix');
-    for (let i = 1; i <= 4; i++) await d.click(`#fixes .fix:nth-child(${i}) button`);
-    await d.click('#rerun');
-    await d.waitForSelector('#toMap', { state: 'visible', timeout: 20000 });
-    await d.waitForTimeout(400);
+    await d.click('#search');
+    await d.waitForSelector('#again', { state: 'visible', timeout: 20000 });
+    if (await d.locator('#before .item.ruka').count()) problems.push(`demo ${name}: Ruka shown before the fixes`);
+    await d.click('#again');
+    await d.waitForSelector('#after.done', { state: 'visible', timeout: 20000 });
+    await d.waitForTimeout(700);
     await d.screenshot({ path: path.join(out, `demo-${name}.png`), fullPage: true });
+    await d.setViewportSize({ width: 320, height: 640 });
+    if (await d.evaluate(() => document.documentElement.scrollWidth > innerWidth)) problems.push(`demo ${name}: horizontal overflow at 320px`);
+    await d.close();
   }
 
   await browser.close();

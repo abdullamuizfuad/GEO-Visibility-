@@ -1,41 +1,136 @@
-// Demo flow: persona -> AI shortlist -> fix Ruka -> re-run -> wrap-up. Data lives in data.js.
-let persona=null, fixed=new Set();
-const $=id=>document.getElementById(id);
-const wait=ms=>new Promise(r=>setTimeout(r,ms));
-function go(n){document.querySelectorAll('.screen').forEach((s,i)=>s.classList.toggle('on',i===n));
-  const st=[0,0,1,2,3][n]; document.querySelectorAll('.steps i').forEach((x,i)=>x.classList.toggle('on',i<=st));
-  window.scrollTo({top:0,behavior:'smooth'});}
-for(const k in P){const b=document.createElement('button');b.innerHTML=`<span class="e">${P[k].e}</span><b>${P[k].t}</b><span>${P[k].d}</span>`;b.onclick=()=>start(k);$('personas').appendChild(b);}
-async function typeIn(el,text){el.textContent="";for(const ch of text){el.textContent+=ch;await wait(14);}}
-async function think(el,lines){el.innerHTML="";for(const l of lines){const d=document.createElement('div');d.textContent=l;el.appendChild(d);await wait(60);d.classList.add('on');await wait(520);}}
-function card(n,name,info,ruka){const d=document.createElement('div');d.className='gh'+(ruka?' ruka':'');d.innerHTML=`<span class="n">${n}</span><div><b>${name}</b><small>${info}</small></div>`;return d;}
-async function reveal(el,cards){el.innerHTML="";for(const c of cards){el.appendChild(c);await wait(60);c.classList.add('on');await wait(380);}}
-function msg(html,cls){const m=document.createElement('div');m.className=cls||'missing on';m.innerHTML=html;return m;}
-async function start(k){persona=P[k];fixed.clear();renderFixes();go(1);
-  $('res1').innerHTML="";$('think1').innerHTML="";$('miss1').classList.remove('on');$('q1').style.display='none';$('toFix').style.display='none';
-  await typeIn($('prompt1'),persona.q);
-  await think($('think1'),["Read guesthouse and hotel listings across the atolls","Matched your needs against listed facts","Checked reviews & cross-checked identities","Kept only options it could verify"]);
-  await reveal($('res1'),persona.comp.map((c,i)=>card(i+1,c[0],c[1])));
-  await wait(400);$('miss1').classList.add('on');await wait(700);$('q1').style.display='block';$('toFix').style.display='block';}
-$('toFix').onclick=()=>go(2);
-function renderFixes(){$('fixes').innerHTML="";FIX.forEach((f,i)=>{const d=document.createElement('div');d.className='fix'+(fixed.has(i)?' done':'');
-  d.innerHTML=`<span class="tag">${f.tag}</span><h3>${f.h}</h3><div class="before">${f.b}</div><div class="after">${f.a}</div><button>${fixed.has(i)?'Fixed ✓':f.btn}</button>`;
-  d.querySelector('button').onclick=()=>{fixed.has(i)?fixed.delete(i):fixed.add(i);renderFixes();if(navigator.vibrate)navigator.vibrate(15);};$('fixes').appendChild(d);});
-  const n=fixed.size;$('mbar').style.width=(8+n*23)+'%';$('mval').textContent=["Low","Weak","Fair","Good","Strong"][n];$('rerun').disabled=n===0;}
-$('rerun').onclick=async()=>{go(3);const n=fixed.size;const R=$('res2');R.innerHTML="";$('think2').innerHTML="";$('toMap').style.display='none';
-  await typeIn($('prompt2'),persona.q);
-  await think($('think2'),["Read guesthouse and hotel listings across the atolls","Found consistent facts about Ruka Maldives","Cross-checked Ruka on its website, Google & booking sites"]);
-  const comp=persona.comp.map(c=>card(0,c[0],c[1]));
-  const r=card(0,"Ruka Maldives, Dhiffushi","Why: "+persona.why,true);
-  let list, after=[];
-  if(n<2){list=comp;after.push(msg(`<b>Ruka is still not shortlisted.</b><p style="margin:6px 0 0">One fix isn't enough. The AI still can't verify Ruka. Go back and fix more.</p>`));}
-  else if(persona.rank===0){list=comp;after.push(msg(`<b>Ruka is now visible… but not for this traveller.</b><p style="margin:6px 0 0">${persona.why} <br><br><b>Lesson:</b> visibility can't fix a poor fit. Positioning means choosing the segments you <i>can</i> win. Try the Beach couple.</p>`,'missing on'));}
-  else if(n<4){list=[comp[0],comp[1],r];r.querySelector('small').textContent=`Partly verified: ${n} of 4 problems fixed. Fix all four to move up.`;}
-  else{list=comp.slice(0,2);list.splice(persona.rank-1,0,r);}
-  list.forEach((c,i)=>c.querySelector('.n').textContent=i+1);
-  await reveal(R,list);after.forEach(a=>R.appendChild(a));
-  if(n<4){const b=document.createElement('button');b.className='btn alt';b.textContent=n<2?'← Back to fixes':'← Fix the rest';b.onclick=()=>go(2);R.appendChild(b);}
-  if(n>=2)$('toMap').style.display='block';
+// Demo flow: pick traveller -> prefilled prompt -> Search -> streamed shortlist (no Ruka)
+// -> "Watch the screen" -> Search again -> after state. All wording lives in data.js.
+const $ = id => document.getElementById(id);
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const wait = ms => RM ? Promise.resolve() : new Promise(r => setTimeout(r, ms));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let persona = null, run = 0;
+
+// Static copy
+for (const k of ['title', 'sub', 'kicker', 'h1', 'intro', 'hint', 'label', 'stopH', 'stopP', 'note']) $(k).textContent = COPY[k];
+$('search').textContent = COPY.search; $('again').textContent = COPY.again; $('restart').textContent = COPY.restart;
+
+// Theme toggle (follows the system until the viewer picks one)
+const root = document.documentElement;
+const isDark = () => (root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+function paintTheme() {
+  const d = isDark();
+  $('theme').setAttribute('aria-pressed', d);
+  $('theme').title = d ? 'Switch to light mode' : 'Switch to dark mode';
+  document.querySelector('meta[name=theme-color]').content = d ? '#0B332D' : '#F6F1EA';
+}
+$('theme').onclick = () => {
+  const t = isDark() ? 'light' : 'dark'; root.dataset.theme = t;
+  try { localStorage.setItem('ruka-theme', t); } catch (e) {}
+  paintTheme();
 };
-$('toMap').onclick=()=>go(4);
-$('again').onclick=()=>go(0);
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', paintTheme);
+paintTheme();
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.toggle('on', s.id === id));
+  window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });
+}
+
+// Persona buttons
+PERSONAS.forEach(p => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.dataset.id = p.id;
+  b.innerHTML = `<span class="e" aria-hidden="true">${p.e}</span><b>${esc(p.t)}</b><span>${esc(p.d)}</span>`;
+  b.onclick = () => pick(p);
+  $('personas').appendChild(b);
+});
+
+function pick(p) {
+  persona = p; run++;
+  $('q').value = p.q;
+  $('zh').textContent = p.zh ? '中文: ' + p.zh : ''; $('zh').hidden = !p.zh;
+  $('before').innerHTML = ''; $('after').innerHTML = '';
+  for (const id of ['stop', 'again', 'after', 'restart']) $(id).hidden = true;
+  $('search').disabled = false; $('q').disabled = false;
+  show('s-ai');
+}
+
+async function stream(el, text, my) {
+  if (RM) { el.textContent = text; return; }
+  el.textContent = ''; el.classList.add('caret');
+  const words = text.split(' ');
+  for (let i = 0; i < words.length; i++) {
+    if (my !== run) return;
+    el.textContent += (i ? ' ' : '') + words[i];
+    await wait(38);
+  }
+  el.classList.remove('caret');
+}
+
+function shimmer(box) {
+  const s = document.createElement('div'); s.className = 'shimmer';
+  s.innerHTML = `<small>${esc(COPY.loading)}</small><i></i><i></i><i class="short"></i>`;
+  box.appendChild(s); return s;
+}
+
+function item(key, i, why) {
+  const pl = PLACES[key];
+  const li = document.createElement('li');
+  li.className = 'item' + (pl.ruka ? ' ruka' : '');
+  li.innerHTML = `<span class="n">${i + 1}</span><div><b>${esc(pl.n)}</b><em>${esc(pl.where)}</em>` +
+    `<p>${esc(why || pl.why)}</p><div class="src" aria-label="${esc(COPY.sourcesLabel)}">` +
+    pl.src.map(s => `<span>${esc(s)}</span>`).join('') + `</div></div>`;
+  return li;
+}
+
+async function answer(box, lead, keys, my, extra) {
+  box.innerHTML = '';
+  const sh = shimmer(box);
+  await wait(1300); if (my !== run) return false;
+  sh.remove();
+  const p = document.createElement('p'); p.className = 'lead'; box.appendChild(p);
+  await stream(p, lead, my); if (my !== run) return false;
+  const ol = document.createElement('ol'); ol.className = 'list'; box.appendChild(ol);
+  for (let i = 0; i < keys.length; i++) {
+    const li = item(keys[i], i, PLACES[keys[i]].ruka ? persona.rukaWhy : '');
+    ol.appendChild(li);
+    await wait(40); li.classList.add('on'); await wait(420);
+    if (my !== run) return false;
+  }
+  if (extra) { box.appendChild(extra); await wait(40); extra.classList.add('on'); }
+  return true;
+}
+
+$('form').onsubmit = async e => {
+  e.preventDefault();
+  if (!persona || $('search').disabled) return;
+  const my = ++run;
+  $('search').disabled = true; $('q').disabled = true;
+  for (const id of ['stop', 'again', 'after', 'restart']) $(id).hidden = true;
+  const ok = await answer($('before'), persona.lead, persona.before, my);
+  if (!ok) return;
+  await wait(500);
+  $('stop').hidden = false;
+  if (navigator.vibrate) try { navigator.vibrate(20); } catch (e) {}
+  await wait(600);
+  $('again').hidden = false;
+};
+
+$('again').onclick = async () => {
+  const my = ++run;
+  $('again').hidden = true;
+  const box = $('after'); box.hidden = false; box.innerHTML = '';
+  const head = document.createElement('div'); head.className = 'afterhead';
+  head.innerHTML = `<div class="label"><span class="spark" aria-hidden="true"></span>${esc(COPY.label)}</div>` +
+    `<span class="kicker">${esc(COPY.afterKicker)}</span>` +
+    `<div class="fixes" aria-label="${esc(COPY.fixesLabel)}">` +
+    FIXES.map(f => `<span title="${esc(f.t)}"><b>${esc(f.p)}</b> ${esc(f.t)}</span>`).join('') + `</div>` +
+    `<div class="qecho">${esc(persona.q)}</div>`;
+  box.appendChild(head);
+  const body = document.createElement('div'); body.className = 'answer'; box.appendChild(body);
+  box.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' });
+  let extra = null;
+  if (persona.lesson) { extra = document.createElement('div'); extra.className = 'lesson'; extra.textContent = persona.lesson; }
+  const ok = await answer(body, persona.afterLead, persona.after, my, extra);
+  if (!ok) return;
+  box.classList.add('done');
+  $('restart').hidden = false;
+};
+
+$('restart').onclick = () => { run++; persona = null; show('s-pick'); };
