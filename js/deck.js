@@ -1,4 +1,4 @@
-// Deck navigation: builds (data-b), keyboard/clicker, view-transition slide changes, scroll-snap sync, HUD, light/dark, print mode, funnel dots.
+// Deck navigation: builds (data-b), keyboard/clicker, view-transition slide changes, scroll-snap sync, HUD, light/dark, print mode.
 (function(){
 const deck=document.getElementById('deck');
 const slides=[...document.querySelectorAll('.slide')];
@@ -7,25 +7,10 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let cur=0, step=0, keyNav=false, t0=null, navTimer=null;
 const TOTAL=10*60;
 
-// --- funnel dots (slide 2) ---
-(function(){const f=document.getElementById('field');if(!f)return;const NS='http://www.w3.org/2000/svg';
-  let seed=11;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
-  const picks={14:0,57:1,96:2};const RUKA=40;
-  for(let i=0;i<130;i++){const g=document.createElementNS(NS,'g');g.setAttribute('class','dot');
-    let x=24+rnd()*440,y=24+rnd()*352;
-    if(i===RUKA){x=300;y=230;g.classList.add('ruka');}
-    g.style.setProperty('--x',x+'px');g.style.setProperty('--y',y+'px');
-    if(i in picks){g.classList.add('pick');g.style.setProperty('--tx','520px');g.style.setProperty('--ty',(130+picks[i]*95)+'px');}
-    const c=document.createElementNS(NS,'circle');c.setAttribute('r',i===RUKA?8:6);g.appendChild(c);
-    if(i===RUKA){const t=document.createElementNS(NS,'text');t.setAttribute('x',16);t.setAttribute('y',7);t.textContent='Ruka';g.appendChild(t);}
-    f.appendChild(g);}
-})();
-
 function builds(i){return Math.max(0,...[...slides[i].querySelectorAll('[data-b]')].map(e=>+e.dataset.b));}
 function paint(i,k){const s=slides[i];
   s.querySelectorAll('[data-b]').forEach(e=>e.classList.toggle('shown',+e.dataset.b<=k));
   for(let n=1;n<=6;n++)s.classList.toggle('b'+n,n<=k);
-  if(s.classList.contains('s-dilemma')){const r=s.querySelector('.ruka text');if(r)r.textContent=k>=1?'Ruka?':'Ruka';}
 }
 function activate(i){slides.forEach((s,j)=>s.classList.toggle('active',j===i));
   document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';hud();}
