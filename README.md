@@ -7,7 +7,7 @@ Topic: *Unique Marketing Issues* (segmentation, targeting and positioning; brand
 
 | Path | What it is |
 |---|---|
-| `index.html` | **The presentation** (14 slides; text and speaker notes only) |
+| `index.html` | **The presentation** (17 slides; text and speaker notes only) |
 | `css/deck.css`, `js/` | Deck design, navigation and the looping beach background |
 | `demo/` | **The phone demo** the QR code opens (`data.js` holds its wording) |
 | `fonts/`, `assets/` | Poppins (bundled for offline use), Ruka logo, AI screenshots, QR code |

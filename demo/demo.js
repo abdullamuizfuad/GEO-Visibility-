@@ -45,7 +45,7 @@ function pick(p) {
   persona = p; run++;
   $('q').value = p.q;
   $('zh').textContent = p.zh ? '中文: ' + p.zh : ''; $('zh').hidden = !p.zh;
-  $('before').innerHTML = ''; $('after').innerHTML = '';
+  $('before').innerHTML = ''; $('after').innerHTML = ''; $('after').classList.remove('done');
   for (const id of ['stop', 'again', 'after', 'restart']) $(id).hidden = true;
   $('search').disabled = false; $('q').disabled = false;
   show('s-ai');
@@ -115,7 +115,7 @@ $('form').onsubmit = async e => {
 $('again').onclick = async () => {
   const my = ++run;
   $('again').hidden = true;
-  const box = $('after'); box.hidden = false; box.innerHTML = '';
+  const box = $('after'); box.hidden = false; box.innerHTML = ''; box.classList.remove('done');
   const head = document.createElement('div'); head.className = 'afterhead';
   head.innerHTML = `<div class="label"><span class="spark" aria-hidden="true"></span>${esc(COPY.label)}</div>` +
     `<span class="kicker">${esc(COPY.afterKicker)}</span>` +

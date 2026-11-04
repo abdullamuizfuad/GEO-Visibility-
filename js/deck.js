@@ -27,8 +27,10 @@ function next(){if(!t0)t0=Date.now();if(slides[cur].querySelector('#searchsim')&
 function prev(){if(step>0){step--;paint(cur,step);hud();}else if(cur>0)go(cur-1,'end');}
 
 // Manual scrolling (wheel, touch, trackpad): show the arrived slide fully built.
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>=.55){const i=slides.indexOf(e.target);
-  if(i!==cur&&!keyNav){cur=i;step=builds(i);paint(i,step);activate(i);}}});},{root:deck,threshold:[.55]});
+// A slide counts as arrived when 55% of it, or (for slides taller than the screen, e.g. on phones) 55% of the screen, shows it.
+const io=new IntersectionObserver(es=>{es.forEach(e=>{const fill=e.rootBounds?e.intersectionRect.height/e.rootBounds.height:0;
+  if(e.isIntersecting&&(e.intersectionRatio>=.55||fill>=.55)){const i=slides.indexOf(e.target);
+  if(i!==cur&&!keyNav){cur=i;step=builds(i);paint(i,step);activate(i);}}});},{root:deck,threshold:Array.from({length:21},(_,i)=>i/20)});
 
 function hud(){const h=document.getElementById('hud');const el=t0?Math.floor((Date.now()-t0)/1000):0;
   h.textContent=`${cur+1}/${slides.length} · ${Math.floor(el/60)}:${String(el%60).padStart(2,'0')} · build ${step}/${builds(cur)}`;h.classList.toggle('late',el>TOTAL-30);}

@@ -4,7 +4,7 @@ MNU Business School teaching demonstration · 5 November 2026 · 9:30 am · A3 M
 
 **How to read this.** Each slide has a time window, the number of clicks, **SAY** (the words, about 130 words a minute), and **DO** (how to run the slide). Plain text is spoken; *italics* are questions to the room; [brackets] are actions.
 
-**The clock.** Press **H** after your first click: a hidden timer and slide counter appear in the corner (it turns red at 9:30). Checkpoints: **slide 4 by 2:00 · slide 9 by 4:40 · slide 12 by 7:00 · slide 15 by 8:50.** If you miss a checkpoint, use the "If you're behind" line on the next slide.
+**The clock.** Press **H** after your first click: a hidden timer and slide counter appear in the corner (it turns red at 9:30). Checkpoints: **slide 4 by 2:05 · slide 9 by 4:45 · slide 12 by 7:05 · slide 15 by 9:00.** If you miss a checkpoint, use the "If you're behind" line on the next slide.
 
 **Before you start (9:15).** Laptop on mains power, browser fullscreen (**F**), Wi-Fi on, phone demo open on your own phone as a spare, slide 1 showing, clicker tested, a glass of water. Press **R** to reset the timer just before you begin.
 
@@ -13,39 +13,39 @@ MNU Business School teaching demonstration · 5 November 2026 · 9:30 am · A3 M
 ## 1 · Cover — *Exploring Unique Marketing Issues*
 **0:00–0:20 · 0 clicks**
 
-**SAY:** Good morning, everyone. For the next ten minutes I'd like you to be my second-year entrepreneurship class. Today's topic is unique marketing issues: the ones an entrepreneur faces now that generative AI answers the search. And our case is a real start-up, Ruka Maldives.
+**SAY:** Good morning, everyone. For ten minutes, please be my second-year entrepreneurship class. Today: the unique marketing issues entrepreneurs face now that generative AI answers the search. Our case: a real start-up, Ruka Maldives.
 
 **DO:** Stand to the side of the screen, not in front of it. Smile, make eye contact with each panel member once. Speak slower than feels natural: the first 20 seconds set your pitch.
 
 ---
 
 ## 2 · Meet Ruka + four questions
-**0:20–1:00 · 4 clicks**
+**0:20–0:55 · 4 clicks**
 
-**SAY:** Ruka is a cosy, boho, twelve-room guesthouse on Dhiffushi, opened in 2025, with no website of its own. Like every start-up it faces the *liability of newness*: no track record, no trust yet. So it must answer four questions.
-[Click 1] **Who** are our customers, and how do we find them? That's STP.
-[Click 2] **Why us?** How does a brand decide whether AI finds you?
-[Click 3] **What** do we offer, and how? The 7Ps.
-[Click 4] And **closing the deal**: can selling be a repeatable system?
+**SAY:** Ruka is a cosy, boho, twelve-room guesthouse on Dhiffushi, opened in 2025, with no website. Like every start-up it faces the *liability of newness*: no track record, no trust. Four questions:
+[Click 1] **Who** are our customers? STP.
+[Click 2] **Why us?** Does the brand decide whether AI finds you?
+[Click 3] **What** do we offer? The 7Ps.
+[Click 4] And **closing the deal**: can selling be a system?
 
 **DO:** One click per question, one breath per question. These four are your learning outcomes; each card also shows its Business Model Canvas block, so you can point at one tag if a panel member looks interested, but don't read them all.
 
 ---
 
 ## 3 · QR — *Be the traveller*
-**1:00–1:50 · 0 clicks**
+**0:55–2:05 · 0 clicks**
 
-**SAY:** Phones out, please. Scan the code, or type the short link. Pick a traveller: a couple, a solo traveller, a family or divers. Tap Search, and read what the AI recommends.
-[Wait ~30 seconds.] *Who picked the couple? The family?* What you just did is segmentation: you chose a customer. *Now, did anyone see Ruka in their answer?* … *Why do you think the AI left it out?*
+**SAY:** Phones out, please. Scan the code, pick a traveller, tap Search, and read the answer.
+[Wait ~30 seconds.] *Who picked the couple? The family?* That's segmentation: you chose a customer. *Did anyone see Ruka?* … *Why do you think the AI left it out?*
 
 **DO:** Hold the silence while they scan; walk towards them, don't rush back to the laptop. If someone can't scan, read out **iocdrp.s.gy/ruka**, or show them your phone. Take **one** answer to "why", say "Hold that thought," and click on. Tell them: "Keep the page open; we'll come back to it."
 
 ---
 
 ## 4 · Simulated search — *Same question, asked in the UK and in China*
-**1:50–2:25 · runs by itself**
+**2:05–2:40 · runs by itself**
 
-**SAY:** This is modelled on a test I ran yesterday. Same question, in English and in Chinese, on completely different AI engines: Gemini and Google AI in the UK, Baidu in China. Watch the shortlist. [Let it play.] Arena Beach Hotel comes first in Baidu. Stone Hotels, Crystal Sands. And Ruka? [Point at the 0.] Zero times. *Why did both AIs skip Ruka?*
+**SAY:** Modelled on my test yesterday: the same question in English and Chinese, on Gemini and Google AI in the UK, and Baidu in China. [Let it play.] Arena comes first on Baidu. And Ruka? [Point at the 0.] Zero times. *Why did both AIs skip Ruka?*
 
 **DO:** The animation starts by itself and takes about 11 seconds; **don't click** while it plays (a click jumps straight to the end). When the red **0** appears, pause. To show the real evidence, press **1**, **2** or **3** (or hover a thumbnail): the real Baidu and Google screenshots open full screen; press **Esc** or the clicker to close. Take one quick answer, then move on: "Let's use our four questions to find out."
 **If you're behind:** click once to skip to the end, point at the 0, move on.
@@ -53,45 +53,45 @@ MNU Business School teaching demonstration · 5 November 2026 · 9:30 am · A3 M
 ---
 
 ## 5 · Segmentation — *Who could stay?*
-**2:25–3:00 · 2 clicks**
+**2:40–3:10 · 2 clicks**
 
-**SAY:** Segmentation divides a market into groups with similar needs: by who they are, where they're from, how they live, what they want. These are the Maldives' main tourist segments.
-[Click 1] Four of them fit Ruka.
-[Click 2] Couples want romance and privacy, solo travellers quiet and value, families space and easy meals, divers a dive centre. *Which traveller did you pick? That was your segment.*
+**SAY:** Segmentation divides a market into groups with similar needs: who they are, where they're from, how they live, what they want.
+[Click 1] Four Maldives segments fit Ruka.
+[Click 2] Couples want romance, solo travellers quiet and value, families space and easy meals, divers a dive centre. *Which traveller did you pick?* That was your segment.
 
 **DO:** Gesture left (the theory) then right (the case). Link it back to the phones: this is the payoff of slide 3.
 
 ---
 
 ## 6 · Targeting + positioning map — *Target where you can win*
-**3:00–3:35 · 1 click**
+**3:10–3:45 · 1 click**
 
-**SAY:** Targeting means choosing where a new venture has a real advantage. Ruka targets couples, solo travellers and families. Not divers: Reveries has a dive centre on site.
-[Click 1] This map is my own perception. Stone: premium on both. Arena: premium quality, mid-to-high price. Crystal Sands in the middle. Ruka: high quality at a budget price, "a cosy boutique home-away-from-home on Dhiffushi." *Who disagrees?*
+**SAY:** Targeting means choosing where a new venture can win: couples, solo travellers and families. Not divers: Reveries has a dive centre on site.
+[Click 1] This map is my own perception. Stone and Arena at the premium end, Crystal Sands in the middle, and Ruka: high quality at a budget price. *Who disagrees?*
 
 **DO:** Say "my perception" clearly; it protects you and the businesses. If someone disagrees, praise it: "Good, positioning maps are arguments, not facts."
 
 ---
 
 ## 7 · Brand — *A brand is a promise people, and AI, recognise*
-**3:35–4:10 · 2 clicks**
+**3:45–4:15 · 2 clicks**
 
 **SAY:** A brand is the set of attributes people associate with a company. It's how a new venture earns trust.
-[Click 1] In this teaching scenario, the booking site says "Ruka Inn", the map "Ruka Guest House", social media "Ruka Maldives", with different phones. To an AI, that's three businesses, and the reviews never add up.
-[Click 2] One name, one address, one phone, everywhere. Now every review counts for one brand.
+[Click 1] In this teaching scenario, the booking site says "Ruka Inn", the map "Ruka Guest House", with different phones. To an AI, those are separate businesses.
+[Click 2] One name, one address, one phone, everywhere. Now every review counts.
 
 **DO:** Say "teaching scenario" out loud: these are not Ruka's real listings. Point at the mismatched phone digits before the merge.
 
 ---
 
 ## 8 · Through the AI lens — *STP + brand together*
-**4:10–4:35 · 5 clicks**
+**4:15–4:45 · 5 clicks**
 
-**SAY:** So how does an AI use what we just learned?
+**SAY:** How does AI use this?
 [Click 1] It reads the intent: "cosy, budget, honeymoon" is a segment.
-[Click 2] It checks the facts: the same name, address and details across listings, maps, reviews and social. That's the brand.
-[Click 3] And it shortlists only the position it can verify and repeat.
-[Click 4] Provable means the same facts everywhere, and reviews that echo them.
+[Click 2] It checks the facts across listings, maps, reviews and social. That's the brand.
+[Click 3] It shortlists what it can verify.
+[Click 4] Provable means the same facts everywhere.
 [Click 5] One brand, three proof points.
 
 **DO:** Brisk: one line per click. This is the bridge from STP + brand to the marketing mix (Morand & Schegg, 2026, if asked).
@@ -100,60 +100,60 @@ MNU Business School teaching demonstration · 5 November 2026 · 9:30 am · A3 M
 ---
 
 ## 9 · Marketing mix — *The marketing mix in the generative era*
-**4:35–5:25 · 3 clicks**
+**4:45–5:25 · 3 clicks**
 
-**SAY:** Kotler and colleagues call this Marketing 5.0: technology reshapes every P.
-[Click 1] The standard 4Ps: product, price on cost or on value, place direct or through intermediaries, and promotion.
-[Click 2] The GEO version: facts not adjectives; a published price range; AI as the newest intermediary; content and reviews an AI can extract.
-[Click 3] And because a guesthouse sells a service, three more Ps: people, process, and physical evidence, real photos, the same everywhere. *Would you price Ruka on cost, or on value?*
+**SAY:** Kotler calls this Marketing 5.0: technology reshapes every P.
+[Click 1] The 4Ps: product, price on cost or value, place, and promotion.
+[Click 2] The GEO version: facts not adjectives, a published price range, AI as the newest intermediary, reviews an AI can extract.
+[Click 3] A guesthouse sells a service, so add people, process and physical evidence. *Would you price Ruka on cost, or on value?*
 
 **DO:** Take one quick answer to the pricing question ("value" is the answer you want: budget price, boutique quality). Don't read every box: name the P, say the change.
 
 ---
 
 ## 10 · Seven-step sales process — *AI opens doors; you close the sale*
-**5:25–5:55 · 1 click**
+**5:25–5:45 · 1 click**
 
-**SAY:** No one can guarantee a sale, but a process makes it repeatable: seven steps, from prospecting to follow-up.
-[Click 1] Today, AI already does steps one to four. Five to seven stay human. When a guest asks, *"Can you arrange a courtyard dinner for our anniversary?"*, a person answers that.
+**SAY:** No one can guarantee a sale, but a process makes it repeatable: seven steps, prospecting to follow-up.
+[Click 1] AI already does steps one to four. Five to seven stay human: *"Can you arrange a courtyard dinner for our anniversary?"* A person answers that.
 
 **DO:** Sweep your hand across 1–4 when they light up, then hold your hand on 5–7. That gesture sets up the next slide.
 
 ---
 
 ## 11 · Think · pair · share (green slide)
-**5:55–6:55 · 2 clicks**
+**5:45–7:05 · 2 clicks**
 
-**SAY:** Let's think about that. [Read slowly] *If AI handles steps one to four, how does the guesthouse manager's role change?* Use the strip as a guide. Turn to your neighbour; you have a minute.
+**SAY:** [Read slowly] *If AI handles steps one to four, how does the manager's role change?* Turn to your neighbour; you have a minute.
 [Click 1 — starts the 60-second line. Let pairs talk ~30 seconds.] *What did you come up with?* … *What do others think?*
-[Click 2] Two shifts. Administrative responder to **experience architect**: value moves to objections, the close and the stay. Passive marketer to **data curator**: keeping facts identical everywhere becomes a daily job. And great stays feed the next AI answer.
+[Click 2] Two shifts. Administrative responder to **experience architect**: value moves to the objection, the close and the stay. Passive marketer to **data curator**: identical facts everywhere become a daily job.
 
 **DO:** This is the facilitation slide the panel scores most. Ask, **pause** (count to five in your head), then redirect: "Good point. Does anyone see it differently?" Build on their answer before clicking 2: "Yes, and that's exactly the first shift…" Take two answers at most.
 
 ---
 
 ## 12 · QR — *Now, make Ruka visible*
-**6:55–7:45 · 5 clicks**
+**7:05–8:10 · 5 clicks**
 
-**SAY:** Back to your phones. You're Ruka's marketing manager now. Watch the four fixes.
-[Click 1] Brand: one name, address and phone everywhere.
-[Click 2] Product: facts — boho style, courtyard dining, serviced living.
-[Click 3] Price: a clear range and terms, published.
-[Click 4] Place: bookable direct and on booking sites, details identical.
-[Click 5] Now tap **Search again**. … Ruka is number one for the couple. *Did anyone pick the dive couple?* Ruka still loses to Reveries. *Why?* … Because positioning means choosing.
+**SAY:** Phones again: you're Ruka's marketing manager now.
+[Click 1] Brand: one name, address and phone.
+[Click 2] Product: facts, not adjectives.
+[Click 3] Price: a published range.
+[Click 4] Place: bookable direct and on booking sites.
+[Click 5] Now tap **Search again**. … Ruka is first for the couple. *Did anyone pick the dive couple?* Ruka still loses. *Why?* … Positioning means choosing.
 
 **DO:** The dive-couple question is your **key teaching moment**: wait for an answer. The QR stays large until click 5, for anyone who closed the page.
 
 ---
 
 ## 13 · Questions for discussion in class
-**7:45–8:15 · 3 clicks**
+**8:10–8:35 · 3 clicks**
 
-**SAY:** In class, I'd close the lesson with three questions.
-[Click 1] *Ruka targets three segments: is that one position or three?*
+**SAY:** In class, I'd close with three questions.
+[Click 1] *Ruka targets three segments: one position or three?*
 [Click 2] *Which of the 7Ps would you fix first, and why?*
 [Click 3] *Which sales steps should a guesthouse never hand to AI?*
-These check understanding, application, and evaluation.
+Understanding, application, evaluation.
 
 **DO:** Address the panel as educators now, not as students. Don't answer the questions yourself unless asked.
 **If you're behind:** read only the first question.
@@ -161,31 +161,31 @@ These check understanding, application, and evaluation.
 ---
 
 ## 14 · Tutorial activity + group assignment
-**8:15–8:50 · 1 click**
+**8:35–9:00 · 1 click**
 
-**SAY:** In the tutorial, groups become the marketing team: they prompt three AI assistants like a traveller, screenshot who gets named, and ask the AI *why not us, and what needs fixing?*
-[Click 1] That feeds the assignment: a one-year marketing plan with a timeline and budget.
+**SAY:** In the formative tutorial, groups become the marketing team: they prompt three AI assistants like a traveller, screenshot who is named, and ask *why not us, and what needs fixing?*
+[Click 1] That feeds the summative assignment: a one-year marketing plan with a timeline and budget.
 
 **DO:** Point at the weighting pills. This slide is where the panel scores "how learning is assessed": say the words **formative** (tutorial) and **summative** (assignment) once each.
 
 ---
 
 ## 15 · Conclusion — *Ruka can be…*
-**8:50–9:15 · 3 clicks**
+**9:00–9:25 · 3 clicks**
 
 **SAY:** So, Ruka can be…
-[Click 1] **Found** by the masses, with consistent, verifiable facts an AI can repeat.
-[Click 2] **Chosen** by the right audience, with a clear position and proof points.
-[Click 3] And **Booked** by customers who benefit the business: AI opens the door; people close the sale and keep the guest.
+[Click 1] **Found** by the masses: verifiable facts an AI can repeat.
+[Click 2] **Chosen** by the right audience: a clear position with proof points.
+[Click 3] And **Booked** by the customers who benefit the business: AI opens the door; people close the sale and keep the guest.
 
 **DO:** Slow down. Pause one beat after each word: Found… Chosen… Booked.
 
 ---
 
 ## 16 · Teaching philosophy — *Graduates with employability skills*
-**9:15–9:45 · 0 clicks**
+**9:25–9:45 · 0 clicks**
 
-**SAY:** In marketing management, I sat on the other side of the interview desk. Graduates had the knowledge, but at the real question, minds went blank. So I teach for that moment, with real local cases and the hard question practised, so my students meet that manager and surprise them. Thank you. I'd love your questions.
+**SAY:** In marketing management, I sat on the other side of the interview desk. Graduates had the knowledge, but at the real question, minds went blank. So I teach for that moment, so my students meet that manager and surprise them. Thank you. I'd love your questions.
 
 **DO:** Step away from the laptop, toward the panel. Say this from memory, not from the slide. Stop talking after "your questions" and wait.
 
@@ -203,9 +203,9 @@ These check understanding, application, and evaluation.
 ## If you're behind
 | Behind at… | Do this |
 |---|---|
-| Slide 4 later than 2:15 | Click once to skip to the 0; no screenshots |
+| Slide 4 later than 2:20 | Click once to skip to the 0; no screenshots |
 | Slide 8 | Click all five builds; one sentence |
-| Slide 11 later than 6:15 | Take one answer only, then click 2 |
+| Slide 11 later than 6:05 | Take one answer only, then click 2 |
 | Slide 12 | Click all four fixes in a row; go straight to the dive question |
 | Slide 13 | Read the first question only |
 | Slide 15 later than 9:10 | Skip the four-lesson line; go to slide 16 |

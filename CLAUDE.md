@@ -7,13 +7,15 @@ The panel scores engagement, facilitating discussion (not just answering), pitch
 ## Files: edit only what you need
 | Change | File |
 |---|---|
-| Slide wording / order | `index.html` (14 `<section class="slide">`; speaker notes in `data-notes`) |
+| Slide wording / order | `index.html` (17 `<section class="slide">`; speaker notes in `data-notes`) |
 | Design: colours, type, layout, beach animation styles | `css/deck.css` (tokens in `:root` at the top) |
+| Slide 4 search simulation (markup, timeline, screenshot pop-up / styles) | `js/search-sim.js`, `css/search-sim.css` |
 | Beach background markup (waves, palm, sun, birds) | `js/scene.js` |
 | Navigation, builds, timer, print mode | `js/deck.js` |
 | Phone demo wording (personas, competitors, fixes) | `demo/data.js` |
 | Phone demo flow / styles | `demo/demo.js`, `demo/demo.css` |
-| Presenter script and timings | `speaker-notes.md` |
+| Presenter script and timings | `speaker-notes.md` (printable copy `speaker-notes.pdf`, rendered with pandoc + Playwright) |
+| PowerPoint backup | `slides.pptx`, rebuilt by `node tools/shots.js && python3 tools/make_pptx.py` |
 | Images: Ruka logo variants, AI screenshots, QR code | `assets/` |
 
 **Check after every change:** `node tools/check.js` renders all slides to `.check/`, rebuilds `slides.pdf`, tests the phone demo, and prints `No errors.` or a list of problems. Look at the affected `.check/slide-NN.png`.

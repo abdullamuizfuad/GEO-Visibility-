@@ -506,7 +506,7 @@ body.print .s-fix .fix>.qrframe{display:none}
   .slide .body{align-content:start;padding:8px 0}
   .cover .body,.qr-split,.brand,.refs,.fix,.meet,.seg,.pos,.tut,.phil{grid-template-columns:minmax(0,1fr);gap:22px}
   .qgrid,.segs,.mix4,.mix3,.fcb,.flow,.lens2,.chain,.whyb{grid-template-columns:minmax(0,1fr)}
-  .farr{display:none}.segbox{grid-template-columns:minmax(0,1fr)}.strip{grid-template-columns:repeat(4,1fr)}.strip .lab{display:none}.mix-head{flex-direction:column;align-items:flex-start}
+  .farr{display:none}.segbox{grid-template-columns:minmax(0,1fr)}.strip{display:flex;flex-wrap:wrap}.strip .lab{display:none}.mix-head{flex-direction:column;align-items:flex-start}
   .track{grid-template-columns:1fr}.track .band,.track .s7{grid-row:auto;grid-column:auto}.s7{min-height:0}
   .stack{height:auto;display:grid;gap:12px}.lsts{position:static;display:grid;gap:12px}.lst,.unified,.scn{position:static;width:auto;transform:none!important}
   .s-brand.b2 .lst{opacity:1}.pmap .pt.ruka[data-b]{transform:translate(-50%,50%)}
@@ -520,6 +520,7 @@ body.print .s-fix .fix>.qrframe{display:none}
   .ps{grid-template-columns:1fr}
   .timeline{grid-template-columns:1fr;gap:12px}.timeline::before,.timeline::after{display:none}
   .tstep{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:12px}.tstep h3,.tstep .who{margin:0}.tstep .ds{grid-column:2/4;margin:0}
+  .sl-list li{grid-template-columns:auto 1fr;gap:10px}
   .tps .pts{grid-template-columns:1fr}.s-seg .cloud{display:none}.segbox .seg-c{opacity:1;transform:none}
   .stairs{grid-template-columns:1fr}.tier:nth-child(n){margin-bottom:0}
   .why{grid-template-columns:1fr}.facts div{grid-template-columns:7em 1fr}
