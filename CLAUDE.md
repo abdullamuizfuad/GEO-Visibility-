@@ -40,4 +40,5 @@ Ruka Maldives brand on tan: green `#0B332D` (text/headers), copper `#C4876C` (de
 - To confirm with the user: module code "MKT101 / ENT101". Demo 中文 prompts are machine translations; have them checked.
 
 ## Deploy
+Display short link: iocdrp.s.gy/ruka → https://abdullamuizfuad.github.io/GEO-Visibility-/demo/ (shown as text under the QR on slide 3; the QR image itself encodes the full URL).
 Repo `abdullamuizfuad/GEO-Visibility-`, branch `main`, GitHub Pages from root. The QR code points to `https://abdullamuizfuad.github.io/GEO-Visibility-/demo/`; don't rename the repo or move `demo/`. The user enables Pages themselves (Settings → Pages). Offline backup = ZIP of the repo + `slides.pdf`.
