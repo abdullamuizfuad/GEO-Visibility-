@@ -7,11 +7,12 @@ Topic: *Unique Marketing Issues* (segmentation, targeting and positioning; brand
 
 | File | What it is |
 |---|---|
-| `index.html` | **The presentation.** A single offline file with motion and click-by-click builds. |
+| `index.html` | **The presentation.** 14 editorial-style slides with motion and click-by-click builds; runs offline. |
+| `fonts/` | Playfair Display, Cormorant Garamond and Plus Jakarta Sans, bundled so the deck looks right without internet. Keep this folder next to `index.html`. |
 | `demo/index.html` | **The phone demo** ("Ruka Visibility Lab") that the QR code opens. |
 | `slides.pdf` | PDF backup of every slide, fully built. |
 | `speaker-notes.md` | A script timed to 10 minutes, with discussion questions and fallbacks. |
-| `assets/` | Cropped screenshots of the real Baidu and Google AI Mode answers (slide 5). |
+| `assets/` | Cropped screenshots of the real Baidu and Google AI Mode answers (slide 4). |
 
 ## Put it live (GitHub Pages)
 
@@ -40,7 +41,7 @@ If the internet fails in the room, open `demo/index.html` on your laptop and wal
 
 **Last resort:** open `slides.pdf`.
 
-## Real AI evidence (slide 5)
+## Real AI evidence (slide 4)
 
 Tested on 4 Nov 2026 with Gemini, Google AI Mode and Baidu, using the everyday questions travellers actually type, in English and Chinese. The cropped screenshots are in `assets/`:
 
@@ -56,8 +57,8 @@ Across all the questions, **Ruka Maldives was named 0 times.**
 
 | Key | Action |
 |---|---|
-| → · Space · Page Down · clicker | Next build / slide |
-| ← · Page Up | Back |
+| ↓ · → · Space · Page Down · clicker | Next build / slide |
+| ↑ · ← · Page Up | Back |
 | **F** | Fullscreen |
 | **H** | Hidden timer + slide counter (turns red at 9:30) |
 | **B** | Black screen |
