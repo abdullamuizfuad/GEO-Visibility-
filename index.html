@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unique Marketing Issues</title>
+<style>
+:root{
+  --ink:#0b2a3c; --ink2:#46606f; --sand:#f7f2e8; --card:#ffffff; --line:#e3dccd;
+  --sea:#0e7c86; --sea2:#d7f0ee; --coral:#e2603f; --coral2:#fde6df; --gold:#e8a93a; --ok:#1f8a4c; --ok2:#e3f4ea;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#061a26;overflow:hidden;font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink)}
+#viewport{position:fixed;inset:0;display:grid;place-items:center}
+#stage{width:1920px;height:1080px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--sand);padding:90px 120px;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility 0s .5s;overflow:hidden}
+.slide.on{opacity:1;visibility:visible;transition:opacity .5s var(--ease)}
+.kicker{font-size:28px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sea)}
+h1{font-size:96px;line-height:1.02;letter-spacing:-.02em;font-weight:800}
+h2{font-size:68px;line-height:1.08;letter-spacing:-.015em;font-weight:800;margin:14px 0 40px}
+p,li{font-size:38px;line-height:1.4;color:var(--ink2)}
+b{color:var(--ink)}
+.foot{position:absolute;left:120px;right:120px;bottom:44px;display:flex;justify-content:space-between;font-size:22px;color:#9aa8b0}
+/* builds */
+[data-b]{opacity:0;transform:translateY(24px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+[data-b].shown{opacity:1;transform:none}
+/* wave */
+.wave{position:absolute;left:0;right:0;bottom:0;height:260px;opacity:.9}
+.wave path{animation:drift 9s ease-in-out infinite alternate}
+.wave path:nth-child(2){animation-duration:12s}
+@keyframes drift{to{transform:translateX(-120px)}}
+/* title */
+.s-title h1{margin-top:150px;font-size:120px}
+.s-title .sub{font-size:44px;margin-top:30px;max-width:1300px}
+.s-title .who{position:absolute;left:120px;bottom:300px;font-size:34px;color:var(--ink)}
+.s-title .who span{display:block;font-size:26px;color:var(--ink2)}
+.s-title .word{display:inline-block;opacity:0;transform:translateY(40px);animation:rise .9s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+/* objectives */
+.obj{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.obj div{background:var(--card);border-radius:28px;padding:36px 32px;border:2px solid var(--line);min-height:360px}
+.obj .n{font-size:84px;font-weight:800;color:var(--sea);line-height:1}
+.obj h3{font-size:38px;margin:18px 0 12px}
+.obj p{font-size:28px;line-height:1.35}
+.case{margin-top:40px;display:flex;align-items:center;gap:24px;font-size:36px;background:var(--ink);color:#fff;border-radius:24px;padding:28px 36px}
+.case b{color:#fff}
+.case .chip{background:var(--coral);border-radius:14px;padding:8px 18px;font-weight:800;font-size:28px}
+/* QR slides */
+.qrwrap{display:grid;grid-template-columns:560px 1fr;gap:90px;align-items:center;margin-top:10px}
+.qr{background:#fff;border-radius:36px;padding:34px;box-shadow:0 30px 80px rgba(11,42,60,.18);animation:pulse 2.6s ease-in-out infinite}
+.qr svg{display:block;width:100%;height:auto}
+@keyframes pulse{50%{box-shadow:0 30px 80px rgba(14,124,134,.38)}}
+.url{font-size:30px;font-weight:700;color:var(--sea);margin-top:22px;text-align:center;word-break:break-all}
+.stepsl{list-style:none;padding:0;display:grid;gap:26px}
+.stepsl li{display:flex;gap:26px;align-items:center;font-size:44px;color:var(--ink)}
+.stepsl li span{flex:none;width:76px;height:76px;border-radius:50%;background:var(--sea);color:#fff;display:grid;place-items:center;font-weight:800;font-size:38px}
+.timer{display:inline-block;margin-top:34px;font-size:30px;color:var(--ink2);border:2px dashed var(--line);border-radius:16px;padding:12px 22px}
+/* funnel */
+.field{position:absolute;left:120px;top:300px;width:1100px;height:640px}
+.dot{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--sea);opacity:.55;left:var(--x);top:var(--y);transition:all 1.4s var(--ease);transition-delay:var(--d)}
+.dot.pick{opacity:.9}
+.dot.ruka{background:var(--coral);opacity:1;box-shadow:0 0 0 8px rgba(226,96,63,.2)}
+.dot.ruka::after{content:"Ruka";position:absolute;left:36px;top:-8px;font-size:30px;font-weight:800;color:var(--coral);white-space:nowrap;transition:opacity .6s}
+.s-funnel.b1 .dot{opacity:.08;transform:scale(.5)}
+.s-funnel.b1 .dot.pick{opacity:1;transform:scale(2.4);left:var(--tx);top:var(--ty);background:var(--ink)}
+.s-funnel.b1 .dot.ruka{opacity:.85;transform:scale(1.2);background:#b8c2c8;box-shadow:none}
+.s-funnel.b1 .dot.ruka::after{content:"Ruka?";color:#8a979f}
+.shortlab{position:absolute;left:950px;top:330px;font-size:28px;font-weight:800;color:var(--ink);letter-spacing:.06em;text-transform:uppercase}
+.side{position:absolute;right:100px;top:300px;width:620px}
+.quote{font-size:40px;line-height:1.35;color:var(--ink);font-weight:700;border-left:8px solid var(--gold);padding-left:30px}
+.quote small{display:block;font-size:24px;font-weight:400;color:var(--ink2);margin-top:14px}
+.ask{margin-top:44px;background:var(--ink);color:#fff;border-radius:26px;padding:30px 34px;font-size:46px;font-weight:800}
+.ask small{display:block;font-size:26px;font-weight:400;opacity:.8;margin-top:8px}
+/* STP */
+.stp{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;position:relative}
+.stp>div{background:var(--card);border-radius:28px;padding:38px;border:2px solid var(--line);min-height:470px;position:relative}
+.stp h3{font-size:44px}
+.stp .lbl{font-size:24px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sea)}
+.stp p{font-size:30px;margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chips span{font-size:26px;background:var(--sea2);color:var(--sea);border-radius:99px;padding:10px 20px;font-weight:700}
+.chips span.hot{background:var(--coral);color:#fff}
+.pos{margin-top:22px;font-size:34px;font-weight:800;color:var(--ink);background:var(--coral2);border-radius:18px;padding:22px}
+.lens{margin-top:34px;display:flex;align-items:center;gap:24px;font-size:34px;color:var(--ink);background:var(--sea2);border-radius:22px;padding:24px 32px}
+.lens .t{flex:none;background:var(--sea);color:#fff;font-weight:800;font-size:24px;border-radius:12px;padding:8px 14px;letter-spacing:.08em}
+/* brand */
+.brandgrid{display:grid;grid-template-columns:1fr 760px;gap:70px}
+.def{font-size:44px;line-height:1.3;color:var(--ink);font-weight:700}
+.def small{display:block;font-size:24px;color:var(--ink2);font-weight:400;margin-top:12px}
+.why{list-style:none;padding:0;margin-top:40px;display:grid;gap:18px}
+.why li{font-size:34px;position:relative;padding-left:40px}
+.why li::before{content:"";position:absolute;left:0;top:18px;width:18px;height:18px;border-radius:50%;background:var(--coral)}
+.listings{position:relative;height:640px}
+.lst{position:absolute;left:0;width:700px;background:var(--card);border:2px solid var(--line);border-radius:24px;padding:26px 30px;box-shadow:0 16px 40px rgba(11,42,60,.08);transition:all 1.1s var(--ease)}
+.lst .src{font-size:22px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.lst .nm{font-size:40px;font-weight:800;margin-top:6px}
+.lst .ph{font-size:28px;color:var(--ink2);margin-top:4px}
+.lst .ph em{font-style:normal;color:var(--coral);font-weight:700}
+.l1{top:0;transform:rotate(-2deg)}.l2{top:210px;left:40px;transform:rotate(1.5deg)}.l3{top:420px;transform:rotate(-1deg)}
+.s-brand.b3 .l1,.s-brand.b3 .l2,.s-brand.b3 .l3{top:150px;left:30px;transform:none;opacity:0}
+.unified{position:absolute;top:130px;left:30px;width:700px;background:var(--ok2);border:3px solid var(--ok);border-radius:24px;padding:34px;opacity:0;transform:scale(.9);transition:all .9s var(--ease) .5s}
+.s-brand.b3 .unified{opacity:1;transform:none}
+.unified .nm{font-size:48px;font-weight:800}
+.unified p{font-size:30px;margin-top:10px;color:#11512c}
+.unified .tick{font-size:30px;font-weight:800;color:var(--ok);margin-top:18px}
+/* 4Ps */
+.ps{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.ps>div{background:var(--card);border:2px solid var(--line);border-radius:28px;padding:32px 36px;min-height:300px}
+.ps h3{font-size:42px;display:flex;align-items:center;gap:16px}
+.ps h3 i{font-style:normal;width:62px;height:62px;border-radius:16px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:34px}
+.ps p{font-size:29px;margin-top:12px}
+.morph{position:relative;margin-top:14px;height:100px}
+.morph span{position:absolute;inset:0;font-size:30px;border-radius:14px;padding:14px 18px;transition:all .8s var(--ease)}
+.morph .bad{background:var(--coral2);color:#7a2a17;text-decoration:line-through}
+.morph .good{background:var(--ok2);color:#11512c;font-weight:700;opacity:0;transform:translateY(16px)}
+.s-ps.b5 .morph .bad{opacity:0;transform:translateY(-16px)}
+.s-ps.b5 .morph .good{opacity:1;transform:none}
+/* sales */
+.track{display:grid;grid-template-columns:repeat(7,1fr);gap:18px;margin-top:20px}
+.stp7{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:28px 22px;min-height:300px;position:relative;transition:all .6s var(--ease)}
+.stp7 .n{font-size:64px;font-weight:800;color:var(--line);transition:color .6s}
+.stp7 h4{font-size:31px;line-height:1.2;margin-top:10px}
+.stp7 small{display:block;font-size:22px;color:var(--ink2);margin-top:12px;line-height:1.3}
+.s-sales.b1 .stp7 .n{color:var(--sea)}
+.tag{position:absolute;left:22px;right:22px;bottom:-26px;text-align:center;font-size:22px;font-weight:800;border-radius:12px;padding:10px 0;opacity:0;transform:translateY(10px);transition:all .6s var(--ease)}
+.tag.ai{background:var(--gold);color:var(--ink)}
+.tag.hu{background:var(--ink);color:#fff}
+.s-sales.b2 .tag{opacity:1;transform:none}
+.s-sales.b2 .stp7.aid{background:#fff7e6;border-color:var(--gold)}
+.stp7:nth-child(1){transition-delay:0s}.stp7:nth-child(2){transition-delay:.08s}.stp7:nth-child(3){transition-delay:.16s}.stp7:nth-child(4){transition-delay:.24s}
+/* fix */
+.fixgrid{display:grid;grid-template-columns:420px 1fr 640px;gap:56px;align-items:start}
+.fixgrid .qr{padding:24px;border-radius:28px}
+.fixlist{list-style:none;padding:0;display:grid;gap:18px}
+.fixlist li{font-size:32px;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:20px;padding:20px 24px;display:flex;gap:16px;align-items:center}
+.fixlist li b{flex:none;font-size:22px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--sea);border-radius:10px;padding:6px 12px}
+.meter{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:28px}
+.meter .row{display:flex;justify-content:space-between;font-size:30px;font-weight:800}
+.bar{height:26px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;width:8%;background:linear-gradient(90deg,var(--coral),var(--gold),var(--ok));transition:width 2s var(--ease)}
+.s-fix.b2 .bar i{width:100%}
+.mv::after{content:"Low"}.s-fix.b2 .mv::after{content:"Strong"}
+.sl{margin-top:24px;display:grid;gap:14px}
+.sl div{font-size:30px;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px 22px;display:flex;gap:16px;align-items:center}
+.sl div span{flex:none;width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:26px}
+.sl .rk{background:var(--coral2);border-color:var(--coral);font-weight:800}
+.sl .rk span{background:var(--coral)}
+/* assess */
+.as{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.as>div{background:var(--card);border:2px solid var(--line);border-radius:28px;padding:36px;min-height:560px;display:flex;flex-direction:column}
+.as .lv{align-self:flex-start;font-size:22px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:10px;padding:8px 14px;background:var(--sea2);color:var(--sea)}
+.as h3{font-size:42px;margin:20px 0 6px}
+.as .when{font-size:26px;color:var(--ink2);font-weight:700}
+.as p{font-size:30px;margin-top:18px;color:var(--ink)}
+.as .meta{margin-top:auto;font-size:24px;color:var(--ink2);border-top:2px solid var(--line);padding-top:16px}
+/* wrap */
+.recap{display:grid;grid-template-columns:1fr 1fr;gap:22px 50px}
+.recap div{font-size:34px;color:var(--ink);display:flex;gap:20px}
+.tx{font-style:normal}
+.recap div span{flex:none;font-weight:800;color:var(--sea);font-size:40px;width:44px}
+.phil{margin-top:56px;background:var(--ink);color:#fff;border-radius:30px;padding:44px 52px;font-size:44px;line-height:1.35;font-weight:700}
+.phil small{display:block;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.qs{position:absolute;right:120px;bottom:120px;font-size:56px;font-weight:800;color:var(--coral)}
+/* screenshot slot */
+.shot{display:grid;grid-template-columns:1fr 1fr;gap:40px;height:700px}
+.shot div{border:4px dashed var(--line);border-radius:28px;display:grid;place-items:center;text-align:center;font-size:32px;color:var(--ink2);overflow:hidden;background:#fff}
+.shot img{max-width:100%;max-height:100%;object-fit:contain}
+/* refs */
+.refs p{font-size:28px;margin-bottom:22px}
+/* HUD */
+#hud{position:fixed;right:16px;bottom:12px;font:600 15px/1 ui-monospace,Menlo,Consolas,monospace;color:#cfe;background:rgba(6,26,38,.8);padding:8px 12px;border-radius:10px;display:none;z-index:9}
+#hud.on{display:block}
+#hud.late{color:#ffb4a0}
+#blank{position:fixed;inset:0;background:#000;display:none;z-index:8}
+#progress{position:fixed;left:0;bottom:0;height:5px;background:var(--sea);transition:width .4s var(--ease);z-index:7}
+/* print / pdf */
+body.print{overflow:visible;background:#fff}
+body.print #viewport{position:static;display:block}
+body.print #stage{transform:none!important;width:auto;height:auto}
+body.print .slide{position:relative;opacity:1;visibility:visible;width:1920px;height:1080px;page-break-after:always;break-after:page}
+body.print *{transition:none!important;animation:none!important}
+body.print .word{opacity:1;transform:none}
+body.print #hud,body.print #progress{display:none}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}.word{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+
+<!-- 1 TITLE -->
+<section class="slide s-title" data-notes="Smile, introduce yourself. 'Today I'll treat you as my second-year entrepreneurship class.'">
+  <div class="kicker">Entrepreneurship · Unique Marketing Issues</div>
+  <h1><span class="word" style="animation-delay:.1s">Found,</span> <span class="word" style="animation-delay:.3s">chosen,</span> <span class="word" style="animation-delay:.5s">booked.</span></h1>
+  <p class="sub">How an entrepreneurial firm finds its customers, and how its customers find it, when an AI does the searching.</p>
+  <div class="who">Abdulla Muiz Fuad<span>Teaching demonstration · MNU Business School</span></div>
+  <svg class="wave" viewBox="0 0 1920 260" preserveAspectRatio="none"><path d="M0 120 C 320 60 640 180 960 120 S 1600 60 2040 120 V260 H0Z" fill="#d7f0ee"/><path d="M0 170 C 320 120 640 230 960 170 S 1600 120 2040 170 V260 H0Z" fill="#0e7c86" opacity=".85"/></svg>
+</section>
+
+<!-- 2 OBJECTIVES -->
+<section class="slide" data-notes="30s. Read the four outcomes quickly. Introduce Ruka: a real Dhiffushi guesthouse (opened 2025, 12 rooms), no website of its own, used with permission.">
+  <div class="kicker">By the end of today you can…</div>
+  <h2>Four questions every new venture must answer</h2>
+  <div class="obj">
+    <div data-b="1"><span class="n">1</span><h3>Who?</h3><p>Segment the market, pick a target, own a unique position</p></div>
+    <div data-b="1"><span class="n">2</span><h3>Why us?</h3><p>Define a brand and explain why it matters to a start-up</p></div>
+    <div data-b="1"><span class="n">3</span><h3>What &amp; how?</h3><p>Use the 4Ps: product, price, promotion, place</p></div>
+    <div data-b="1"><span class="n">4</span><h3>Closing the deal</h3><p>Walk through the seven-step sales process</p></div>
+  </div>
+  <div class="case" data-b="2"><span class="chip">Our case</span><span><b>Ruka Maldives, Dhiffushi</b>: a real 12-room guesthouse, opened 2025, with no website of its own. Can travellers, and their AI assistants, find it?</span></div>
+</section>
+
+<!-- 3 QR 1 -->
+<section class="slide" data-notes="75-90s. 'Please take out your phones.' Wait until most have scanned. Walk around if possible. Ask: who chose which traveller?">
+  <div class="kicker">Your turn · 90 seconds</div>
+  <h2>Be the traveller</h2>
+  <div class="qrwrap">
+    <div><div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h35v35H0z"/><path stroke="#0b2a3c" d="M1 1.5h7m1 0h1m1 0h5m3 0h1m3 0h1m3 0h7M1 2.5h1m5 0h1m1 0h3m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m4 0h3m3 0h4m3 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h5m6 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m2 0h1m2 0h2m1 0h4m1 0h1m2 0h1m2 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h1m3 0h4m2 0h1m4 0h1M1 9.5h1m2 0h7m1 0h1m5 0h1m1 0h2m2 0h3m2 0h1m1 0h3M1 10.5h3m1 0h2m1 0h2m1 0h2m1 0h3m1 0h3m1 0h3m4 0h3M2 11.5h3m2 0h2m4 0h2m1 0h1m4 0h2m1 0h1m1 0h2m1 0h3m1 0h1M3 12.5h3m2 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h1m2 0h2m2 0h3M1 13.5h1m1 0h1m1 0h3m2 0h3m1 0h1m4 0h3m2 0h2m1 0h1m1 0h1M2 14.5h2m1 0h2m3 0h1m3 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1M1 15.5h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2M1 16.5h1m1 0h1m1 0h2m1 0h1m2 0h4m2 0h1m1 0h1m4 0h3m1 0h1m1 0h2m1 0h1M3 17.5h2m2 0h1m5 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h6M1 18.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1M1 19.5h2m1 0h1m2 0h1m2 0h1m1 0h1m3 0h2m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 20.5h1m1 0h2m3 0h1m2 0h1m1 0h2m1 0h1m3 0h1m5 0h1m1 0h3m1 0h1M1 21.5h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m5 0h1m2 0h1m1 0h1m1 0h2M1 22.5h2m1 0h2m2 0h7m3 0h3m1 0h1m1 0h1m1 0h1m2 0h3M1 23.5h1m1 0h1m3 0h2m13 0h3m2 0h1m1 0h1m2 0h2M1 24.5h1m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1m2 0h3M1 25.5h2m2 0h3m1 0h2m2 0h1m1 0h1m9 0h7m1 0h1M9 26.5h1m5 0h5m2 0h2m1 0h1m3 0h1m1 0h2M1 27.5h7m1 0h4m1 0h1m1 0h1m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1M1 28.5h1m5 0h1m1 0h1m1 0h1m1 0h3m1 0h3m1 0h1m2 0h2m3 0h3M1 29.5h1m1 0h3m1 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h6m2 0h1M1 30.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h2m1 0h1m1 0h1m2 0h3M1 31.5h1m1 0h3m1 0h1m2 0h1m1 0h5m3 0h1m1 0h1m1 0h3m1 0h2m1 0h3M1 32.5h1m5 0h1m3 0h2m1 0h1m5 0h1m2 0h1m2 0h8M1 33.5h7m1 0h1m1 0h2m1 0h1m1 0h3m5 0h2m1 0h3m1 0h1"/></svg>
+</div><div class="url">abdullamuizfuad.github.io/GEO-Visibility-/demo</div></div>
+    <div>
+      <ul class="stepsl">
+        <li><span>1</span>Scan the code with your camera</li>
+        <li><span>2</span>Pick the traveller you are</li>
+        <li><span>3</span>Watch the AI choose your guesthouse</li>
+        <li><span>4</span>Look for Ruka…</li>
+      </ul>
+      <div class="timer">Stop at “Why do you think the AI left Ruka out?”</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 FUNNEL -->
+<section class="slide s-funnel" data-notes="Click 1: dots collapse to 3. 'Hundreds of guesthouses, the AI shows three.' Click 2: ask WHY. Take 2 answers, redirect: 'What do others think?' Build on answers; they lead into every topic today.">
+  <div class="kicker">What just happened?</div>
+  <h2>Hundreds of guesthouses. The AI shows three.</h2>
+  <div class="field" id="field"></div>
+  <div class="shortlab" data-b="1">Shortlist ↓</div>
+  <div class="side">
+    <div class="quote" data-b="1">“Fewer opportunities to appear, but more impact if you do.”<small>Morand &amp; Schegg (2026), <i>Be Visible to AI</i></small></div>
+    <div class="ask" data-b="2">Why wasn’t Ruka chosen?<small>Turn to your neighbour: one reason, 15 seconds.</small></div>
+  </div>
+</section>
+
+<!-- 5 REAL AI SCREENSHOT (optional) -->
+<section class="slide" data-notes="OPTIONAL — skip if short on time. Show the real ChatGPT/Gemini answers you captured. Point at the 'why' reasons: facts it could verify.">
+  <div class="kicker">This is not hypothetical</div>
+  <h2>I asked two real AI assistants last night</h2>
+  <div class="shot">
+    <div><img src="assets/chatgpt.png" alt="ChatGPT answer" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Put your ChatGPT screenshot at assets/chatgpt.png'}))"></div>
+    <div><img src="assets/gemini.png" alt="Gemini answer" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Put your Gemini screenshot at assets/gemini.png'}))"></div>
+  </div>
+</section>
+
+<!-- 6 STP -->
+<section class="slide s-stp" data-notes="60s. Segment = study the industry to find possible target markets. Target = narrower group with similar needs. Position = how you're seen relative to competitors. Ask: 'Which segment would YOU target for Ruka, and why?'">
+  <div class="kicker">Objective 1 · Identifying customers</div>
+  <h2>Segment → Target → Position</h2>
+  <div class="stp">
+    <div data-b="1"><div class="lbl">Step 1 · Segment</div><h3>Who could stay?</h3><p>Study the market and split it into groups with shared needs.</p>
+      <div class="chips"><span>Divers</span><span>Families</span><span>Beach &amp; kite lovers</span><span>Honeymooners</span><span>Budget couples</span></div></div>
+    <div data-b="2"><div class="lbl">Step 2 · Target</div><h3>Who do we serve best?</h3><p>Choose a narrower group you can win and keep.</p>
+      <div class="chips"><span class="hot">Beach &amp; kite-loving couples</span><span class="hot">mid-budget, near Malé</span></div></div>
+    <div data-b="3"><div class="lbl">Step 3 · Position</div><h3>Why us, not them?</h3><p>A clear, unique place in the customer’s mind.</p>
+      <div class="pos">“The small, quiet beach guesthouse on Dhiffushi, steps from the sand.”</div></div>
+  </div>
+  <div class="lens" data-b="4"><span class="t">AI LENS</span><span>An AI matches the traveller’s <b>intent</b> to your position, so it must be <b>specific, provable and repeated everywhere</b>.</span></div>
+</section>
+
+<!-- 7 BRAND -->
+<section class="slide s-brand" data-notes="60s. Define brand. Why it matters for a start-up: no track record, so the brand creates trust and difference. Click 3: three listings merge. 'If the AI can't tell these are the same business, the reviews don't add up.'">
+  <div class="kicker">Objective 2 · Brand</div>
+  <h2>A brand is a promise people can recognise</h2>
+  <div class="brandgrid">
+    <div>
+      <div class="def" data-b="1">A brand is the set of attributes, positive or negative, that people associate with a company.<small>Barringer &amp; Ireland, <i>Entrepreneurship</i></small></div>
+      <ul class="why" data-b="2">
+        <li>Builds <b>trust</b> when you have no track record</li>
+        <li>Makes you <b>different</b> from look-alike competitors</li>
+        <li>Supports a <b>better price</b> and repeat visits</li>
+        <li>Lets people <b>and AI</b> recognise you as one business</li>
+      </ul>
+    </div>
+    <div class="listings">
+      <div class="lst l1"><div class="src">Booking site</div><div class="nm">Ruka Inn</div><div class="ph">+960 7XX <em>1234</em></div></div>
+      <div class="lst l2"><div class="src">Map listing</div><div class="nm">Ruka Guest House</div><div class="ph">no phone listed</div></div>
+      <div class="lst l3"><div class="src">Social media</div><div class="nm">Ruka Maldives</div><div class="ph">+960 9XX <em>5678</em></div></div>
+      <div class="unified"><div class="src" style="font-size:22px;font-weight:800;letter-spacing:.1em;color:#11512c">EVERYWHERE</div><div class="nm">Ruka Maldives</div><p>Same name · same address · same phone</p><div class="tick">✓ All reviews now count for one brand</div></div>
+      <span data-b="3" style="display:none"></span>
+      <div style="position:absolute;bottom:0;left:0;font-size:22px;color:#9aa8b0">Teaching scenario: a typical small-guesthouse problem</div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 4Ps -->
+<section class="slide s-ps" data-notes="75s. One line per P with Ruka. Pricing: cost-based vs value-based. Place: direct vs intermediaries (Booking.com takes commission). Click 5: adjectives become facts. Ask: 'Would you price Ruka on cost, or on value?'">
+  <div class="kicker">Objective 3 · Marketing mix</div>
+  <h2>The 4Ps, through Ruka’s eyes</h2>
+  <div class="ps">
+    <div data-b="1"><h3><i>P</i>Product</h3><p>What guests actually get, described so it can be checked.</p>
+      <div class="morph"><span class="bad">“Paradise awaits! Stunning views!”</span><span class="good">12 rooms · steps from the beach · 10 min to Kite Beach · breakfast included</span></div></div>
+    <div data-b="2"><h3><i>P</i>Price</h3><p><b>Cost-based</b> (cost + margin) or <b>value-based</b> (what guests will pay). Publish a clear range and cancellation policy.</p></div>
+    <div data-b="3"><h3><i>P</i>Promotion</h3><p>Reviews, social media, word of mouth, and now being <b>chosen by AI answer engines</b> (GEO), not only ranked by Google.</p></div>
+    <div data-b="4"><h3><i>P</i>Place</h3><p><b>Direct</b> (own site, phone) vs <b>intermediaries</b> (Booking.com, agents). AI assistants are becoming a new channel.</p></div>
+  </div>
+  <span data-b="5" style="display:none"></span>
+</section>
+
+<!-- 9 SALES -->
+<section class="slide s-sales" data-notes="60s. Walk the 7 steps fast. Click 2: AI tags. Ask: 'Which steps is the AI now doing for Ruka? What still needs a person?' Point: AI-referred guests arrive pre-qualified.">
+  <div class="kicker">Objective 4 · Selling</div>
+  <h2>The seven-step sales process</h2>
+  <div class="track">
+    <div class="stp7 aid" data-b="1"><span class="n">1</span><h4>Prospect for leads</h4><small>Find likely guests</small><div class="tag ai">AI helps</div></div>
+    <div class="stp7 aid" data-b="1"><span class="n">2</span><h4>Initial contact</h4><small>First impression</small><div class="tag ai">AI helps</div></div>
+    <div class="stp7 aid" data-b="1"><span class="n">3</span><h4>Qualify the lead</h4><small>Right needs, budget, dates?</small><div class="tag ai">AI helps</div></div>
+    <div class="stp7 aid" data-b="1"><span class="n">4</span><h4>Sales presentation</h4><small>Show the fit</small><div class="tag ai">AI helps</div></div>
+    <div class="stp7" data-b="1"><span class="n">5</span><h4>Meet objections</h4><small>“Is it safe for kids?”</small><div class="tag hu">You</div></div>
+    <div class="stp7" data-b="1"><span class="n">6</span><h4>Close the sale</h4><small>Confirm the booking</small><div class="tag hu">You</div></div>
+    <div class="stp7" data-b="1"><span class="n">7</span><h4>Follow-up</h4><small>Review, return, refer</small><div class="tag hu">You</div></div>
+  </div>
+  <div class="lens" data-b="2" style="margin-top:70px"><span class="t">DISCUSS</span><span>Which steps does the AI now do for Ruka, and which still need a human?</span></div>
+</section>
+
+<!-- 10 FIX -->
+<section class="slide s-fix" data-notes="75s. 'Back to your phones: tap Continue, you're now Ruka's marketing manager.' Let them fix 4 problems and re-run. Click 2: meter fills, Ruka reaches the shortlist (for the beach-couple traveller). Ask: which fix mattered most? Anyone pick the dive couple? Ruka still loses to Reveries. Why? (Positioning!)">
+  <div class="kicker">Your turn · Part 2</div>
+  <h2>Make Ruka visible</h2>
+  <div class="fixgrid">
+    <div><div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h35v35H0z"/><path stroke="#0b2a3c" d="M1 1.5h7m1 0h1m1 0h5m3 0h1m3 0h1m3 0h7M1 2.5h1m5 0h1m1 0h3m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m4 0h3m3 0h4m3 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h5m6 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m2 0h1m2 0h2m1 0h4m1 0h1m2 0h1m2 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h1m3 0h4m2 0h1m4 0h1M1 9.5h1m2 0h7m1 0h1m5 0h1m1 0h2m2 0h3m2 0h1m1 0h3M1 10.5h3m1 0h2m1 0h2m1 0h2m1 0h3m1 0h3m1 0h3m4 0h3M2 11.5h3m2 0h2m4 0h2m1 0h1m4 0h2m1 0h1m1 0h2m1 0h3m1 0h1M3 12.5h3m2 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h1m2 0h2m2 0h3M1 13.5h1m1 0h1m1 0h3m2 0h3m1 0h1m4 0h3m2 0h2m1 0h1m1 0h1M2 14.5h2m1 0h2m3 0h1m3 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1M1 15.5h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2M1 16.5h1m1 0h1m1 0h2m1 0h1m2 0h4m2 0h1m1 0h1m4 0h3m1 0h1m1 0h2m1 0h1M3 17.5h2m2 0h1m5 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h6M1 18.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1M1 19.5h2m1 0h1m2 0h1m2 0h1m1 0h1m3 0h2m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 20.5h1m1 0h2m3 0h1m2 0h1m1 0h2m1 0h1m3 0h1m5 0h1m1 0h3m1 0h1M1 21.5h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m5 0h1m2 0h1m1 0h1m1 0h2M1 22.5h2m1 0h2m2 0h7m3 0h3m1 0h1m1 0h1m1 0h1m2 0h3M1 23.5h1m1 0h1m3 0h2m13 0h3m2 0h1m1 0h1m2 0h2M1 24.5h1m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1m2 0h3M1 25.5h2m2 0h3m1 0h2m2 0h1m1 0h1m9 0h7m1 0h1M9 26.5h1m5 0h5m2 0h2m1 0h1m3 0h1m1 0h2M1 27.5h7m1 0h4m1 0h1m1 0h1m1 0h1m1 0h6m1 0h1m1 0h1m1 0h1M1 28.5h1m5 0h1m1 0h1m1 0h1m1 0h3m1 0h3m1 0h1m2 0h2m3 0h3M1 29.5h1m1 0h3m1 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h6m2 0h1M1 30.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h2m1 0h1m1 0h1m2 0h3M1 31.5h1m1 0h3m1 0h1m2 0h1m1 0h5m3 0h1m1 0h1m1 0h3m1 0h2m1 0h3M1 32.5h1m5 0h1m3 0h2m1 0h1m5 0h1m2 0h1m2 0h8M1 33.5h7m1 0h1m1 0h2m1 0h1m1 0h3m5 0h2m1 0h3m1 0h1"/></svg>
+</div></div>
+    <ul class="fixlist" data-b="1">
+      <li><b>Brand</b>One name, address and phone</li>
+      <li><b>Product</b>Facts, not adjectives</li>
+      <li><b>Price</b>A clear range + cancellation</li>
+      <li><b>Place</b>A bookable channel</li>
+    </ul>
+    <div>
+      <div class="meter"><div class="row"><span>AI visibility</span><span class="mv"></span></div><div class="bar"><i></i></div></div>
+      <div class="sl" data-b="2">
+        <small style="font-size:24px;color:var(--ink2)">Traveller: a beach-loving couple</small>
+        <div class="rk"><span>1</span>Ruka Maldives</div>
+        <div><span>2</span><em class="tx">Stone Hotels Dhiffushi</em></div>
+        <div><span>3</span><em class="tx">Arena Beach Hotel</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 ASSESS -->
+<section class="slide" data-notes="45s. 'Here's how I'd check they learned it.' Formative today, an exam question, and an authentic assignment, matched to Bloom's levels. The demo tool becomes their audit tool.">
+  <div class="kicker">How I’d assess this</div>
+  <h2>From remembering to doing</h2>
+  <div class="as">
+    <div data-b="1"><span class="lv">Understand</span><h3>Exit ticket</h3><div class="when">End of today’s class</div><p>“In one sentence: what is Ruka’s position, and could an AI verify it?”</p><div class="meta">Formative · 2 minutes · instant feedback</div></div>
+    <div data-b="2"><span class="lv">Apply</span><h3>Exam question</h3><div class="when">Short answer · 10 marks</div><p>“Using a Maldivian guesthouse, explain the seven-step sales process and which steps AI assistants now influence.”</p><div class="meta">Summative · tests all four outcomes</div></div>
+    <div data-b="3"><span class="lv">Analyse · Create</span><h3>AI visibility audit</h3><div class="when">Group assignment</div><p>Audit a real local guesthouse across AI assistants, Google and Booking.com, then recommend its target, position, brand and 4Ps.</p><div class="meta">Rubric: diagnosis 30 · recommendations 50 · pitch 20</div></div>
+  </div>
+</section>
+
+<!-- 12 WRAP -->
+<section class="slide" data-notes="45s. Recap in one breath. Say the philosophy line slowly. Then: 'I'd love your questions, and I'll answer them as I would in class.'">
+  <div class="kicker">Wrap-up</div>
+  <h2>Found, chosen, booked.</h2>
+  <div class="recap" data-b="1">
+    <div><span>1</span><em class="tx">Segment, target and own a <b>specific</b> position</em></div>
+    <div><span>2</span><em class="tx">A brand is trust, recognisable <b>everywhere</b></em></div>
+    <div><span>3</span><em class="tx">4Ps: facts, clear price, smart channels</em></div>
+    <div><span>4</span><em class="tx">Seven steps: AI opens doors, <b>you</b> close</em></div>
+  </div>
+  <div class="phil" data-b="2"><small>My teaching philosophy</small>Students learn marketing best by doing it, on real, local problems, so I teach theory through live cases, questions and tools they can use.</div>
+  <div class="qs" data-b="3">Questions?</div>
+</section>
+
+<!-- 13 REFS (appendix) -->
+<section class="slide refs" data-notes="Appendix — only if asked.">
+  <div class="kicker">Sources</div>
+  <h2>References</h2>
+  <p>Barringer, B. R., &amp; Ireland, R. D. <i>Entrepreneurship: Successfully launching new ventures</i>. Pearson. Chapter: Unique marketing issues.</p>
+  <p>Morand, J.-C., &amp; Schegg, R. (2026). <i>Be visible to AI: The keys to semantic optimization and GEO for hotels</i> [White paper]. HES-SO Valais-Wallis. https://doi.org/10.5281/zenodo.19109201</p>
+  <p>Aggarwal, P., et al. (2024). GEO: Generative engine optimization. <i>Proceedings of the 30th ACM SIGKDD Conference</i>.</p>
+  <p style="font-size:24px;margin-top:40px">Ruka Maldives is used with the owner’s permission. Ruka, Stone Hotels Dhiffushi, Reveries Diving Village and Arena Beach Hotel are described only with publicly listed facts; the “before” problems are a teaching scenario. The demo is a scripted simulation, not a live AI.</p>
+</section>
+
+</div></div>
+<div id="progress"></div><div id="hud"></div><div id="blank"></div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const stage=document.getElementById('stage');
+const PRINT=/[?&]print/.test(location.search);
+let cur=0, step=0, t0=null;
+const TOTAL=10*60;
+function builds(s){return Math.max(0,...[...s.querySelectorAll('[data-b]')].map(e=>+e.dataset.b));}
+function apply(){
+  slides.forEach((s,i)=>{s.classList.toggle('on',i===cur);});
+  const s=slides[cur];
+  s.querySelectorAll('[data-b]').forEach(e=>e.classList.toggle('shown',+e.dataset.b<=step));
+  for(let k=1;k<=6;k++) s.classList.toggle('b'+k,k<=step);
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  hud();
+}
+function next(){if(!t0)t0=Date.now();const s=slides[cur];if(step<builds(s)){step++;}else if(cur<slides.length-1){cur++;step=0;}apply();}
+function prev(){if(step>0){step--;}else if(cur>0){cur--;step=builds(slides[cur]);}apply();}
+function hud(){const h=document.getElementById('hud');const el=t0?Math.floor((Date.now()-t0)/1000):0;
+  const mm=String(Math.floor(el/60)).padStart(1,'0'),ss=String(el%60).padStart(2,'0');
+  h.textContent=`${cur+1}/${slides.length}  ·  ${mm}:${ss}  ·  build ${step}/${builds(slides[cur])}`;h.classList.toggle('late',el>TOTAL-30);}
+setInterval(hud,1000);
+function fit(){if(PRINT)return;const k=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`scale(${k})`;}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' ','Enter','ArrowDown'].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','PageUp','ArrowUp','Backspace'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(e.key==='h'||e.key==='H'){document.getElementById('hud').classList.toggle('on');}
+  else if(e.key==='b'||e.key==='B'||e.key==='.'){const b=document.getElementById('blank');b.style.display=b.style.display==='block'?'none':'block';}
+  else if(e.key==='r'||e.key==='R'){t0=Date.now();hud();}
+  else if(e.key==='Home'){cur=0;step=0;apply();}
+  else if(e.key==='n'||e.key==='N'){console.log(slides[cur].dataset.notes);alert(slides[cur].dataset.notes||'');}
+});
+document.getElementById('viewport').addEventListener('click',e=>{(e.clientX<innerWidth*0.25)?prev():next();});
+// funnel dots
+(function(){const f=document.getElementById('field');let seed=7;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+  const picks=new Set([17,58,93]);const RUKA=41;let pi=0;
+  for(let i=0;i<130;i++){const d=document.createElement('span');d.className='dot';
+    d.style.setProperty('--x',(rnd()*760)+'px');d.style.setProperty('--y',(rnd()*600)+'px');d.style.setProperty('--d',(rnd()*.5).toFixed(2)+'s');
+    if(picks.has(i)){d.classList.add('pick');d.style.setProperty('--tx','880px');d.style.setProperty('--ty',(130+pi*140)+'px');pi++;}
+    if(i===RUKA){d.classList.add('ruka');d.style.setProperty('--x','520px');d.style.setProperty('--y','380px');}
+    f.appendChild(d);}})();
+if(PRINT){document.body.classList.add('print');slides.forEach(s=>{s.classList.add('on');s.querySelectorAll('[data-b]').forEach(e=>e.classList.add('shown'));for(let k=1;k<=6;k++)s.classList.add('b'+k);});}
+else{fit();apply();}
+</script>
+</body>
+</html>

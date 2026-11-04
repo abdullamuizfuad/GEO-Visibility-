@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b2a3c">
+<title>Ruka Visibility Lab</title>
+<style>
+:root{
+  --ink:#0b2a3c; --ink2:#3d5a6b; --sand:#f7f2e8; --card:#ffffff; --line:#e3dccd;
+  --sea:#0e7c86; --sea2:#d7f0ee; --coral:#e2603f; --coral2:#fde6df; --gold:#e8a93a; --ok:#1f8a4c;
+  --r:16px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--sand);color:var(--ink);font:17px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{min-height:100dvh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.wrap{max-width:520px;margin:0 auto;padding:16px 16px 40px}
+header{display:flex;align-items:center;gap:10px;margin:4px 0 14px}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--ink);display:grid;place-items:center;color:#fff;font-weight:800}
+header b{font-size:15px;letter-spacing:.02em}
+header small{display:block;color:var(--ink2);font-size:12px}
+.steps{display:flex;gap:6px;margin-bottom:16px}
+.steps i{flex:1;height:5px;border-radius:9px;background:var(--line);transition:background .4s}
+.steps i.on{background:var(--sea)}
+h1{font-size:26px;line-height:1.15;margin:6px 0 8px}
+h2{font-size:20px;margin:18px 0 8px}
+p{margin:0 0 12px;color:var(--ink2)}
+.screen{display:none;animation:in .45s cubic-bezier(.2,.8,.2,1)}
+.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.persona{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.persona button{all:unset;cursor:pointer;background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:14px 12px;min-height:110px;display:flex;flex-direction:column;gap:6px;transition:transform .15s,border-color .2s}
+.persona button:active{transform:scale(.97)}
+.persona button .e{font-size:30px}
+.persona button b{font-size:16px}
+.persona button span{font-size:13px;color:var(--ink2);line-height:1.3}
+.btn{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:block;text-align:center;background:var(--ink);color:#fff;font-weight:700;border-radius:14px;padding:16px;margin-top:14px;transition:transform .15s,opacity .2s}
+.btn:active{transform:scale(.98)}
+.btn.alt{background:var(--card);color:var(--ink);border:2px solid var(--ink)}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.chat{background:var(--card);border-radius:var(--r);border:1px solid var(--line);padding:14px}
+.bubble{background:var(--sea2);border-radius:14px 14px 4px 14px;padding:12px 14px;margin-left:24px;font-size:15px;min-height:46px}
+.ai{display:flex;gap:8px;align-items:center;margin:14px 0 8px;font-size:13px;color:var(--ink2);font-weight:600}
+.ai .dot{width:22px;height:22px;border-radius:50%;background:conic-gradient(var(--sea),var(--gold),var(--coral),var(--sea));animation:spin 2.4s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.think{font-size:14px;color:var(--ink2);margin:4px 0 0;padding-left:30px}
+.think div{opacity:0;transform:translateY(4px);transition:all .35s}
+.think div.on{opacity:1;transform:none}
+.think div::before{content:"✓ ";color:var(--ok);font-weight:800}
+.result{margin-top:10px;display:flex;flex-direction:column;gap:10px}
+.gh{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:12px;align-items:flex-start;opacity:0;transform:translateY(10px);transition:all .45s cubic-bezier(.2,.8,.2,1)}
+.gh.on{opacity:1;transform:none}
+.gh .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px}
+.gh b{display:block;font-size:15px}
+.gh small{display:block;color:var(--ink2);font-size:13px;line-height:1.35}
+.gh.ruka{border:2px solid var(--coral);background:var(--coral2)}
+.gh.ruka .n{background:var(--coral)}
+.missing{margin-top:14px;border:2px dashed var(--coral);border-radius:14px;padding:14px;background:#fff;opacity:0;transition:opacity .5s}
+.missing.on{opacity:1}
+.missing b{color:var(--coral)}
+.q{background:var(--ink);color:#fff;border-radius:var(--r);padding:16px;margin-top:14px;font-weight:700;font-size:18px}
+.q span{display:block;font-weight:400;font-size:14px;opacity:.8;margin-top:4px}
+.meter{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;position:sticky;top:8px;z-index:2;box-shadow:0 6px 20px rgba(11,42,60,.08)}
+.meter .row{display:flex;justify-content:space-between;font-size:14px;font-weight:700}
+.bar{height:12px;border-radius:9px;background:var(--line);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:8%;background:linear-gradient(90deg,var(--coral),var(--gold),var(--ok));transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.fix{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-top:12px;transition:border-color .3s}
+.fix .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--sea);border-radius:6px;padding:3px 7px}
+.fix h3{margin:8px 0 6px;font-size:17px}
+.fix .before,.fix .after{font-size:14px;border-radius:10px;padding:10px 12px;line-height:1.4}
+.fix .before{background:var(--coral2);color:#7a2a17}
+.fix .before::before{content:"AI sees: ";font-weight:800}
+.fix .after{background:#e3f4ea;color:#11512c;display:none}
+.fix .after::before{content:"AI sees: ";font-weight:800}
+.fix.done{border-color:var(--ok)}
+.fix.done .before{display:none}
+.fix.done .after{display:block;animation:in .4s}
+.fix button{all:unset;cursor:pointer;margin-top:10px;display:inline-block;background:var(--ink);color:#fff;border-radius:10px;padding:10px 14px;font-weight:700;font-size:14px}
+.fix.done button{background:var(--ok)}
+.map{display:grid;gap:10px;margin-top:10px}
+.map div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px}
+.map b{color:var(--sea)}
+.note{font-size:12px;color:var(--ink2);text-align:center;margin-top:26px;line-height:1.5}
+.pill{display:inline-block;background:var(--sea2);color:var(--sea);font-weight:700;font-size:12px;border-radius:99px;padding:4px 10px;margin-bottom:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">R</div>
+    <div><b>Ruka Visibility Lab</b><small>Unique Marketing Issues · class simulation</small></div>
+  </header>
+  <div class="steps"><i class="on"></i><i></i><i></i><i></i></div>
+
+  <!-- 0: choose persona -->
+  <section class="screen on" id="s0">
+    <span class="pill">Part 1 · Be the traveller</span>
+    <h1>You're planning a Maldives trip.</h1>
+    <p>Like more and more travellers, you ask an AI assistant to choose a guesthouse for you. Who are you?</p>
+    <div class="persona" id="personas"></div>
+    <p style="font-size:13px">Pick one. Each one is a different <b>market segment</b>.</p>
+  </section>
+
+  <!-- 1: AI shortlist (before) -->
+  <section class="screen" id="s1">
+    <span class="pill">Part 1 · The AI answers</span>
+    <div class="chat">
+      <div class="bubble" id="prompt1"></div>
+      <div class="ai"><span class="dot"></span>AI travel assistant</div>
+      <div class="think" id="think1"></div>
+      <div class="result" id="res1"></div>
+    </div>
+    <div class="missing" id="miss1">
+      <b>Not on your shortlist: Ruka Maldives.</b>
+      <p style="margin:6px 0 0">A new 12-room guesthouse on Dhiffushi, steps from the beach… but the AI didn't pick it.</p>
+    </div>
+    <div class="q" id="q1" style="display:none">Why do you think the AI left Ruka out?<span>Hold that thought. We'll discuss it together.</span></div>
+    <button class="btn alt" id="toFix" style="display:none">Continue when your lecturer says →</button>
+  </section>
+
+  <!-- 2: Fix Ruka -->
+  <section class="screen" id="s2">
+    <span class="pill">Part 2 · Make Ruka visible</span>
+    <h1>You are now Ruka's marketing manager.</h1>
+    <p>Ruka has no website of its own, so an AI has to piece it together from other platforms. Below are four problems that are typical for small guesthouses <i>(a teaching scenario)</i>. Fix each one.</p>
+    <div class="meter"><div class="row"><span>AI visibility</span><span id="mval">Low</span></div><div class="bar"><i id="mbar"></i></div></div>
+    <div id="fixes"></div>
+    <button class="btn" id="rerun" disabled>Ask the AI again ↻</button>
+  </section>
+
+  <!-- 3: AI shortlist (after) -->
+  <section class="screen" id="s3">
+    <span class="pill">Part 2 · The AI answers again</span>
+    <div class="chat">
+      <div class="bubble" id="prompt2"></div>
+      <div class="ai"><span class="dot"></span>AI travel assistant</div>
+      <div class="think" id="think2"></div>
+      <div class="result" id="res2"></div>
+    </div>
+    <button class="btn" id="toMap" style="display:none">What did you just do? →</button>
+  </section>
+
+  <!-- 4: what you did -->
+  <section class="screen" id="s4">
+    <span class="pill">Wrap-up</span>
+    <h1>You just did entrepreneurial marketing.</h1>
+    <div class="map">
+      <div><b>Segment → Target → Position.</b> You chose a traveller type. The AI matched it against a <i>specific, provable</i> position.</div>
+      <div><b>Brand.</b> One name, one address, one phone everywhere, so the AI knew all the reviews were about the same Ruka.</div>
+      <div><b>4Ps.</b> You turned the <i>product</i> into facts, made the <i>price</i> clear and fixed <i>place</i> (how guests book). Fact-based <i>promotion</i> is what AI repeats.</div>
+      <div><b>Sales process.</b> The AI did the prospecting, qualifying and presenting <i>for</i> Ruka. The guest who clicks through is already pre-qualified.</div>
+    </div>
+    <button class="btn alt" id="again">Try another traveller ↺</button>
+    <p class="note">Teaching simulation. Ruka Maldives, Stone Hotels Dhiffushi, Reveries Diving Village and Arena Beach Hotel are real Maldivian properties, described only with publicly listed facts. The "before" problems are a teaching scenario, and the "AI" and its rankings are scripted to show how AI shortlisting works, informed by Morand &amp; Schegg (2026), <i>Be Visible to AI</i>, HES-SO Valais-Wallis.</p>
+  </section>
+</div>
+
+<script>
+const STONE=["Stone Hotels Dhiffushi","Dhiffushi · rooftop infinity pool, spa, private beach"];
+const REV=["Reveries Diving Village","Gan, Laamu · Emperor Divers dive centre on site"];
+const ARENA=["Arena Beach Hotel","Maafushi · private beach, 50 rooms"];
+// rank = Ruka's position once all four problems are fixed (0 = honourable mention only)
+const P = {
+  beach:{e:"🏖️",t:"Beach couple",d:"Quiet island, beach & kitesurf, near Malé",
+    q:"Quiet guesthouse on a local island near Malé, right by the beach, maybe some kitesurfing. Couple, mid-budget, March.",
+    comp:[STONE,ARENA,REV], rank:1,
+    why:"Steps from Dhiffushi beach, ~10 min walk to Kite Beach, small and quiet (12 rooms), breakfast included."},
+  honey:{e:"💍",t:"Honeymooners",d:"Romantic and quiet, not resort prices",
+    q:"Romantic, quiet place on a local island for our honeymoon. Nice beach, but not resort prices.",
+    comp:[STONE,ARENA,REV], rank:2,
+    why:"New (2025), only 12 rooms, rooms with balconies, beach a few steps away. Quiet and good value."},
+  family:{e:"👨‍👩‍👧‍👦",t:"Family of four",d:"Two kids, easy transfer, beach",
+    q:"Guesthouse for a family of four with two kids, easy to reach from the airport, safe beach, breakfast included.",
+    comp:[ARENA,STONE,REV], rank:3,
+    why:"Breakfast included, air-conditioned rooms, short island walk to the beach."},
+  dive:{e:"🤿",t:"Dive couple",d:"Serious diving, mantas & sharks",
+    q:"Guesthouse for a dive couple. We want serious channel diving, mantas and sharks, with a dive centre on site.",
+    comp:[REV,ARENA,STONE], rank:0,
+    why:"Not a dive specialist. For this traveller the AI still prefers Reveries, and that's correct."}
+};
+const FIX = [
+  {tag:"Brand · identity",h:"Three names, two phone numbers",b:"“Ruka Inn” on one site, “Ruka Guest House” on another, “Ruka Maldives” on Instagram. Two different phone numbers.",a:"One name, address and phone everywhere: Ruka Maldives, Dhiffushi, North Malé Atoll. All reviews now count for ONE Ruka.",btn:"Make the identity consistent"},
+  {tag:"Product",h:"Adjectives, not facts",b:"“Paradise awaits! Best stay ever! Amazing vibes!”",a:"12-room guesthouse, opened 2025 · steps from Dhiffushi beach · ~10 min walk to Kite Beach · AC rooms, some with balconies · breakfast included.",btn:"Replace adjectives with facts"},
+  {tag:"Price",h:"No price the AI can read",b:"“DM us for best rates!” No cancellation policy online.",a:"A clear nightly price range and cancellation terms, published on every channel.",btn:"Publish a clear price range"},
+  {tag:"Place · distribution",h:"No website, booking by message",b:"“Message us on Viber to book.” An AI agent can't confirm availability.",a:"A simple Ruka website with booking, plus Booking.com and Expedia, all showing the same live availability.",btn:"Open a bookable channel"}
+];
+let persona=null, fixed=new Set();
+const $=id=>document.getElementById(id);
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function go(n){document.querySelectorAll('.screen').forEach((s,i)=>s.classList.toggle('on',i===n));
+  const st=[0,0,1,2,3][n]; document.querySelectorAll('.steps i').forEach((x,i)=>x.classList.toggle('on',i<=st));
+  window.scrollTo({top:0,behavior:'smooth'});}
+for(const k in P){const b=document.createElement('button');b.innerHTML=`<span class="e">${P[k].e}</span><b>${P[k].t}</b><span>${P[k].d}</span>`;b.onclick=()=>start(k);$('personas').appendChild(b);}
+async function typeIn(el,text){el.textContent="";for(const ch of text){el.textContent+=ch;await wait(14);}}
+async function think(el,lines){el.innerHTML="";for(const l of lines){const d=document.createElement('div');d.textContent=l;el.appendChild(d);await wait(60);d.classList.add('on');await wait(520);}}
+function card(n,name,info,ruka){const d=document.createElement('div');d.className='gh'+(ruka?' ruka':'');d.innerHTML=`<span class="n">${n}</span><div><b>${name}</b><small>${info}</small></div>`;return d;}
+async function reveal(el,cards){el.innerHTML="";for(const c of cards){el.appendChild(c);await wait(60);c.classList.add('on');await wait(380);}}
+function msg(html,cls){const m=document.createElement('div');m.className=cls||'missing on';m.innerHTML=html;return m;}
+async function start(k){persona=P[k];fixed.clear();renderFixes();go(1);
+  $('res1').innerHTML="";$('think1').innerHTML="";$('miss1').classList.remove('on');$('q1').style.display='none';$('toFix').style.display='none';
+  await typeIn($('prompt1'),persona.q);
+  await think($('think1'),["Read guesthouse and hotel listings across the atolls","Matched your needs against listed facts","Checked reviews & cross-checked identities","Kept only options it could verify"]);
+  await reveal($('res1'),persona.comp.map((c,i)=>card(i+1,c[0],c[1])));
+  await wait(400);$('miss1').classList.add('on');await wait(700);$('q1').style.display='block';$('toFix').style.display='block';}
+$('toFix').onclick=()=>go(2);
+function renderFixes(){$('fixes').innerHTML="";FIX.forEach((f,i)=>{const d=document.createElement('div');d.className='fix'+(fixed.has(i)?' done':'');
+  d.innerHTML=`<span class="tag">${f.tag}</span><h3>${f.h}</h3><div class="before">${f.b}</div><div class="after">${f.a}</div><button>${fixed.has(i)?'Fixed ✓':f.btn}</button>`;
+  d.querySelector('button').onclick=()=>{fixed.has(i)?fixed.delete(i):fixed.add(i);renderFixes();if(navigator.vibrate)navigator.vibrate(15);};$('fixes').appendChild(d);});
+  const n=fixed.size;$('mbar').style.width=(8+n*23)+'%';$('mval').textContent=["Low","Weak","Fair","Good","Strong"][n];$('rerun').disabled=n===0;}
+$('rerun').onclick=async()=>{go(3);const n=fixed.size;const R=$('res2');R.innerHTML="";$('think2').innerHTML="";$('toMap').style.display='none';
+  await typeIn($('prompt2'),persona.q);
+  await think($('think2'),["Read guesthouse and hotel listings across the atolls","Found consistent facts about Ruka Maldives","Cross-checked Ruka on its website, Google & booking sites"]);
+  const comp=persona.comp.map(c=>card(0,c[0],c[1]));
+  const r=card(0,"Ruka Maldives, Dhiffushi","Why: "+persona.why,true);
+  let list, after=[];
+  if(n<2){list=comp;after.push(msg(`<b>Ruka is still not shortlisted.</b><p style="margin:6px 0 0">One fix isn't enough. The AI still can't verify Ruka. Go back and fix more.</p>`));}
+  else if(persona.rank===0){list=comp;after.push(msg(`<b>Ruka is now visible… but not for this traveller.</b><p style="margin:6px 0 0">${persona.why} <br><br><b>Lesson:</b> visibility can't fix a poor fit. Positioning means choosing the segments you <i>can</i> win. Try the Beach couple.</p>`,'missing on'));}
+  else if(n<4){list=[comp[0],comp[1],r];r.querySelector('small').textContent=`Partly verified: ${n} of 4 problems fixed. Fix all four to move up.`;}
+  else{list=comp.slice(0,2);list.splice(persona.rank-1,0,r);}
+  list.forEach((c,i)=>c.querySelector('.n').textContent=i+1);
+  await reveal(R,list);after.forEach(a=>R.appendChild(a));
+  if(n<4){const b=document.createElement('button');b.className='btn alt';b.textContent=n<2?'← Back to fixes':'← Fix the rest';b.onclick=()=>go(2);R.appendChild(b);}
+  if(n>=2)$('toMap').style.display='block';
+};
+$('toMap').onclick=()=>go(4);
+$('again').onclick=()=>go(0);
+</script>
+</body>
+</html>
