@@ -33,7 +33,9 @@ const url = f => 'file://' + path.join(root, f);
 
   // 2. PDF backup
   const pdf = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
-  await pdf.goto(url('index.html') + '?print');
+  // Dark PDF: screen media so the dark tokens apply; ?print&dark shows every build in the dark theme.
+  await pdf.emulateMedia({ media: 'screen', colorScheme: 'dark' });
+  await pdf.goto(url('index.html') + '?print&dark');
   await pdf.waitForTimeout(1500);
   await pdf.pdf({ path: path.join(root, 'slides.pdf'), width: '1920px', height: '1080px', printBackground: true,
     margin: { top: 0, bottom: 0, left: 0, right: 0 } });

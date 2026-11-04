@@ -33,7 +33,7 @@ const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&e.int
 function hud(){const h=document.getElementById('hud');const el=t0?Math.floor((Date.now()-t0)/1000):0;
   h.textContent=`${cur+1}/${slides.length} · ${Math.floor(el/60)}:${String(el%60).padStart(2,'0')} · build ${step}/${builds(cur)}`;h.classList.toggle('late',el>TOTAL-30);}
 
-// --- light/dark: follows the system until toggled (T key or corner button); print is always light ---
+// --- light/dark: follows the system until toggled (T key or corner button); print is light unless ?print&dark ---
 const root=document.documentElement, mq=matchMedia('(prefers-color-scheme: dark)');
 const stored=()=>{try{return localStorage.getItem('deck-theme');}catch(e){return null;}};
 function setTheme(t,save){root.dataset.theme=t;const b=document.getElementById('theme');
@@ -41,7 +41,7 @@ function setTheme(t,save){root.dataset.theme=t;const b=document.getElementById('
   if(save){try{localStorage.setItem('deck-theme',t);}catch(e){}}}
 function toggleTheme(){setTheme(root.dataset.theme==='dark'?'light':'dark',true);}
 let printPrev=null;
-if(PRINT)setTheme('light');else{setTheme(stored()||(mq.matches?'dark':'light'));
+if(PRINT)setTheme(/[?&]dark/.test(location.search)?'dark':'light');else{setTheme(stored()||(mq.matches?'dark':'light'));
   mq.addEventListener('change',e=>{if(!stored())setTheme(e.matches?'dark':'light');});
   addEventListener('beforeprint',()=>{printPrev=root.dataset.theme;root.dataset.theme='light';});
   addEventListener('afterprint',()=>{if(printPrev)root.dataset.theme=printPrev;});

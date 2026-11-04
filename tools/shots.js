@@ -1,4 +1,4 @@
-// Renders each slide fully built (print mode, light theme) to .check/pptx/NN.png at 1920x1080, for tools/make_pptx.py.
+// Renders each slide fully built (print mode, dark theme) to .check/pptx/NN.png at 1920x1080, for tools/make_pptx.py.
 // Usage: node tools/shots.js && python3 tools/make_pptx.py
 const { chromium } = require('playwright');
 const path = require('path');
@@ -8,8 +8,8 @@ const fs = require('fs');
   const out = path.join(root, '.check', 'pptx');
   fs.mkdirSync(out, { recursive: true });
   const b = await chromium.launch();
-  const p = await b.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
-  await p.goto('file://' + path.join(root, 'index.html') + '?print');
+  const p = await b.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1, colorScheme: 'dark' });
+  await p.goto('file://' + path.join(root, 'index.html') + '?print&dark');
   await p.waitForTimeout(2000);
   const slides = await p.$$('.slide');
   for (let i = 0; i < slides.length; i++) {

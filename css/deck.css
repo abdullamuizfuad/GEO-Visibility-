@@ -546,6 +546,7 @@ body.print #scene{display:none}
 body.print .slide{background:var(--bg)}
 body.print .slide.inverse{background:var(--inv)}
 body.print .panel,body.print .qrframe,body.print .sig,body.print .lens{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,252,247,.75)}
+:root[data-theme="dark"] body.print .panel,:root[data-theme="dark"] body.print .qrframe,:root[data-theme="dark"] body.print .sig,:root[data-theme="dark"] body.print .lens{background:rgba(255,255,255,.045)}
 @media print{#theme,#hud,#progress{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;transition-delay:0s!important;animation:none!important}#scene *{animation:none!important}.rv{opacity:1;transform:none}.plate svg path{stroke-dashoffset:0}
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
