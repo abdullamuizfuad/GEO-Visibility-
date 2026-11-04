@@ -11,7 +11,7 @@ Topic: *Unique Marketing Issues* (segmentation, targeting and positioning; brand
 | `demo/index.html` | **The phone demo** ("Ruka Visibility Lab") that the QR code opens. |
 | `slides.pdf` | PDF backup of every slide, fully built. |
 | `speaker-notes.md` | A script timed to 10 minutes, with discussion questions and fallbacks. |
-| `assets/` | Put your AI screenshots here: `chatgpt.png` and `gemini.png` (slide 5). |
+| `assets/` | Cropped screenshots of the real Baidu and Google AI Mode answers (slide 5). |
 
 ## Put it live (GitHub Pages)
 
@@ -40,19 +40,17 @@ If the internet fails in the room, open `demo/index.html` on your laptop and wal
 
 **Last resort:** open `slides.pdf`.
 
-## Add your AI screenshots (optional, slide 5)
+## Real AI evidence (slide 5)
 
-Ask the way real travellers do, in a fresh ChatGPT chat and in a fresh Gemini (or Chinese AI) chat:
+Tested on 4 Nov 2026 with Gemini, Google AI Mode and Baidu, using the everyday questions travellers actually type, in English and Chinese. The cropped screenshots are in `assets/`:
 
-```
-We're a couple going to the Maldives in March. Where should we stay? Not a resort, somewhere nice near the beach and not too expensive.
-```
+| File | What it shows |
+|---|---|
+| `assets/baidu-couple.png` | Baidu, couple question in Chinese: **Arena Beach Hotel** listed first (highlighted) |
+| `assets/google-ai.png` | Google AI Mode, "near the airport": every pick has a rating, map pin and website |
+| `assets/baidu-dhiffushi.png` | Baidu, "near airport, local island": Dhiffushi recommended with **Athiri Residence**, not Ruka (for Q&A) |
 
-```
-我们是一对情侣，三月去马尔代夫。住哪里比较好？不要度假村，想离海滩近一点，舒服但不要太贵。
-```
-
-Save the screenshots as `assets/chatgpt.png` and `assets/gemini.png`, then commit and push them. If they're missing, slide 5 shows a placeholder, so **skip it** (press → twice).
+Across all the questions, **Ruka Maldives was named 0 times.**
 
 ## Presenting controls
 

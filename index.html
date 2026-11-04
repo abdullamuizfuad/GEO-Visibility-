@@ -163,6 +163,16 @@ b{color:var(--ink)}
 .phil small{display:block;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
 .qs{position:absolute;right:120px;bottom:120px;font-size:56px;font-weight:800;color:var(--coral)}
 /* screenshot slot */
+.real{display:grid;grid-template-columns:640px 600px 1fr;gap:34px;align-items:start}
+.real figure{margin:0;background:#fff;border:2px solid var(--line);border-radius:24px;padding:16px;box-shadow:0 16px 40px rgba(11,42,60,.08)}
+.real figcaption{font-size:22px;color:var(--ink2);margin:2px 4px 12px;line-height:1.3}
+.real img{display:block;width:100%;border-radius:12px}
+.score{background:var(--ink);color:#fff;border-radius:24px;padding:30px 30px 26px}
+.score .eng{font-size:21px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:800;line-height:1.4}
+.score p{font-size:25px;line-height:1.35;color:#d6e2e8;margin-top:18px}
+.score p b{color:#fff}
+.score .zero{margin-top:26px;border-top:2px solid rgba(255,255,255,.2);padding-top:18px;font-size:25px;font-weight:700;color:#fff;display:flex;align-items:center;gap:18px}
+.score .zero span{font-size:96px;font-weight:800;color:var(--coral);line-height:1}
 .shot{display:grid;grid-template-columns:1fr 1fr;gap:40px;height:700px}
 .shot div{border:4px dashed var(--line);border-radius:28px;display:grid;place-items:center;text-align:center;font-size:32px;color:var(--ink2);overflow:hidden;background:#fff}
 .shot img{max-width:100%;max-height:100%;object-fit:contain}
@@ -241,13 +251,20 @@ body.print #hud,body.print #progress{display:none}
   </div>
 </section>
 
-<!-- 5 REAL AI SCREENSHOT (optional) -->
-<section class="slide" data-notes="OPTIONAL — skip if short on time. Show the real ChatGPT/Gemini answers you captured. Point at the 'why' reasons: facts it could verify.">
-  <div class="kicker">This is not hypothetical</div>
-  <h2>I asked two real AI assistants last night</h2>
-  <div class="shot">
-    <div><img src="assets/chatgpt.png" alt="ChatGPT answer" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Put your ChatGPT screenshot at assets/chatgpt.png'}))"></div>
-    <div><img src="assets/gemini.png" alt="Gemini answer" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Put your Gemini screenshot at assets/gemini.png'}))"></div>
+<!-- 5 REAL AI EVIDENCE -->
+<section class="slide s-real" data-notes="60s, or skip if behind. 'Last night I asked real AI engines the same everyday questions, in English and Chinese.' Click 1: Baidu, the couple question in Chinese: Arena Beach Hotel is first. Click 2: Google AI Mode, near the airport: every pick has a rating, map pin and website, so it's a verified entity. Click 3: the scorecard. Dhiffushi was recommended, but the guesthouse named was Athiri Residence. Ruka: zero. Ask: 'Why Arena and not Ruka?'">
+  <div class="kicker">This is not hypothetical · tested 4 Nov 2026</div>
+  <h2>Same questions, real AI engines</h2>
+  <div class="real">
+    <figure data-b="1"><figcaption><b>Baidu</b> · in Chinese · “We're a couple… not a resort, near the beach”</figcaption><img src="assets/baidu-couple.png" alt="Baidu answer recommending Arena Beach Hotel first"></figure>
+    <figure data-b="2"><figcaption><b>Google AI Mode</b> · “near the airport, local island, not a resort”</figcaption><img src="assets/google-ai.png" alt="Google AI Mode answer with mapped hotels"></figure>
+    <div class="score" data-b="3">
+      <div class="eng">Gemini · Google AI Mode · Baidu<br>English &amp; 中文</div>
+      <p><b>Arena Beach Hotel</b>: Baidu’s #1 for couples, and Gemini’s pick for families</p>
+      <p><b>Dhiffushi</b> recommended, but the guesthouse named was <b>Athiri Residence</b></p>
+      <p>Google’s picks all carry a <b>rating, map pin &amp; website</b></p>
+      <div class="zero"><span>0</span>times Ruka Maldives was named</div>
+    </div>
   </div>
 </section>
 
