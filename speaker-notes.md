@@ -50,6 +50,7 @@ Use it once or twice. Answer a direct question from the panel chair directly.
 | **F** | Fullscreen |
 | **H** | Show/hide timer, slide and build counter |
 | **R** | Reset timer |
+| **1 / 2 / 3** (slide 4) | Open a real AI screenshot large; Esc or → closes. Hovering a thumbnail also enlarges it |
 | **T** | Light / dark toggle |
 | **B** or **.** | Black screen (clicker "blank" button) |
 | **N** | Pop-up of this slide's notes (only if the projector isn't mirroring your screen) |

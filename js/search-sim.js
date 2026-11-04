@@ -147,3 +147,31 @@ else{
   addEventListener('afterprint',()=>{reset();running=false;sync();});
 }
 })();
+
+// ---------- screenshot pop-up (real answers) ----------
+// Hover a thumbnail (after the animation) to enlarge; click pins it; keys 1/2/3 open; Esc / next key / click closes.
+(()=>{const root=document.getElementById('searchsim');if(!root||/[?&]print/.test(location.search))return;
+const slide=root.closest('.slide');
+const CAP=['Baidu · couple question in Chinese · Arena Beach Hotel listed first',
+  'Google AI Mode · “near the airport, a local island” · every pick has a rating, map pin and website',
+  'Baidu · “near the airport, local island” · Dhiffushi recommended with Athiri Residence, not Ruka'];
+const ov=document.createElement('div');ov.className='ss-pop';ov.setAttribute('role','dialog');ov.setAttribute('aria-hidden','true');
+ov.innerHTML='<figure><img alt=""><figcaption></figcaption></figure>';document.body.appendChild(ov);
+const img=ov.querySelector('img'),cap=ov.querySelector('figcaption');
+const thumbs=[...root.querySelectorAll('.ss-thumbs img')];
+let pinned=false;
+const ready=()=>root.classList.contains('s-thumbs')&&(!slide||slide.classList.contains('active'));
+function open(i,pin){if(!ready())return;img.src=thumbs[i].src;img.alt=thumbs[i].alt;cap.textContent=CAP[i];
+  pinned=!!pin;ov.classList.add('on');ov.classList.toggle('pinned',pinned);ov.setAttribute('aria-hidden','false');}
+function close(){pinned=false;ov.classList.remove('on','pinned');ov.setAttribute('aria-hidden','true');}
+thumbs.forEach((t,i)=>{t.style.cursor='zoom-in';
+  t.addEventListener('mouseenter',()=>{if(!pinned)open(i,false);});
+  t.addEventListener('mouseleave',()=>{if(!pinned)close();});
+  t.addEventListener('click',e=>{e.stopPropagation();(pinned&&ov.classList.contains('on'))?close():open(i,true);});});
+ov.addEventListener('click',e=>{e.stopPropagation();close();});
+addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;
+  if(ov.classList.contains('on')&&['Escape','ArrowDown','ArrowRight','PageDown',' ','Enter','ArrowUp','ArrowLeft','PageUp'].includes(e.key)){
+    e.preventDefault();e.stopImmediatePropagation();close();return;}
+  if(['1','2','3'].includes(e.key)&&ready()){e.preventDefault();open(+e.key-1,true);}},true);
+if(slide)new MutationObserver(()=>{if(!slide.classList.contains('active'))close();}).observe(slide,{attributes:true,attributeFilter:['class']});
+})();
