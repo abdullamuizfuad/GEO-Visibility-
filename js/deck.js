@@ -23,7 +23,7 @@ function go(i,mode){i=Math.max(0,Math.min(slides.length-1,i));
   document.documentElement.dataset.dir=i<from?'back':'fwd';
   if(document.startViewTransition){document.startViewTransition(swap);return;}
   deck.classList.add('fading');setTimeout(()=>{swap();requestAnimationFrame(()=>deck.classList.remove('fading'));},220);}
-function next(){if(!t0)t0=Date.now();if(step<builds(cur)){step++;paint(cur,step);hud();}else if(cur<slides.length-1)go(cur+1,'start');}
+function next(){if(!t0)t0=Date.now();if(slides[cur].querySelector('#searchsim')&&window.searchSimSkip&&window.searchSimSkip())return;if(step<builds(cur)){step++;paint(cur,step);hud();}else if(cur<slides.length-1)go(cur+1,'start');}
 function prev(){if(step>0){step--;paint(cur,step);hud();}else if(cur>0)go(cur-1,'end');}
 
 // Manual scrolling (wheel, touch, trackpad): show the arrived slide fully built.

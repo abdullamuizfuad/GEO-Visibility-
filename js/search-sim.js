@@ -1,5 +1,5 @@
 // Slide 4 "search simulation": two AI chats (EN + 中文) answer the same honeymoon question; three dots from a field of
-// hotels near Malé fly into each shortlist; Ruka is never named. Self-running loop while the slide is active.
+// hotels near Malé fly into each shortlist; Ruka is never named. Plays once when the slide becomes active and holds the final scene; next/click during play skips to the end.
 // ?print and prefers-reduced-motion render the final state statically. Renders into #searchsim (no other markup needed).
 (function(){
 const root=document.getElementById('searchsim');if(!root)return;
@@ -71,7 +71,7 @@ cols.forEach(c=>{c.qt=c.el.querySelector('.ss-qt');c.intro=c.el.querySelector('.
 const STAGES=['s-type','s-cursor','s-press','s-sent','s-load','s-dim','s-zero','s-thumbs','s-why','s-final','s-out'];
 
 // ---------- timeline ----------
-let timers=[],anims=[],running=false;
+let timers=[],anims=[],running=false,done=false;
 const at=(ms,fn)=>timers.push(setTimeout(fn,ms));
 const stage=(c,on=true)=>root.classList.toggle(c,on);
 
@@ -114,10 +114,10 @@ function fly(c,k,i){
   a.onfinish=()=>{li.classList.add('on');f.remove();};
 }
 
-// Loop (ms): type 0.4–3.4s · cursor 3.5s · press 4.2s · loading 4.5–6.0s · EN answers 6.0s, 中文 6.5s ·
-// dots fly 6.8–8.9s · Ruka dims 9.3s · red 0 at 9.8s · thumbnails 10.4s · WHY box 11.4s · hold to 16.4s · fade + restart at 17s.
+// Timeline (ms, plays once): type 0.4–3.4s · cursor 3.5s · press 4.2s · loading 4.5–6.0s · EN answers 6.0s, 中文 6.5s ·
+// dots fly 6.8–8.9s · Ruka dims 9.3s · red 0 at 9.8s · thumbnails 10.4s · WHY box 11.4s, then holds.
 function run(){
-  reset();running=true;
+  reset();running=true;done=false;
   at(400,()=>{stage('s-type');cols.forEach(c=>typeInto(c.qt,c.L.q,2900));});
   at(3500,()=>stage('s-cursor'));
   at(4200,()=>stage('s-press'));
@@ -128,17 +128,17 @@ function run(){
   at(9300,()=>stage('s-dim'));
   at(9800,()=>stage('s-zero'));
   at(10400,()=>stage('s-thumbs'));
-  at(11400,()=>stage('s-why'));
-  at(16400,()=>stage('s-out'));
-  at(17000,()=>{if(running)run();});
+  at(11400,()=>{stage('s-why');done=true;});
 }
+// A click/next key while the animation plays jumps to the finished scene; once finished, deck.js changes slide.
+window.searchSimSkip=()=>{if(!running||done)return false;final();running=true;done=true;return true;};
 
 // ---------- activation ----------
 const slide=root.closest('.slide');
 const isActive=()=>root.hasAttribute('data-autostart')||!slide||slide.classList.contains('active');
 function sync(){if(PRINT||reduce)return;
   if(isActive()&&!running)run();
-  else if(!isActive()&&running){running=false;reset();}}
+  else if(!isActive()&&running){running=false;done=false;reset();}}
 if(PRINT||reduce){final();}
 else{
   if(slide)new MutationObserver(sync).observe(slide,{attributes:true,attributeFilter:['class']});
