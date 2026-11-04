@@ -410,6 +410,11 @@ b,strong{font-weight:600;color:var(--ink)}
 .s-fix.b5 .fix>.qrframe{opacity:0;transform:scale(.96);pointer-events:none}
 .fix>.result{align-self:center}
 body.print .s-fix .fix>.qrframe{display:none}
+/* print/PDF/PPTX: slide 12 shows the couple result (Ruka #1) */
+body.print .s-fix .rview{opacity:0}body.print .s-fix .rv-c{opacity:1;transform:none}
+body.print .s-fix .rtabs span{background:none;color:var(--ink2);border-color:var(--card-brd)}
+body.print .s-fix .rtabs .t-c{background:var(--inv);color:var(--inv-ink);border-color:transparent}
+
 .fixes{list-style:none;margin-top:calc(var(--u)*1.8);display:grid;gap:calc(var(--u)*.7)}
 .fixes li{display:grid;grid-template-columns:6.4em 1fr;gap:calc(var(--u)*1);align-items:center;padding:calc(var(--u)*.75) calc(var(--u)*1.2) calc(var(--u)*.75) calc(var(--u)*.8);border-radius:var(--r-sm);box-shadow:none;color:var(--ink);font-size:clamp(.92rem,calc(var(--u)*1.3),1.6rem);line-height:1.35}
 .fixes li b{justify-self:start;padding:.5em 1em;border-radius:999px;background:var(--chip-c);font:600 clamp(.6rem,calc(var(--u)*.78),.95rem)/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--sun)}

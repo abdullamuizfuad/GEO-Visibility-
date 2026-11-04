@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0B332D"/>
+  <g fill="none" stroke="#C4876C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- arch -->
+    <path d="M17 50V27a15 15 0 0 1 30 0v23"/>
+    <!-- palm trunk -->
+    <path d="M32 26v20"/>
+    <!-- fronds -->
+    <path d="M32 26c-4-4-9-4-12-1"/>
+    <path d="M32 26c4-4 9-4 12-1"/>
+    <path d="M32 27c-5 0-8 3-9 8"/>
+    <path d="M32 27c5 0 8 3 9 8"/>
+    <!-- hills -->
+    <path d="M17 50c6-6 12-7 15-4c3-3 9-2 15 4"/>
+  </g>
+  <!-- star -->
+  <path d="M32 15l2.2 2.6L32 20.2l-2.2-2.6z" fill="#C4876C"/>
+</svg>

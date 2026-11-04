@@ -1,6 +1,6 @@
 # Builds slides.pptx from .check/pptx/NN.png (run `node tools/shots.js` first).
 # Static image slides, "push up" transition, and a red "Live presentation" link box on slide 1.
-import glob, os
+import glob, os, json
 from pptx import Presentation
 from pptx.util import Emu, Pt
 from pptx.dml.color import RGBColor
@@ -35,6 +35,14 @@ for i, f in enumerate(sorted(glob.glob(os.path.join(ROOT, ".check", "pptx", "*.p
     el = etree.fromstring(TRANS); sld = s._element
     anchor = sld.find('{http://schemas.openxmlformats.org/presentationml/2006/main}clrMapOvr')
     (anchor.addnext(el) if anchor is not None else sld.append(el))
+
+# invisible clickable areas over the slide 17 teaching-tool buttons
+lp = os.path.join(ROOT, ".check", "pptx", "links.json")
+for l in (json.load(open(lp)) if os.path.exists(lp) else []):
+    sl = prs.slides[l["slide"]]
+    sh = sl.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Emu(int(W * l["x"])), Emu(int(H * l["y"])), Emu(int(W * l["w"])), Emu(int(H * l["h"])))
+    sh.fill.background(); sh.line.fill.background(); sh.click_action.hyperlink.address = l["href"]
+    sh.shadow.inherit = False
 
 out = os.path.join(ROOT, "slides.pptx"); prs.save(out)
 print(len(prs.slides), "slides ->", out)
