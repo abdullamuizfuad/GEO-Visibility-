@@ -5,14 +5,16 @@ Topic: *Unique Marketing Issues* (segmentation, targeting and positioning; brand
 
 ## What's in this repo
 
-| File | What it is |
+| Path | What it is |
 |---|---|
-| `index.html` | **The presentation.** 14 editorial-style slides with motion and click-by-click builds; runs offline. |
-| `fonts/` | Poppins (and earlier display fonts), bundled so the deck looks right without internet. Keep this folder next to `index.html`. |
-| `demo/index.html` | **The phone demo** ("Ruka Visibility Lab") that the QR code opens. |
-| `slides.pdf` | PDF backup of every slide, fully built. |
-| `speaker-notes.md` | A script timed to 10 minutes, with discussion questions and fallbacks. |
-| `assets/` | Cropped screenshots of the real Baidu and Google AI Mode answers (slide 4). |
+| `index.html` | **The presentation** (14 slides; text and speaker notes only) |
+| `css/deck.css`, `js/` | Deck design, navigation and the looping beach background |
+| `demo/` | **The phone demo** the QR code opens (`data.js` holds its wording) |
+| `fonts/`, `assets/` | Poppins (bundled for offline use), Ruka logo, AI screenshots, QR code |
+| `slides.pdf` | PDF backup of every slide, fully built |
+| `speaker-notes.md` | Script timed to 10 minutes |
+| `tools/check.js` | `node tools/check.js` re-renders everything and reports problems |
+| `CLAUDE.md` | Project brief: facts, design rules, which file to edit |
 
 ## Put it live (GitHub Pages)
 
