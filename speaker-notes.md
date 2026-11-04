@@ -4,7 +4,7 @@ MNU Business School teaching demonstration · 5 November 2026 · 9:30 am · A3 M
 
 **How to read this.** Each slide has a time window, the number of clicks, **SAY** (the words, about 130 words a minute), and **DO** (how to run the slide). Plain text is spoken; *italics* are questions to the room; [brackets] are actions.
 
-**The clock.** Press **H** after your first click: a hidden timer and slide counter appear in the corner (it turns red at 9:30). Checkpoints: **slide 4 by 2:05 · slide 9 by 4:45 · slide 12 by 7:05 · slide 15 by 9:00.** If you miss a checkpoint, use the "If you're behind" line on the next slide.
+**The clock.** Press **H** after your first click: a hidden timer and slide counter appear in the corner (it turns red at 9:30). Checkpoints: **slide 4 by 2:05 · slide 9 by 4:45 · slide 12 by 7:10 · slide 15 by 9:00.** If you miss a checkpoint, use the "If you're behind" line on the next slide.
 
 **Before you start (9:15).** Laptop on mains power, browser fullscreen (**F**), Wi-Fi on, phone demo open on your own phone as a spare, slide 1 showing, clicker tested, a glass of water. Press **R** to reset the timer just before you begin.
 
@@ -111,29 +111,31 @@ MNU Business School teaching demonstration · 5 November 2026 · 9:30 am · A3 M
 
 ---
 
-## 10 · Seven-step sales process — *AI opens doors; you close the sale*
-**5:25–5:45 · 1 click**
+## 10 · Seven-step sales process → marketing funnel — *AI opens doors; you close the sale*
+**5:25–6:00 · 3 clicks**
 
-**SAY:** No one can guarantee a sale, but a process makes it repeatable: seven steps, prospecting to follow-up.
-[Click 1] AI already does steps one to four. Five to seven stay human: *"Can you arrange a courtyard dinner for our anniversary?"* A person answers that.
+**SAY:** Barringer and Ireland's seven steps are the seller's view.
+[Click 1] AI now does steps one to four; five to seven stay human.
+[Click 2] The marketing funnel is the customer's view of the same journey: awareness, interest, consideration, action, loyalty. AI handles the top; we close at the bottom.
+[Click 3] And the funnel is a loop: reviews from great stays feed the next AI answer.
 
-**DO:** Sweep your hand across 1–4 when they light up, then hold your hand on 5–7. That gesture sets up the next slide.
+**DO:** Say the link out loud: you are **connecting the sales process to the marketing funnel**. The funnel (AIDA) is general marketing, not from the textbook; the seven steps are Barringer & Ireland. On click 2, point from each funnel layer to its matching step chips; on click 3, trace the loop with your hand. That loop sets up the next slide.
 
 ---
 
 ## 11 · Think · pair · share (green slide)
-**5:45–7:05 · 2 clicks**
+**6:00–7:10 · 2 clicks**
 
 **SAY:** [Read slowly] *If AI handles steps one to four, how does the manager's role change?* Turn to your neighbour; you have a minute.
 [Click 1 — starts the 60-second line. Let pairs talk ~30 seconds.] *What did you come up with?* … *What do others think?*
 [Click 2] Two shifts. Administrative responder to **experience architect**: value moves to the objection, the close and the stay. Passive marketer to **data curator**: identical facts everywhere become a daily job.
 
-**DO:** This is the facilitation slide the panel scores most. Ask, **pause** (count to five in your head), then redirect: "Good point. Does anyone see it differently?" Build on their answer before clicking 2: "Yes, and that's exactly the first shift…" Take two answers at most.
+**DO:** This is the facilitation slide the panel scores most. Ask, **pause** (count to five in your head), then redirect: "Good point. Does anyone see it differently?" Build on their answer before clicking 2: "Yes, and that's exactly the first shift…" Take one or two answers at most (70 seconds in all).
 
 ---
 
 ## 12 · QR — *Now, make Ruka visible*
-**7:05–8:10 · 5 clicks**
+**7:10–8:10 · 5 clicks**
 
 **SAY:** Phones again: you're Ruka's marketing manager now.
 [Click 1] Brand: one name, address and phone.
@@ -205,7 +207,7 @@ Understanding, application, evaluation.
 |---|---|
 | Slide 4 later than 2:20 | Click once to skip to the 0; no screenshots |
 | Slide 8 | Click all five builds; one sentence |
-| Slide 11 later than 6:05 | Take one answer only, then click 2 |
+| Slide 11 later than 6:20 | Take one answer only, then click 2 |
 | Slide 12 | Click all four fixes in a row; go straight to the dive question |
 | Slide 13 | Read the first question only |
 | Slide 15 later than 9:10 | Skip the four-lesson line; go to slide 16 |
