@@ -27,6 +27,8 @@ const url = f => 'file://' + path.join(root, f);
     for (let k = 0; k < builds; k++) { await page.keyboard.press('ArrowRight'); await page.waitForTimeout(250); }
     await page.waitForTimeout(2000);
     await page.screenshot({ path: path.join(out, `slide-${String(i + 1).padStart(2, '0')}.png`) });
+    // slide 4's search animation treats the first key press as 'skip to end'; finish it first so navigation stays in step
+    await page.evaluate(() => window.searchSimSkip && window.searchSimSkip());
     await page.keyboard.press('ArrowRight');
     await page.waitForTimeout(300);
   }
