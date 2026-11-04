@@ -14,10 +14,10 @@ const HOTELS={
 };
 const RUKA={x:66,y:58};
 const LANGS=[
-  {id:'en',label:'AI assistant · UK (English)',lang:'en',
+  {id:'en',label:'Gemini / Google AI · UK (English)',lang:'en',
    q:'cosy guesthouse near Malé for a honeymoon, not too expensive',
    intro:'Here are three cosy picks near Malé:',picks:['stone','arena','crystal']},
-  {id:'zh',label:'AI assistant · China (中文)',lang:'zh-Hans',
+  {id:'zh',label:'Baidu AI · China (中文)',lang:'zh-Hans',
    q:'我们是情侣，想找马尔代夫马累附近温馨又不太贵的民宿',
    intro:'为您推荐以下三家：',picks:['arena','crystal','stone']}
 ];
