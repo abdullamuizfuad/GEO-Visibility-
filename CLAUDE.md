@@ -20,20 +20,24 @@ The panel scores engagement, facilitating discussion (not just answering), pitch
 
 ## How the deck works
 - Builds: an element with `data-b="N"` appears on click N. The slide also gets classes `b1..bN` for CSS-driven animations. `?print` shows everything (used for the PDF).
-- Keys: → ↓ Space PgDn = next build/slide; ← ↑ PgUp = back; F fullscreen; H timer/HUD; B black screen.
+- Keys: → ↓ Space PgDn = next build/slide; ← ↑ PgUp = back; F fullscreen; H timer/HUD; B black screen; T light/dark.
+- Slide changes use the View Transitions API (crossfade + drift), with a CSS fade fallback and an instant jump for reduced motion. Theme follows the system; the toggle/T choice is saved in localStorage. `?print` and @media print force light.
+- Slide 11 builds: clicks 1–4 = Brand, Product, Price, Place fixes; click 5 = "Now tap Search again" + result.
+- Phone demo flow: pick traveller (Couple/Honeymoon, Solo, Family, Dive) → Search → answer without Ruka → "Watch the screen" → "Search again" shows the after state (Ruka #1 couple, #2 solo, #3 family; dive: Reveries wins). No fix taps on the phone, no percentages. Ids: #personas, #q, #search, #stop, #again, #after, #theme.
 - Slide map: 1 cover · 2 Ruka dilemma (dots funnel) · 3 QR "be the traveller" · 4 real AI evidence (optional) · 5 outcomes · 6 STP · 7 brand · 8 4Ps · 9 seven-step sales · 10 think-pair-share (green) · 11 QR "make Ruka visible" · 12 assessment · 13 wrap-up + philosophy · 14 references.
 - The user's 11-slide outlines omit slides 3, 4 and 11. Keep them (engagement and evidence) unless the user explicitly says otherwise.
 
 ## Design system
-Ruka Maldives brand on tan: green `#0B332D` (text/headers), copper `#C4876C` (decor), deeper copper `#A9674B` (small accent text), tan `#F6F1EA`. **Poppins** only, bundled in `fonts/` (works offline; never link a CDN). Editorial layout: hairline rules, large faint numerals, no rounded shadow cards. A muted looping beach scene sits behind the slides. It is paused for reduced-motion users and hidden in print.
+Ruka Maldives brand on tan: green `#0B332D` (text/headers), copper `#C4876C` (decor), deeper copper `#A9674B` (small accent text), tan `#F6F1EA`. **Poppins** only, bundled in `fonts/` (works offline; never link a CDN). "Organic modern": rounded cards (24–32px), pill labels, soft glass cards (backdrop blur only on the main card per slide), staggered entrances with cubic-bezier(.16,1,.3,1). Dark mode = deep green #082A25 with tan text; QR always on a tan plate. A muted looping beach scene sits behind the slides. It is paused for reduced-motion users and hidden in print.
 
 ## Facts: never invent; only these are verified
-- **Ruka Maldives:** Dhiffushi, North Malé Atoll; 12 rooms; opened 2025; a few steps from the beach; ~10 min walk to Kite Beach; A/C rooms, private bathrooms, some balconies; breakfast included; **no website of its own**. Used **with the owner's permission**. ("20 steps", exact prices, ratings: not verified, don't use.)
+- **Ruka Maldives:** cosy boutique guesthouse, "personal island villa" feel, boho style, open-courtyard + indoor dining, serviced living, budget-friendly (user-confirmed; do NOT add housekeeping frequency, Wi-Fi, work nooks, distances or percentages). Positioning = one core brand + proof points for couples/honeymoon, solo, families; divers are not a fit. Dhiffushi, North Malé Atoll; 12 rooms; opened 2025; a few steps from the beach; ~10 min walk to Kite Beach; A/C rooms, private bathrooms, some balconies; breakfast included; **no website of its own**. Used **with the owner's permission**. ("20 steps", exact prices, ratings: not verified, don't use.)
 - **Stone Hotels Dhiffushi:** rooftop infinity pool, spa, private beach. **Reveries Diving Village** (Gan, Laamu): Emperor Divers dive centre on site. **Arena Beach Hotel:** **Maafushi** (not Dhiffushi), private beach, 50 rooms.
 - The "fractured listings" (Ruka Inn / Ruka Guest House / two phone numbers) are a **labelled teaching scenario**, not real listings.
 - **AI field test, 4 Nov 2026** (Gemini, Google AI Mode, Baidu; EN + 中文): Ruka named **0 times**; Baidu's couple answer put **Arena Beach Hotel first**; Baidu recommended Dhiffushi with **Athiri Residence**; Google AI Mode picks all had a rating, map pin and website. Cropped screenshots are in `assets/`.
 - Source paper: Morand & Schegg (2026), *Be Visible to AI*, HES-SO Valais-Wallis, doi 10.5281/zenodo.19109201 (practitioner white paper, not peer-reviewed).
-- To confirm with the user: module code "MKT101 / ENT101"; textbook chapter number (varies by edition).
+- Cite the textbook as "Barringer & Ireland, Unique Marketing Issues" with no chapter number. Also cited: Osterwalder & Pigneur (2010), Business Model Canvas (mapped on slide 5); "liability of newness" on slides 5 and 7.
+- To confirm with the user: module code "MKT101 / ENT101". Demo 中文 prompts are machine translations; have them checked.
 
 ## Deploy
 Repo `abdullamuizfuad/GEO-Visibility-`, branch `main`, GitHub Pages from root. The QR code points to `https://abdullamuizfuad.github.io/GEO-Visibility-/demo/`; don't rename the repo or move `demo/`. The user enables Pages themselves (Settings → Pages). Offline backup = ZIP of the repo + `slides.pdf`.

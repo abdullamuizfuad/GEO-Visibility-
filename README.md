@@ -43,6 +43,10 @@ If the internet fails in the room, open `demo/index.html` on your laptop and wal
 
 **Last resort:** open `slides.pdf`.
 
+## Phone demo flow
+
+Pick a traveller → **Search** → the AI answer leaves Ruka out → "Watch the screen". On slide 11 you apply the four fixes with the clicker, then everyone taps **Search again** to see Ruka move up (except for the dive couple: Reveries still wins). It follows the phone's light/dark setting, with a toggle in the header.
+
 ## Real AI evidence (slide 4)
 
 Tested on 4 Nov 2026 with Gemini, Google AI Mode and Baidu, using the everyday questions travellers actually type, in English and Chinese. The cropped screenshots are in `assets/`:
@@ -64,6 +68,7 @@ Across all the questions, **Ruka Maldives was named 0 times.**
 | **F** | Fullscreen |
 | **H** | Hidden timer + slide counter (turns red at 9:30) |
 | **B** | Black screen |
+| **T** (or corner button) | Light / dark theme (follows your system by default) |
 
 ## Day-of checklist
 
@@ -76,7 +81,8 @@ Across all the questions, **Ruka Maldives was named 0 times.**
 
 ## Sources
 
-- Barringer, B. R., & Ireland, R. D. *Entrepreneurship: Successfully launching new ventures*. Pearson. Chapter: Unique marketing issues.
+- Barringer, B. R., & Ireland, R. D. *Entrepreneurship: Successfully launching new ventures*. Pearson. Unique marketing issues.
+- Osterwalder, A., & Pigneur, Y. (2010). *Business model generation*. Wiley.
 - Morand, J.-C., & Schegg, R. (2026). *Be visible to AI: The keys to semantic optimization and GEO for hotels* [White paper]. HES-SO Valais-Wallis. https://doi.org/10.5281/zenodo.19109201
 - Aggarwal, P., et al. (2024). GEO: Generative engine optimization. *Proceedings of the 30th ACM SIGKDD Conference*.
 

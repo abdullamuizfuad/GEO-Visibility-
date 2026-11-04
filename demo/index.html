@@ -32,7 +32,7 @@
     <div class="panel">
       <div class="label"><span class="spark" aria-hidden="true"></span><span id="label"></span></div>
       <form class="prompt" id="form" autocomplete="off">
-        <input id="q" type="text" aria-label="Your question">
+        <textarea id="q" rows="3" aria-label="Your question" enterkeyhint="search" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();this.form.requestSubmit()}"></textarea>
         <button id="search" type="submit"></button>
       </form>
       <p class="zh" id="zh" lang="zh"></p>
